@@ -11,15 +11,15 @@ public class BoosterUIScript : MonoBehaviour
     public void Pressed2XBall()
     {
         BallSpawner.Instance.BallMaxCountBooster = 2;
-        BallSpawner.Instance.SpawnCount += Geekplay.Instance.PlayerData.MaxSpawnCount;
-        Geekplay.Instance.PlayerData.MaxSpawnCount = Geekplay.Instance.PlayerData.MaxSpawnCount * BallSpawner.Instance.BallMaxCountBooster;
+        BallSpawner.Instance.SpawnCount += BallSpawner.Instance.MaximumBallCount;
+        BallSpawner.Instance.MaximumBallCount = Geekplay.Instance.PlayerData.MaxSpawnCount * BallSpawner.Instance.BallMaxCountBooster;
         doubleBallButton.interactable = false;
         StartCoroutine(DoubleBall());
     }
 
     public void Pressed5XIncome()
     {
-        Geekplay.Instance.PlayerData.Income = 5;
+        BallSpawner.Instance.IncomeBoost = 5;
         incomeButton.interactable = false;
         StartCoroutine(IncomeTimer());
     }
@@ -32,32 +32,41 @@ public class BoosterUIScript : MonoBehaviour
 
     public IEnumerator DoubleBall()
     {
-        yield return new WaitForSecondsRealtime(60);
-        Geekplay.Instance.PlayerData.MaxSpawnCount = Geekplay.Instance.PlayerData.MaxSpawnCount / BallSpawner.Instance.BallMaxCountBooster;
-        BallSpawner.Instance.SpawnCount = Geekplay.Instance.PlayerData.MaxSpawnCount;
+        float duration = 60f;
+        float elapsed = 0f;
+        while (elapsed < duration)
+        {
+            elapsed += Time.deltaTime;
+            yield return null;
+        }
+        BallSpawner.Instance.MaximumBallCount = Geekplay.Instance.PlayerData.MaxSpawnCount;
         BallSpawner.Instance.BallMaxCountBooster = 1;
         doubleBallButton.interactable = true;
     }
     public IEnumerator AutoClickTimer()
     {
-        float elapsedTime = 0f;
-
-        while (elapsedTime < 60f)
+        float duration = 60f;
+        float elapsed = 0f;
+        while (elapsed < duration)
         {
+            elapsed += Time.deltaTime;
+
             BallSpawner.Instance.SpawnBall();
-            elapsedTime += 0.1f;
-            yield return new WaitForSecondsRealtime(0.1f);
+            yield return null;
         }
-        if (elapsedTime >= 60)
-        {
-            autoClickButton.interactable = true;
-        }
-    }
 
+        autoClickButton.interactable = true;
+    }
     public IEnumerator IncomeTimer()
     {
-        yield return new WaitForSecondsRealtime(120);
-        Geekplay.Instance.PlayerData.Income = 1;
+        float duration = 120f;
+        float elapsed = 0f;
+        while (elapsed < duration)
+        {
+            elapsed += Time.deltaTime;
+            yield return null;
+        }
+        BallSpawner.Instance.IncomeBoost = 1;
         incomeButton.interactable = true;
     }
 }

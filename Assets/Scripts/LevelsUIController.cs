@@ -13,19 +13,26 @@ public class LevelsUIController : MonoBehaviour
     [SerializeField] private MoneyScript _moneyScript;
     [SerializeField] private GameObject nextLevel; 
     [SerializeField] private GameObject thisLevel;
+    private bool levelAdded;
 
     private Coroutine enumerator;
     void Start()
     {
-        for(int i = 0; i < cubes.Length; i++)
+        StartCoroutine(WaitFrameBeforeStart());
+
+    }
+    public IEnumerator WaitFrameBeforeStart()
+    {
+        yield return new WaitForEndOfFrame();
+        for (int i = 0; i < cubes.Length; i++)
         {
             maxValue += cubes[i].Health;
         }
         progress.maxValue = maxValue;
     }
-    public void ChangeValue()
+    public void ChangeValue(int value)
     {
-        progressValue++;
+        progressValue+= value;
         _moneyScript.AddMoney();
         progress.value = progressValue;
         if(progressValue >= maxValue) 
@@ -36,6 +43,7 @@ public class LevelsUIController : MonoBehaviour
     public void StartCorutine()
     {
         enumerator = StartCoroutine(LevelPass());
+        
     }
     public IEnumerator LevelPass()
     {
@@ -48,7 +56,7 @@ public class LevelsUIController : MonoBehaviour
             Destroy(BallSpawner.Instance.SpawnedObjects[i]);
         }
         BallSpawner.Instance.SpawnedObjects.Clear();
-        BallSpawner.Instance.SpawnCount = Geekplay.Instance.PlayerData.MaxSpawnCount;
+        BallSpawner.Instance.SpawnCount = BallSpawner.Instance.MaximumBallCount;
         StopCorutine();
     }
     public void StopCorutine()
@@ -58,5 +66,11 @@ public class LevelsUIController : MonoBehaviour
             StopCoroutine(enumerator);
             enumerator = null;
         }
+        if (!levelAdded)
+        {
+            levelAdded = true;
+            Geekplay.Instance.PlayerData.Level += 1;
+        }
+        levelAdded = false;
     }
 }

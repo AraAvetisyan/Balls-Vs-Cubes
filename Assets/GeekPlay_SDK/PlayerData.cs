@@ -22,7 +22,6 @@ public class PlayerData
     }
 
     public int Income;
-    public int MoneyCount;
     public int BallHealth;
     public int MaxSpawnCount;
     public float BallSpeed;
@@ -30,8 +29,15 @@ public class PlayerData
 
     public float HealthPrice;
     public float PowerPrice;
-    public float IncomePrice;
     public float CountPrice;
 
 
+    public float IncomePrice;
+    public int MoneyToAdd;
+    public int RebornCount;
+
+    public int Level;
+
+    public string LastSaveTime;
+    public bool IsNotFirstTime;
 }
