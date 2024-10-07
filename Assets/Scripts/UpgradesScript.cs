@@ -179,6 +179,6 @@ public class UpgradesScript : MonoBehaviour
             value = 999.99;
         }
 
-        return $"{value:0.##}{suffixes[suffixIndex]}";
+        return $"{value:0.#}{suffixes[suffixIndex]}";
     }
 }
