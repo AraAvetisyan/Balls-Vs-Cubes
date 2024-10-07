@@ -63,7 +63,7 @@ public class UpgradesScript : MonoBehaviour
     }
     private void Update()
     {
-        if(Geekplay.Instance.PlayerData.MoneyCount >= Geekplay.Instance.PlayerData.HealthPrice)
+        if(Geekplay.Instance.PlayerData.MoneyToAdd >= Geekplay.Instance.PlayerData.HealthPrice)
         {
             healthButton.interactable = true;
         }
@@ -71,7 +71,7 @@ public class UpgradesScript : MonoBehaviour
         {
             healthButton.interactable = false;
         }
-        if(Geekplay.Instance.PlayerData.MoneyCount >= Geekplay.Instance.PlayerData.PowerPrice)
+        if(Geekplay.Instance.PlayerData.MoneyToAdd >= Geekplay.Instance.PlayerData.PowerPrice)
         {
             powerButton.interactable = true;
         }
@@ -79,7 +79,7 @@ public class UpgradesScript : MonoBehaviour
         {
             powerButton.interactable = false;
         }
-        if(Geekplay.Instance.PlayerData.MoneyCount >= Geekplay.Instance.PlayerData.IncomePrice)
+        if(Geekplay.Instance.PlayerData.MoneyToAdd >= Geekplay.Instance.PlayerData.IncomePrice)
         {
             incomeButton.interactable = true;
         }
@@ -87,7 +87,7 @@ public class UpgradesScript : MonoBehaviour
         {
             incomeButton.interactable = false;
         }
-        if(Geekplay.Instance.PlayerData.MoneyCount >= Geekplay.Instance.PlayerData.CountPrice)
+        if(Geekplay.Instance.PlayerData.MoneyToAdd >= Geekplay.Instance.PlayerData.CountPrice)
         {
             countButton.interactable = true;
         }
@@ -104,63 +104,81 @@ public class UpgradesScript : MonoBehaviour
         incomeLevel.text = "LEVEL " + Geekplay.Instance.PlayerData.Income.ToString();
         countLevel.text = "LEVEL " + Geekplay.Instance.PlayerData.MaxSpawnCount.ToString();
 
-        healthPriceText.text = "$" + healthPrice.ToString();
-        powerPriceText.text = "$" + powerPrice.ToString();
-        incomePriceText.text = "$" + incomePrice.ToString();
-        countPriceText.text = "$" + countPrice.ToString();
+        healthPriceText.text = "$" + FormatPrice(healthPrice);
+        powerPriceText.text = "$" + FormatPrice(powerPrice);
+        incomePriceText.text = "$" + FormatPrice(incomePrice);
+        countPriceText.text = "$" + FormatPrice(countPrice);
 
     }
 
     public void PressedBallHealth()
     {
-        Geekplay.Instance.PlayerData.MoneyCount = Geekplay.Instance.PlayerData.MoneyCount - Mathf.FloorToInt(Geekplay.Instance.PlayerData.HealthPrice);
+        Geekplay.Instance.PlayerData.MoneyToAdd = Geekplay.Instance.PlayerData.MoneyToAdd - Mathf.FloorToInt(Geekplay.Instance.PlayerData.HealthPrice);
         Geekplay.Instance.PlayerData.BallHealth += 1;
         healthLevel.text = "LEVEL " + Geekplay.Instance.PlayerData.BallHealth.ToString();
-        Geekplay.Instance.PlayerData.HealthPrice = Geekplay.Instance.PlayerData.HealthPrice + Geekplay.Instance.PlayerData.HealthPrice + Geekplay.Instance.PlayerData.HealthPrice / 2;
+        Geekplay.Instance.PlayerData.HealthPrice = (Geekplay.Instance.PlayerData.HealthPrice + Geekplay.Instance.PlayerData.HealthPrice) + Geekplay.Instance.PlayerData.HealthPrice / 2;
         healthPrice = Mathf.FloorToInt(Geekplay.Instance.PlayerData.HealthPrice);
-        healthPriceText.text = "$" + healthPrice.ToString();
+        healthPriceText.text = "$" + FormatPrice(healthPrice);
         Geekplay.Instance.Save();
-        MoneyText.text = "$" + Geekplay.Instance.PlayerData.MoneyCount.ToString();
+        MoneyText.text = "$" + FormatPrice(Geekplay.Instance.PlayerData.MoneyToAdd);
     }
 
 
     public void PressedBallPower()
     {
-        Geekplay.Instance.PlayerData.MoneyCount = Geekplay.Instance.PlayerData.MoneyCount - Mathf.FloorToInt(Geekplay.Instance.PlayerData.PowerPrice);
+        Geekplay.Instance.PlayerData.MoneyToAdd = Geekplay.Instance.PlayerData.MoneyToAdd - Mathf.FloorToInt(Geekplay.Instance.PlayerData.PowerPrice);
         Geekplay.Instance.PlayerData.BallPower += 1;
         powerLevel.text = "LEVEL " + Geekplay.Instance.PlayerData.BallPower.ToString();
-        Geekplay.Instance.PlayerData.PowerPrice = Geekplay.Instance.PlayerData.PowerPrice + Geekplay.Instance.PlayerData.PowerPrice + Geekplay.Instance.PlayerData.PowerPrice / 2;
+        Geekplay.Instance.PlayerData.PowerPrice = (Geekplay.Instance.PlayerData.PowerPrice + Geekplay.Instance.PlayerData.PowerPrice) + Geekplay.Instance.PlayerData.PowerPrice / 2;
         powerPrice = Mathf.FloorToInt(Geekplay.Instance.PlayerData.PowerPrice);
-        powerPriceText.text = "$" + powerPrice.ToString();
+        powerPriceText.text = "$" + FormatPrice(powerPrice);
         Geekplay.Instance.Save();
-        MoneyText.text = "$" + Geekplay.Instance.PlayerData.MoneyCount.ToString();
+        MoneyText.text = "$" + FormatPrice(Geekplay.Instance.PlayerData.MoneyToAdd);
     }
 
 
     public void PressedIncome()
     {
-        Geekplay.Instance.PlayerData.MoneyCount = Geekplay.Instance.PlayerData.MoneyCount - Mathf.FloorToInt(Geekplay.Instance.PlayerData.IncomePrice);
+        Geekplay.Instance.PlayerData.MoneyToAdd = Geekplay.Instance.PlayerData.MoneyToAdd - Mathf.FloorToInt(Geekplay.Instance.PlayerData.IncomePrice);
         Geekplay.Instance.PlayerData.Income += 1;
         incomeLevel.text = "LEVEL " + Geekplay.Instance.PlayerData.Income.ToString();
-        Geekplay.Instance.PlayerData.IncomePrice = Geekplay.Instance.PlayerData.IncomePrice + Geekplay.Instance.PlayerData.IncomePrice + Geekplay.Instance.PlayerData.IncomePrice / 2;
+        Geekplay.Instance.PlayerData.IncomePrice = (Geekplay.Instance.PlayerData.IncomePrice + Geekplay.Instance.PlayerData.IncomePrice) + Geekplay.Instance.PlayerData.IncomePrice / 2;
         incomePrice = Mathf.CeilToInt(Geekplay.Instance.PlayerData.IncomePrice);
-        incomePriceText.text = "$" + incomePrice.ToString();
+        incomePriceText.text = "$" + FormatPrice(incomePrice);
         Geekplay.Instance.Save();
-        MoneyText.text = "$" + Geekplay.Instance.PlayerData.MoneyCount.ToString();
+        MoneyText.text = "$" + FormatPrice(Geekplay.Instance.PlayerData.MoneyToAdd);
     }
 
 
     public void PressedBallCount()
     {
-        Geekplay.Instance.PlayerData.MoneyCount = Geekplay.Instance.PlayerData.MoneyCount - Mathf.FloorToInt(Geekplay.Instance.PlayerData.CountPrice);
+        Geekplay.Instance.PlayerData.MoneyToAdd = Geekplay.Instance.PlayerData.MoneyToAdd - Mathf.FloorToInt(Geekplay.Instance.PlayerData.CountPrice);
         Geekplay.Instance.PlayerData.MaxSpawnCount += 1;
-        BallSpawner.Instance.SpawnCount += 1;
+        BallSpawner.Instance.MaximumBallCount += BallSpawner.Instance.BallMaxCountBooster;
+        BallSpawner.Instance.SpawnCount += BallSpawner.Instance.BallMaxCountBooster;
         countLevel.text = "LEVEL " + Geekplay.Instance.PlayerData.MaxSpawnCount.ToString();
         Geekplay.Instance.PlayerData.CountPrice = Geekplay.Instance.PlayerData.CountPrice + Geekplay.Instance.PlayerData.CountPrice + Geekplay.Instance.PlayerData.CountPrice;
         countPrice = Mathf.CeilToInt(Geekplay.Instance.PlayerData.CountPrice);
-        countPriceText.text = "$" + countPrice.ToString();
+        countPriceText.text = "$" + FormatPrice(countPrice);
         Geekplay.Instance.Save();
-        MoneyText.text = "$" + Geekplay.Instance.PlayerData.MoneyCount.ToString();
+        MoneyText.text = "$" + FormatPrice(Geekplay.Instance.PlayerData.MoneyToAdd);
     }
+    string FormatPrice(double value)
+    {
+        string[] suffixes = { "", "k", "m", "b", "t", "aa", "ab", "ac", "ad", "ae", "af", "ag", "ah", "ai", "aj", "ak", "al", "am", "an", "ao", "ap", "aq", "ar", "as", "at", "au", "av", "aw", "ax", "ay", "az" };
+        int suffixIndex = 0;
 
+        while (value >= 1000 && suffixIndex < suffixes.Length - 1)
+        {
+            value /= 1000;
+            suffixIndex++;
+        }
+
+        if (value >= 1000)
+        {
+            value = 999.99;
+        }
+
+        return $"{value:0.##}{suffixes[suffixIndex]}";
+    }
 }

@@ -12,7 +12,6 @@ public class BallScript : MonoBehaviour
     Vector2 direction;
     [SerializeField] private TextMeshProUGUI incomeTextPrefab;
     [SerializeField] private Transform incomeSpawnPos;
-    private Coroutine enumerator;
     void Start()
     {
         int randDir = Random.Range(0, moveTransforms.Length);
@@ -30,8 +29,6 @@ public class BallScript : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Cube"))
         {
-            StartShowCorutine();
-            
             health--;
             if (health == 0)
             {
@@ -53,24 +50,7 @@ public class BallScript : MonoBehaviour
             direction = Vector2.Reflect(direction, normal);
         }
     }
-    public void StartShowCorutine()
-    {
-        enumerator = StartCoroutine(ShowCorutine());
-    }
-    public void StopShowCorutine()
-    {
-        if (enumerator != null)
-        {
-            StopCoroutine(enumerator);
-            enumerator = null;
-        }
-    }
-    public IEnumerator ShowCorutine()
-    {
-        TextMeshProUGUI incomeText = Instantiate(incomeTextPrefab,incomeSpawnPos.position,Quaternion.identity);
-        incomeText.transform.SetParent(transform.parent);
-        incomeText.text = "$" + (Geekplay.Instance.PlayerData.Income * Geekplay.Instance.PlayerData.BallPower).ToString();
-        yield return new WaitForSeconds(.1f);
-        StopShowCorutine();
-    }
+   
+  
+   
 }
