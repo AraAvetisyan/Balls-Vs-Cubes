@@ -1416,6 +1416,18 @@ PrefabInstance:
       propertyPath: Platform
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5023734575896185641, guid: 275f8a7c89da8458f9efd280784a4bfe, type: 3}
+      propertyPath: purchasesList.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5023734575896185641, guid: 275f8a7c89da8458f9efd280784a4bfe, type: 3}
+      propertyPath: purchasesList.Array.data[0].purchaseEvent.m_PersistentCalls.m_Calls.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5023734575896185641, guid: 275f8a7c89da8458f9efd280784a4bfe, type: 3}
+      propertyPath: purchasesList.Array.data[0].purchaseEvent.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 5023734575896185686, guid: 275f8a7c89da8458f9efd280784a4bfe, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -1747,7 +1759,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -1.2995, y: 444}
+  m_AnchoredPosition: {x: -1.2995, y: 315}
   m_SizeDelta: {x: 699.4, y: 192}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!61 &74962475
@@ -6588,7 +6600,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 254.2, y: 0.109989166}
+  m_AnchoredPosition: {x: 442, y: 0.109989166}
   m_SizeDelta: {x: 192, y: 959.81}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!61 &371248502
@@ -11149,7 +11161,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &585316345
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12475,7 +12487,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &668366075
 RectTransform:
   m_ObjectHideFlags: 0
@@ -12590,7 +12602,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 668366078}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 668366081}
+        m_TargetAssemblyTypeName: FireBallScript, Assembly-CSharp
+        m_MethodName: StartFireCorutine
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &668366081
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12603,6 +12627,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 14e04ccf9cecec14b9f5444c03a832eb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _headerButtonsScript: {fileID: 1468417734}
 --- !u!1 &669283670
 GameObject:
   m_ObjectHideFlags: 0
@@ -21670,7 +21695,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -255.7, y: 0.096512}
+  m_AnchoredPosition: {x: -444, y: 0.096512}
   m_SizeDelta: {x: 192, y: 959.81}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!61 &1131682817
@@ -29313,6 +29338,10 @@ MonoBehaviour:
   passiveIncomePanel: {fileID: 1587544396}
   permenantIncome: {fileID: 656760163}
   reachingLevel: {fileID: 1931086919}
+  powererButton: {fileID: 668366074}
+  randMax: 30
+  randMin: 20
+  Pressed: 0
 --- !u!1 &1473951235
 GameObject:
   m_ObjectHideFlags: 0
@@ -32004,7 +32033,7 @@ RectTransform:
   m_Father: {fileID: 1695726671}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -35801,6 +35830,7 @@ MonoBehaviour:
   SpawnedObjects: []
   SpawnCount: 0
   SpeedBoost: 1
+  FireSpeedBoost: 1
   IncomeBoost: 1
   PowerBoostTenTimes: 0
   speedSlider: {fileID: 2017862034}
@@ -36344,13 +36374,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6225c1035e67527428c714c1ed3c9cc3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  multyplayerButtons:
+  multyplayerButtonObjects:
   - {fileID: 577792074}
   - {fileID: 450278927}
   - {fileID: 829798698}
   - {fileID: 1942076821}
-  randMax: 20
-  randMin: 15
+  multyplayerButtons:
+  - {fileID: 858639463}
+  - {fileID: 1390888725}
+  - {fileID: 1244916674}
+  - {fileID: 1141338622}
+  randMax: 5
+  randMin: 2
   healthLevel: {fileID: 980567356}
   healthPriceText: {fileID: 542612286}
   healthPrice: 0
@@ -37057,7 +37092,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -1.299, y: -444}
+  m_AnchoredPosition: {x: -1.299, y: -317}
   m_SizeDelta: {x: 699.4, y: 192}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!61 &1899219623
@@ -39658,7 +39693,7 @@ GameObject:
   - component: {fileID: 2038979369}
   - component: {fileID: 2038979368}
   m_Layer: 5
-  m_Name: Level 6
+  m_Name: Level 8
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

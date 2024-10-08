@@ -22,7 +22,7 @@ public class BallScript : MonoBehaviour
 
     private void Update()
     {
-        transform.Translate(direction * Geekplay.Instance.PlayerData.BallSpeed * Time.deltaTime * BallSpawner.Instance.SpeedBoost);
+        transform.Translate(direction * Geekplay.Instance.PlayerData.BallSpeed * Time.deltaTime * BallSpawner.Instance.SpeedBoost * BallSpawner.Instance.FireSpeedBoost);
     }
 
     private void OnCollisionEnter2D(Collision2D collision)

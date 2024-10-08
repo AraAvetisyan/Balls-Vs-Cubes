@@ -14,6 +14,7 @@ public class BallSpawner : MonoBehaviour
     public List<GameObject> SpawnedObjects;
     public int SpawnCount = 0;
     public float SpeedBoost = 1;
+    public float FireSpeedBoost = 1;
     public int IncomeBoost = 1;
     public int PowerBoostTenTimes;
     [SerializeField] private Slider speedSlider;

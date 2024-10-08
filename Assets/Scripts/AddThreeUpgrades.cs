@@ -2,10 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class AddThreeUpgrades : MonoBehaviour
 {
-    [SerializeField] private GameObject[] multyplayerButtons;
+    [SerializeField] private GameObject[] multyplayerButtonObjects;
+    [SerializeField] private Button[] multyplayerButtons;
     [SerializeField] private int randMax, randMin;
     private float randStart;
     private int randButton;
@@ -63,10 +65,14 @@ public class AddThreeUpgrades : MonoBehaviour
             elapsed += Time.deltaTime;
             yield return null;
         }
-        randButton = Random.Range(0,multyplayerButtons.Length);
-        for (int i = 0; i < multyplayerButtons.Length; i++)
+        randButton = Random.Range(0,multyplayerButtonObjects.Length);
+        for (int i = 0; i < multyplayerButtonObjects.Length; i++)
         {
-            multyplayerButtons[randButton].SetActive(true);
+            multyplayerButtonObjects[i].SetActive(false);
+        }
+        if (!multyplayerButtons[randButton].interactable)
+        {
+            multyplayerButtonObjects[randButton].SetActive(true);
         }
         StopShowCorutine();
     }
@@ -79,9 +85,9 @@ public class AddThreeUpgrades : MonoBehaviour
             elapsed += Time.deltaTime;
             yield return null;
         }
-        for (int i = 0; i < multyplayerButtons.Length; i++)
+        for (int i = 0; i < multyplayerButtonObjects.Length; i++)
         {
-            multyplayerButtons[i].SetActive(false);
+            multyplayerButtonObjects[i].SetActive(false);
         }
         StopUnshowCorutine();
     }
@@ -99,7 +105,7 @@ public class AddThreeUpgrades : MonoBehaviour
             healthPriceText.text = "$" + FormatPrice(healthPrice);
             Geekplay.Instance.Save();
         }
-        multyplayerButtons[0].SetActive(false);
+        multyplayerButtonObjects[0].SetActive(false);
     }
 
     public void PowerMultyplayer()
@@ -114,7 +120,7 @@ public class AddThreeUpgrades : MonoBehaviour
             powerPriceText.text = "$" + FormatPrice(powerPrice);
             Geekplay.Instance.Save();
         }
-        multyplayerButtons[1].SetActive(false);
+        multyplayerButtonObjects[1].SetActive(false);
     }
 
     public void IncomeMultyplater()
@@ -129,7 +135,7 @@ public class AddThreeUpgrades : MonoBehaviour
             incomePriceText.text = "$" + FormatPrice(incomePrice);
             Geekplay.Instance.Save();
         }
-        multyplayerButtons[2].SetActive(false);
+        multyplayerButtonObjects[2].SetActive(false);
     }
 
     public void CountMultyplayer()
@@ -146,7 +152,7 @@ public class AddThreeUpgrades : MonoBehaviour
             countPriceText.text = "$" + FormatPrice(countPrice);
             Geekplay.Instance.Save();
         }
-        multyplayerButtons[3].SetActive(false);
+        multyplayerButtonObjects[3].SetActive(false);
     }
     string FormatPrice(double value)
     {

@@ -110,7 +110,7 @@ public class CubeScript : MonoBehaviour
     {
         TextMeshProUGUI incomeText = Instantiate(incomeTextPrefab, incomeSpawnPos.transform);
         //incomeText.transform.SetParent(incomeSpawnPos.parent);
-        incomeText.text = "$" + FormatPrice(((Geekplay.Instance.PlayerData.Income + Geekplay.Instance.PlayerData.RebornCount) * BallSpawner.Instance.IncomeBoost) * Geekplay.Instance.PlayerData.BallPower);
+        incomeText.text = "$" + FormatPrice(((Geekplay.Instance.PlayerData.Income + Geekplay.Instance.PlayerData.RebornCount) * BallSpawner.Instance.IncomeBoost) * Geekplay.Instance.PlayerData.BallPower * BallSpawner.Instance.PowerBoostTenTimes);
         yield return new WaitForSeconds(.1f);
         StopShowCorutine();
     }
