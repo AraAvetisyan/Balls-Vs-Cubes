@@ -9,6 +9,7 @@ public class HeaderButtonsScript : MonoBehaviour
     [SerializeField] private GameObject settingsPanel;
     [SerializeField] private GameObject rebornPanel;
     [SerializeField] private GameObject passiveIncomePanel;
+    [SerializeField] private GameObject marketPanel;
     [SerializeField] private TextMeshProUGUI permenantIncome, reachingLevel;
 
 
@@ -22,6 +23,8 @@ public class HeaderButtonsScript : MonoBehaviour
     private Coroutine buttonUnshowCorutine;
     private Coroutine pressedUnshowCorutine;
     public bool Pressed;
+
+    [SerializeField] private MarketScript _marketScript;
     void Start()
     {
         StartShowCorutine();
@@ -113,12 +116,21 @@ public class HeaderButtonsScript : MonoBehaviour
         settingsPanel.SetActive(false);
         rebornPanel.SetActive(false);
         passiveIncomePanel.SetActive(false);
+        marketPanel.SetActive(false);
+        BallSpawner.Instance.PanelIsActive = false;
     }
     public void PressedSettingsButton()
     {
         settingsPanel.SetActive(true);
+        BallSpawner.Instance.PanelIsActive = true;
     }
+    public void PressedMarketButton()
+    {
+        marketPanel.SetActive(true);
+        StartCoroutine(_marketScript.WaitAFrameForMarket());
 
+        BallSpawner.Instance.PanelIsActive = true;
+    }
     public void PressedRebornButton()
     {
         permenantIncome.text = "CURRENT PERMENANT INCOME: " + "<color=green>" + (Geekplay.Instance.PlayerData.RebornCount + 1) + "</color>";
@@ -126,6 +138,7 @@ public class HeaderButtonsScript : MonoBehaviour
         reachingLevel.text = "YOU HAVE TO REACH <color=green>LEVEL" + " " + ((Geekplay.Instance.PlayerData.RebornCount + 1) * 10) + " </color>FOR REBIRTH";
 
         rebornPanel.SetActive(true);
+        BallSpawner.Instance.PanelIsActive = true;
     }
 
     public void PressedReborn()
@@ -137,6 +150,7 @@ public class HeaderButtonsScript : MonoBehaviour
         else if (Geekplay.Instance.PlayerData.Level < (Geekplay.Instance.PlayerData.RebornCount + 1) * 10)
         {
             rebornPanel.SetActive(false);
+            BallSpawner.Instance.PanelIsActive = false;
         }
 
     }

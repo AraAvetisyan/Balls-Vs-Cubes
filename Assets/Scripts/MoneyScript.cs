@@ -26,6 +26,7 @@ public class MoneyScript : MonoBehaviour
             secondsPassed = Mathf.Clamp(secondsPassed, 0, 7 * 24 * 60 * 60);
             passivIncome = (((Geekplay.Instance.PlayerData.Income + Geekplay.Instance.PlayerData.RebornCount) * BallSpawner.Instance.IncomeBoost) * secondsPassed) / 10;
             passiveIncomePanel.SetActive(true);
+            BallSpawner.Instance.PanelIsActive = true;
             passiveText.text = "YOU ERND $" + passivIncome;
             Geekplay.Instance.PlayerData.MoneyToAdd += passivIncome;
             MoneyText.text = "$" + FormatMoney(Geekplay.Instance.PlayerData.MoneyToAdd);

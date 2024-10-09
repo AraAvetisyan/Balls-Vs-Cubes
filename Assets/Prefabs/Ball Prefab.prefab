@@ -112,7 +112,7 @@ TrailRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 10
+  m_SortingOrder: 11
   m_Time: 0.25
   m_PreviewTimeScale: 1
   m_Parameters:
@@ -1273,6 +1273,9 @@ MonoBehaviour:
   - {fileID: 8722812928421313404}
   incomeTextPrefab: {fileID: 1386897349056042325, guid: 8ea8fac3cd18cfe4fa31e6250aa31e48, type: 3}
   incomeSpawnPos: {fileID: 5057951273938686554}
+  trail: {fileID: 146308082397788848}
+  ballImage: {fileID: 4723386749253863835}
+  trailRenderer: {fileID: 4281605738404691804}
 --- !u!114 &-5926210449983073502
 MonoBehaviour:
   m_ObjectHideFlags: 0

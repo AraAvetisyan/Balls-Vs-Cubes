@@ -95,6 +95,10 @@ public class AddThreeUpgrades : MonoBehaviour
 
     public void HealthMultyplayer()
     {
+        Geekplay.Instance.ShowRewardedAd("HealthMultyplayer");        
+    }
+    public void HealthReward()
+    {
         healthPrice = Mathf.FloorToInt(Geekplay.Instance.PlayerData.HealthPrice);
         for (int i = 0; i < 3; i++)
         {
@@ -107,8 +111,11 @@ public class AddThreeUpgrades : MonoBehaviour
         }
         multyplayerButtonObjects[0].SetActive(false);
     }
-
     public void PowerMultyplayer()
+    {
+        Geekplay.Instance.ShowRewardedAd("PowerMultyplayer");      
+    }
+    public void PowerReward()
     {
         powerPrice = Mathf.FloorToInt(Geekplay.Instance.PlayerData.PowerPrice);
         for (int i = 0; i < 3; i++)
@@ -122,8 +129,11 @@ public class AddThreeUpgrades : MonoBehaviour
         }
         multyplayerButtonObjects[1].SetActive(false);
     }
-
     public void IncomeMultyplater()
+    {
+        Geekplay.Instance.ShowRewardedAd("IncomeMultyplater");       
+    }
+    public void IncomeReward()
     {
         incomePrice = Mathf.FloorToInt(Geekplay.Instance.PlayerData.IncomePrice);
         for (int i = 0; i < 3; i++)
@@ -139,6 +149,10 @@ public class AddThreeUpgrades : MonoBehaviour
     }
 
     public void CountMultyplayer()
+    {
+        Geekplay.Instance.ShowRewardedAd("CountMultyplayer");        
+    }
+    public void CountReward()
     {
         countPrice = Mathf.FloorToInt(Geekplay.Instance.PlayerData.CountPrice);
         for (int i = 0; i < 3; i++)
