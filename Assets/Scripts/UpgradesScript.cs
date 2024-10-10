@@ -29,32 +29,31 @@ public class UpgradesScript : MonoBehaviour
     [SerializeField] private TextMeshProUGUI MoneyText;
     private void Start()
     {
-        if(Geekplay.Instance.PlayerData.BallHealth == 0)
+        if (Geekplay.Instance.PlayerData.BallHealth == 0)
         {
             Geekplay.Instance.PlayerData.BallHealth = 1;
-            Geekplay.Instance.Save();
         }
-
-        if(Geekplay.Instance.PlayerData.HealthPrice == 0)
+        if (Geekplay.Instance.PlayerData.HealthPrice == 0)
         {
             Geekplay.Instance.PlayerData.HealthPrice = 10;
-            Geekplay.Instance.Save();
+        }
+        if (Geekplay.Instance.PlayerData.BallPower == 0)
+        {
+            Geekplay.Instance.PlayerData.BallPower = 1;
         }
         if(Geekplay.Instance.PlayerData.PowerPrice == 0)
         {
             Geekplay.Instance.PlayerData.PowerPrice = 20;
-            Geekplay.Instance.Save();
         }
         if(Geekplay.Instance.PlayerData.IncomePrice == 0)
         {
             Geekplay.Instance.PlayerData.IncomePrice = 30;
-            Geekplay.Instance.Save();
         }
         if(Geekplay.Instance.PlayerData.CountPrice == 0)
         {
             Geekplay.Instance.PlayerData.CountPrice = 100;
-            Geekplay.Instance.Save();
         }
+        Geekplay.Instance.Save();
         healthPrice = Mathf.FloorToInt(Geekplay.Instance.PlayerData.HealthPrice);
         powerPrice = Mathf.FloorToInt(Geekplay.Instance.PlayerData.PowerPrice);
         incomePrice = Mathf.FloorToInt(Geekplay.Instance.PlayerData.IncomePrice);
@@ -120,7 +119,7 @@ public class UpgradesScript : MonoBehaviour
         healthPrice = Mathf.FloorToInt(Geekplay.Instance.PlayerData.HealthPrice);
         healthPriceText.text = "$" + FormatPrice(healthPrice);
         Geekplay.Instance.Save();
-        MoneyText.text = "$" + Geekplay.Instance.PlayerData.MoneyToAdd.ToString();
+        MoneyText.text = "$" + FormatPrice(Geekplay.Instance.PlayerData.MoneyToAdd);
     }
 
 
@@ -133,7 +132,7 @@ public class UpgradesScript : MonoBehaviour
         powerPrice = Mathf.FloorToInt(Geekplay.Instance.PlayerData.PowerPrice);
         powerPriceText.text = "$" + FormatPrice(powerPrice);
         Geekplay.Instance.Save();
-        MoneyText.text = "$" + Geekplay.Instance.PlayerData.MoneyToAdd.ToString();
+        MoneyText.text = "$" + FormatPrice(Geekplay.Instance.PlayerData.MoneyToAdd);
     }
 
 
@@ -146,7 +145,7 @@ public class UpgradesScript : MonoBehaviour
         incomePrice = Mathf.CeilToInt(Geekplay.Instance.PlayerData.IncomePrice);
         incomePriceText.text = "$" + FormatPrice(incomePrice);
         Geekplay.Instance.Save();
-        MoneyText.text = "$" + Geekplay.Instance.PlayerData.MoneyToAdd.ToString();
+        MoneyText.text = "$" + FormatPrice(Geekplay.Instance.PlayerData.MoneyToAdd);
     }
 
 
@@ -161,7 +160,7 @@ public class UpgradesScript : MonoBehaviour
         countPrice = Mathf.CeilToInt(Geekplay.Instance.PlayerData.CountPrice);
         countPriceText.text = "$" + FormatPrice(countPrice);
         Geekplay.Instance.Save();
-        MoneyText.text = "$" + Geekplay.Instance.PlayerData.MoneyToAdd.ToString();
+        MoneyText.text = "$" + FormatPrice(Geekplay.Instance.PlayerData.MoneyToAdd);
     }
     string FormatPrice(double value)
     {
@@ -179,6 +178,6 @@ public class UpgradesScript : MonoBehaviour
             value = 999.99;
         }
 
-        return $"{value:0.##}{suffixes[suffixIndex]}";
+        return $"{value:0.#}{suffixes[suffixIndex]}";
     }
 }

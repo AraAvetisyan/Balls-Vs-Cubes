@@ -40,4 +40,11 @@ public class PlayerData
 
     public string LastSaveTime;
     public bool IsNotFirstTime;
+
+    public bool ForeverBallsBoost;
+    public bool ForeverIncomeBoost;
+    public bool ForeverAutoClickBoost;
+
+    public bool[] BallsBought;
+    public bool[] BallEnabled;
 }

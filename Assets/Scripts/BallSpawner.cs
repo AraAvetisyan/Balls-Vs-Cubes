@@ -14,6 +14,7 @@ public class BallSpawner : MonoBehaviour
     public List<GameObject> SpawnedObjects;
     public int SpawnCount = 0;
     public float SpeedBoost = 1;
+    public float FireSpeedBoost = 1;
     public int IncomeBoost = 1;
     public int PowerBoostTenTimes;
     [SerializeField] private Slider speedSlider;
@@ -23,6 +24,9 @@ public class BallSpawner : MonoBehaviour
 
     public int MaximumBallCount;
 
+    public bool PanelIsActive;
+    
+
     [SerializeField] ButtonPressPosiition _buttonPressPosiition;
 
 
@@ -31,13 +35,21 @@ public class BallSpawner : MonoBehaviour
     [SerializeField] private GameObject cursorImage;
     [SerializeField] private Canvas canvas;
     private Coroutine mouseCorutine;
+
+
+    public Color[] BallColors;
+    public Color[] TrailColors;
+    public int ColorIndex;
     private void Awake()
     {
         Instance = this;
     }
     private void Start()
     {
-        
+
+        Geekplay.Instance.GameStart();
+        Geekplay.Instance.GameReady();
+
         if (Geekplay.Instance.PlayerData.MaxSpawnCount == 0)
         {
             Geekplay.Instance.PlayerData.MaxSpawnCount = 1;
@@ -45,14 +57,14 @@ public class BallSpawner : MonoBehaviour
         }
         if (Geekplay.Instance.PlayerData.BallSpeed == 0)
         {
-            Geekplay.Instance.PlayerData.BallSpeed = 3.5f;
+            Geekplay.Instance.PlayerData.BallSpeed = 3f;
             Geekplay.Instance.Save();
         }
         if(Geekplay.Instance.PlayerData.Level == 0)
         {
             Geekplay.Instance.PlayerData.Level = 1;
         }
-        Geekplay.Instance.PlayerData.MaxSpawnCount = Geekplay.Instance.PlayerData.MaxSpawnCount * BallMaxCountBooster;
+       // Geekplay.Instance.PlayerData.MaxSpawnCount = Geekplay.Instance.PlayerData.MaxSpawnCount * BallMaxCountBooster;
         SpawnCount = Geekplay.Instance.PlayerData.MaxSpawnCount;
         MaximumBallCount = Geekplay.Instance.PlayerData.MaxSpawnCount;
 
@@ -63,13 +75,13 @@ public class BallSpawner : MonoBehaviour
         spawnedTexts[Geekplay.Instance.PlayerData.Level].text = SpawnCount.ToString() + " / " + MaximumBallCount.ToString();
        
         speedSlider.value -= speedSliderValueMin;
-        if(speedSlider.value > 20)
+        if(speedSlider.value >= 2)
         {
-            SpeedBoost = 1.85f;
+            SpeedBoost = 2f;
         }
-        if(speedSlider.value < 21)
+        if(speedSlider.value < 2)
         {
-            SpeedBoost = 1;
+            SpeedBoost = speedSlider.value;
         }
         if (SpawnCount > MaximumBallCount)
         {

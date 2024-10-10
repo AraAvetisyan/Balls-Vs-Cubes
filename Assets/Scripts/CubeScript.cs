@@ -35,7 +35,7 @@ public class CubeScript : MonoBehaviour
             Geekplay.Instance.Save();
         }
         Health = Random.Range(HealthRandOne, HealthRandTwo);
-        healthText.text = Health.ToString();
+        healthText.text = FormatPrice(Health);
     }
 
     private void Update()
@@ -86,9 +86,9 @@ public class CubeScript : MonoBehaviour
 
             StartShowCorutine();
 
-            healthText.text=Health.ToString();
-            
-            if(Health <= 0)
+            healthText.text = FormatPrice(Health);
+
+            if (Health <= 0)
             {
                 Destroy(gameObject);
             }
@@ -110,7 +110,7 @@ public class CubeScript : MonoBehaviour
     {
         TextMeshProUGUI incomeText = Instantiate(incomeTextPrefab, incomeSpawnPos.transform);
         //incomeText.transform.SetParent(incomeSpawnPos.parent);
-        incomeText.text = "$" + FormatPrice(((Geekplay.Instance.PlayerData.Income + Geekplay.Instance.PlayerData.RebornCount) * BallSpawner.Instance.IncomeBoost) * Geekplay.Instance.PlayerData.BallPower);
+        incomeText.text = "$" + FormatPrice(((Geekplay.Instance.PlayerData.Income + Geekplay.Instance.PlayerData.RebornCount) * BallSpawner.Instance.IncomeBoost) * Geekplay.Instance.PlayerData.BallPower * BallSpawner.Instance.PowerBoostTenTimes);
         yield return new WaitForSeconds(.1f);
         StopShowCorutine();
     }

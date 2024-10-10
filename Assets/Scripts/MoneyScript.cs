@@ -26,6 +26,7 @@ public class MoneyScript : MonoBehaviour
             secondsPassed = Mathf.Clamp(secondsPassed, 0, 7 * 24 * 60 * 60);
             passivIncome = (((Geekplay.Instance.PlayerData.Income + Geekplay.Instance.PlayerData.RebornCount) * BallSpawner.Instance.IncomeBoost) * secondsPassed) / 10;
             passiveIncomePanel.SetActive(true);
+            BallSpawner.Instance.PanelIsActive = true;
             passiveText.text = "YOU ERND $" + passivIncome;
             Geekplay.Instance.PlayerData.MoneyToAdd += passivIncome;
             MoneyText.text = "$" + FormatMoney(Geekplay.Instance.PlayerData.MoneyToAdd);
@@ -35,7 +36,7 @@ public class MoneyScript : MonoBehaviour
             Geekplay.Instance.PlayerData.Income = 1;
             Geekplay.Instance.Save();
         }
-        MoneyText.text = "$" + Geekplay.Instance.PlayerData.MoneyToAdd.ToString();
+        MoneyText.text = "$" + FormatMoney(Geekplay.Instance.PlayerData.MoneyToAdd);
     }
     public void AddMoney()
     {
@@ -66,6 +67,6 @@ public class MoneyScript : MonoBehaviour
             value = 999.99;
         }
 
-        return $"{value:0.##}{suffixes[suffixIndex]}";
+        return $"{value:0.#}{suffixes[suffixIndex]}";
     }
 }
