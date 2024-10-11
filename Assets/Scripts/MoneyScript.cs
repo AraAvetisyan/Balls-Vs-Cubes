@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -40,7 +40,30 @@ public class MoneyScript : MonoBehaviour
             passivIncome = (((Geekplay.Instance.PlayerData.Income + Geekplay.Instance.PlayerData.RebornCount) * BallSpawner.Instance.IncomeBoost) * secondsPassed) / 10;
             passiveIncomePanel.SetActive(true);
             BallSpawner.Instance.PanelIsActive = true;
-            passiveText.text = "YOU ERND $" + passivIncome;
+            if (Geekplay.Instance.language == "en")
+            {
+                passiveText.text = "YOU ERND $" + passivIncome;
+            }
+            else if(Geekplay.Instance.language == "ru")
+            {
+                passiveText.text = "ВЫ ПОЛУЧИТЕ $" + passivIncome;
+            }
+            else if(Geekplay.Instance.language == "tr")
+            {
+                passiveText.text = "SEN ERND $" + passivIncome;
+            }
+            else if (Geekplay.Instance.language == "pr")
+            {
+                passiveText.text = "VOCÊ ERND  $" + passivIncome;
+            }
+            else if (Geekplay.Instance.language == "gr")
+            {
+                passiveText.text = "DU ERND $" + passivIncome;
+            }
+            else if (Geekplay.Instance.language == "ar")
+            {
+                passiveText.text = "أموالك التي $" + passivIncome;
+            }
             Geekplay.Instance.PlayerData.MoneyToAdd += (ulong)passivIncome;
             MoneyText.text = "$" + FormatMoney(Geekplay.Instance.PlayerData.MoneyToAdd);
         }

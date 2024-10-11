@@ -1,4 +1,4 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
@@ -111,7 +111,19 @@ public class AddThreeUpgrades : MonoBehaviour
         for (int i = 0; i < 3; i++)
         {
             Geekplay.Instance.PlayerData.BallHealth += 1;
-            healthLevel.text = "LEVEL " + Geekplay.Instance.PlayerData.BallHealth.ToString();
+            // healthLevel.text = "LEVEL " + Geekplay.Instance.PlayerData.BallHealth.ToString();
+            if (Geekplay.Instance.language == "en")
+                healthLevel.text = "LEVEL " + Geekplay.Instance.PlayerData.BallHealth.ToString();
+            else if (Geekplay.Instance.language == "ru")
+                healthLevel.text = "Ð£Ð ÐžÐ’Ð•ÐÐ¬ " + Geekplay.Instance.PlayerData.BallHealth.ToString();
+            else if (Geekplay.Instance.language == "tr")
+                healthLevel.text = "SEVÄ°YE " + Geekplay.Instance.PlayerData.BallHealth.ToString();
+            else if (Geekplay.Instance.language == "pr")
+                healthLevel.text = "NÃVEL " + Geekplay.Instance.PlayerData.BallHealth.ToString();
+            else if (Geekplay.Instance.language == "gr")
+                healthLevel.text = "NIVEAU " + Geekplay.Instance.PlayerData.BallHealth.ToString();
+            else if (Geekplay.Instance.language == "ar")
+                healthLevel.text = "Ø§Ù„Ù…Ø³ØªÙˆÙ‰ " + Geekplay.Instance.PlayerData.BallHealth.ToString();
             Geekplay.Instance.PlayerData.HealthPrice = (Geekplay.Instance.PlayerData.HealthPrice + Geekplay.Instance.PlayerData.HealthPrice) + Geekplay.Instance.PlayerData.HealthPrice / 2;
             healthPrice = (ulong)(Geekplay.Instance.PlayerData.HealthPrice);
             healthPriceText.text = "$" + FormatPrice(healthPrice);
@@ -129,7 +141,19 @@ public class AddThreeUpgrades : MonoBehaviour
         for (int i = 0; i < 3; i++)
         {
             Geekplay.Instance.PlayerData.BallPower += 1;
-            powerLevel.text = "LEVEL " + Geekplay.Instance.PlayerData.BallPower.ToString();
+            // powerLevel.text = "LEVEL " + Geekplay.Instance.PlayerData.BallPower.ToString();
+            if (Geekplay.Instance.language == "en")
+                powerLevel.text = "LEVEL " + Geekplay.Instance.PlayerData.BallPower.ToString();
+            else if (Geekplay.Instance.language == "ru")
+                powerLevel.text = "Ð£Ð ÐžÐ’Ð•ÐÐ¬ " + Geekplay.Instance.PlayerData.BallPower.ToString();
+            else if (Geekplay.Instance.language == "tr")
+                powerLevel.text = "SEVÄ°YE " + Geekplay.Instance.PlayerData.BallPower.ToString();
+            else if (Geekplay.Instance.language == "pr")
+                powerLevel.text = "NÃVEL " + Geekplay.Instance.PlayerData.BallPower.ToString();
+            else if (Geekplay.Instance.language == "gr")
+                powerLevel.text = "NIVEAU " + Geekplay.Instance.PlayerData.BallPower.ToString();
+            else if (Geekplay.Instance.language == "ar")
+                powerLevel.text = "Ø§Ù„Ù…Ø³ØªÙˆÙ‰ " + Geekplay.Instance.PlayerData.BallPower.ToString();
             Geekplay.Instance.PlayerData.PowerPrice = (Geekplay.Instance.PlayerData.PowerPrice + Geekplay.Instance.PlayerData.PowerPrice) + Geekplay.Instance.PlayerData.PowerPrice / 2;
             powerPrice = (ulong)(Geekplay.Instance.PlayerData.PowerPrice);
             powerPriceText.text = "$" + FormatPrice(powerPrice);
@@ -147,7 +171,19 @@ public class AddThreeUpgrades : MonoBehaviour
         for (int i = 0; i < 3; i++)
         {
             Geekplay.Instance.PlayerData.Income += 1;
-            incomeLevel.text = "LEVEL " + Geekplay.Instance.PlayerData.Income.ToString();
+            // incomeLevel.text = "LEVEL " + Geekplay.Instance.PlayerData.Income.ToString();
+            if (Geekplay.Instance.language == "en")
+                incomeLevel.text = "LEVEL " + Geekplay.Instance.PlayerData.Income.ToString();
+            else if (Geekplay.Instance.language == "ru")
+                incomeLevel.text = "Ð£Ð ÐžÐ’Ð•ÐÐ¬ " + Geekplay.Instance.PlayerData.Income.ToString();
+            else if (Geekplay.Instance.language == "tr")
+                incomeLevel.text = "SEVÄ°YE " + Geekplay.Instance.PlayerData.Income.ToString();
+            else if (Geekplay.Instance.language == "pr")
+                incomeLevel.text = "NÃVEL " + Geekplay.Instance.PlayerData.Income.ToString();
+            else if (Geekplay.Instance.language == "gr")
+                incomeLevel.text = "NIVEAU " + Geekplay.Instance.PlayerData.Income.ToString();
+            else if (Geekplay.Instance.language == "ar")
+                incomeLevel.text = "Ø§Ù„Ù…Ø³ØªÙˆÙ‰ " + Geekplay.Instance.PlayerData.Income.ToString();
             Geekplay.Instance.PlayerData.IncomePrice = (Geekplay.Instance.PlayerData.IncomePrice + Geekplay.Instance.PlayerData.IncomePrice) + Geekplay.Instance.PlayerData.IncomePrice / 2;
             incomePrice = (ulong)(Geekplay.Instance.PlayerData.IncomePrice);
             incomePriceText.text = "$" + FormatPrice(incomePrice);
@@ -168,7 +204,13 @@ public class AddThreeUpgrades : MonoBehaviour
             Geekplay.Instance.PlayerData.MaxSpawnCount += 1;
             BallSpawner.Instance.MaximumBallCount += BallSpawner.Instance.BallMaxCountBooster;
             BallSpawner.Instance.SpawnCount += BallSpawner.Instance.BallMaxCountBooster;
-            countLevel.text = "LEVEL " + Geekplay.Instance.PlayerData.MaxSpawnCount.ToString();
+            //countLevel.text = "LEVEL " + Geekplay.Instance.PlayerData.MaxSpawnCount.ToString();
+            if (Geekplay.Instance.language == "en")
+                countLevel.text = "LEVEL " + Geekplay.Instance.PlayerData.MaxSpawnCount.ToString();
+            else if (Geekplay.Instance.language == "ru")
+                countLevel.text = "Ð£Ð ÐžÐ’Ð•ÐÐ¬ " + Geekplay.Instance.PlayerData.MaxSpawnCount.ToString();
+            else if (Geekplay.Instance.language == "tr")
+                countLevel.text = "SEVÄ°YE " + Geekplay.Instance.PlayerData.MaxSpawnCount.ToString();
             Geekplay.Instance.PlayerData.CountPrice = Geekplay.Instance.PlayerData.CountPrice + Geekplay.Instance.PlayerData.CountPrice + Geekplay.Instance.PlayerData.CountPrice;
             countPrice = (ulong)(Geekplay.Instance.PlayerData.CountPrice);
             countPriceText.text = "$" + FormatPrice(countPrice);
@@ -180,21 +222,21 @@ public class AddThreeUpgrades : MonoBehaviour
     {
         if (value < 0)
         {
-            return "Invalid value"; // Îáðàáàòûâàåì îòðèöàòåëüíûå çíà÷åíèÿ
+            return "Invalid value"; // ÐžÐ±Ñ€Ð°Ð±Ð°Ñ‚Ñ‹Ð²Ð°ÐµÐ¼ Ð¾Ñ‚Ñ€Ð¸Ñ†Ð°Ñ‚ÐµÐ»ÑŒÐ½Ñ‹Ðµ Ð·Ð½Ð°Ñ‡ÐµÐ½Ð¸Ñ
         }
 
         string[] suffixes = { "", "k", "m", "b", "t", "aa", "ab", "ac", "ad", "ae", "af", "ag", "ah", "ai", "aj", "ak", "al", "am", "an", "ao", "ap", "aq", "ar", "as", "at", "au", "av", "aw", "ax", "ay", "az" };
         int suffixIndex = 0;
-        decimal formattedValue = value; // Ïðåîáðàçóåì â double äëÿ ðàáîòû ñ äðîáíîé ÷àñòüþ
+        decimal formattedValue = value; // ÐŸÑ€ÐµÐ¾Ð±Ñ€Ð°Ð·ÑƒÐµÐ¼ Ð² double Ð´Ð»Ñ Ñ€Ð°Ð±Ð¾Ñ‚Ñ‹ Ñ Ð´Ñ€Ð¾Ð±Ð½Ð¾Ð¹ Ñ‡Ð°ÑÑ‚ÑŒÑŽ
 
-        // Ïîêà çíà÷åíèå áîëüøå èëè ðàâíî 1000, óìåíüøàåì åãî è äîáàâëÿåì ñóôôèêñ
+        // ÐŸÐ¾ÐºÐ° Ð·Ð½Ð°Ñ‡ÐµÐ½Ð¸Ðµ Ð±Ð¾Ð»ÑŒÑˆÐµ Ð¸Ð»Ð¸ Ñ€Ð°Ð²Ð½Ð¾ 1000, ÑƒÐ¼ÐµÐ½ÑŒÑˆÐ°ÐµÐ¼ ÐµÐ³Ð¾ Ð¸ Ð´Ð¾Ð±Ð°Ð²Ð»ÑÐµÐ¼ ÑÑƒÑ„Ñ„Ð¸ÐºÑ
         while (formattedValue >= 1000 && suffixIndex < suffixes.Length - 1)
         {
             formattedValue /= 1000;
             suffixIndex++;
         }
 
-        // Ôîðìàòèðóåì ðåçóëüòàò ñ îäíîé äåñÿòè÷íîé ÷àñòüþ
+        // Ð¤Ð¾Ñ€Ð¼Ð°Ñ‚Ð¸Ñ€ÑƒÐµÐ¼ Ñ€ÐµÐ·ÑƒÐ»ÑŒÑ‚Ð°Ñ‚ Ñ Ð¾Ð´Ð½Ð¾Ð¹ Ð´ÐµÑÑÑ‚Ð¸Ñ‡Ð½Ð¾Ð¹ Ñ‡Ð°ÑÑ‚ÑŒÑŽ
         return $"{formattedValue:0.#}{suffixes[suffixIndex]}";
     }
 }

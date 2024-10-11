@@ -30,10 +30,9 @@ public class LevelsUIController : MonoBehaviour
         }
         progress.maxValue = maxValue;
 
-        if(LevelChooser.Instance.CurrentLevelCount > 45)
-        {
-            levelText.text = "Level " + LevelChooser.Instance.CurrentLevelCount;
-        }
+        if (Geekplay.Instance.language == "en")
+            levelText.text = "LEVEL " + LevelChooser.Instance.CurrentLevelCount;
+        
     }
     public void ChangeValue(int value)
     {

@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Reflection;
@@ -67,7 +67,19 @@ public class MarketScript : MonoBehaviour
         dollarsPanel.SetActive(true);
         dollarsButton.interactable = false;
         ballsButton.interactable = true;
-        titleText.text = "DOLLARS";
+        if(Geekplay.Instance.language == "en")
+            titleText.text = "DOLLARS";
+        else if(Geekplay.Instance.language == "ru")
+            titleText.text = "ДОЛЛАРЫ";
+        else if(Geekplay.Instance.language == "tr")
+            titleText.text = "DOLAR";
+        else if (Geekplay.Instance.language == "pr")
+            titleText.text = "DÓLARES";
+        else if (Geekplay.Instance.language == "gr")
+            titleText.text = "DOLLARS";
+        else if (Geekplay.Instance.language == "ar")
+            titleText.text = "دولارات";
+
     }
     public void PressedBallsButton()
     {
@@ -77,8 +89,20 @@ public class MarketScript : MonoBehaviour
         ballsPanel.SetActive(true);
         ballsButton.interactable = false;
         dollarsButton.interactable = true;
-        titleText.text = "BALLS";
-        
+        if (Geekplay.Instance.language == "en")
+            titleText.text = "BALLS";
+        else if (Geekplay.Instance.language == "ru")
+            titleText.text = "ШАРИКИ";
+        else if (Geekplay.Instance.language == "tr")
+            titleText.text = "MISKETLER";
+        else if (Geekplay.Instance.language == "pr")
+            titleText.text = "BOLAS";
+        else if (Geekplay.Instance.language == "gr")
+            titleText.text = "KUGELN";
+        else if (Geekplay.Instance.language == "ar")
+            titleText.text = "البالونات";
+
+
     }
 
     public void PressedBall1(int index)

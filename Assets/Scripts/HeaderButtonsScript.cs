@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
@@ -136,10 +136,36 @@ public class HeaderButtonsScript : MonoBehaviour
     }
     public void PressedRebornButton()
     {
-        permenantIncome.text = "CURRENT PERMENANT INCOME: " + "<color=green>" + (Geekplay.Instance.PlayerData.RebornCount + 1) + "</color>";
-
-        reachingLevel.text = "YOU HAVE TO REACH <color=green>LEVEL" + " " + ((Geekplay.Instance.PlayerData.RebornCount + 1) * 10) + " </color>FOR REBIRTH";
-
+        if (Geekplay.Instance.language == "en")
+        {
+            permenantIncome.text = "CURRENT PERMENANT INCOME: " + "<color=green>" + (Geekplay.Instance.PlayerData.RebornCount + 1) + "</color>";
+            reachingLevel.text = "YOU HAVE TO REACH <color=green>LEVEL" + " " + ((Geekplay.Instance.PlayerData.RebornCount + 1) * 10) + " </color>FOR REBIRTH";
+        }
+        else if (Geekplay.Instance.language == "ru")
+        {
+            permenantIncome.text = "ТЕКУЩИЙ ПОСТОЯННЫЙ ДОХОД: " + "<color=green>" + (Geekplay.Instance.PlayerData.RebornCount + 1) + "</color>";
+            reachingLevel.text = "ВЫ ДОЛЖНЫ ДОСТИЧЬ <color=green>УРОВНЯ" + " " + ((Geekplay.Instance.PlayerData.RebornCount + 1) * 10) + " </color>ДЛЯ ВОЗРОЖДЕНИЯ";
+        }
+        else if (Geekplay.Instance.language == "tr")
+        {
+            permenantIncome.text = "MEVCUT KALICI GELIR: " + "<color=green>" + (Geekplay.Instance.PlayerData.RebornCount + 1) + "</color>";
+            reachingLevel.text = "ULAŞMAK ZORUNDASIN <color=green>SEVİYE" + " " + ((Geekplay.Instance.PlayerData.RebornCount + 1) * 10) + " </color>YENİDEN DOĞUŞ İÇİN";
+        }
+        else if(Geekplay.Instance.language == "pr")
+        {
+            permenantIncome.text = "RENDIMENTO PERMANENTE ACTUAL: " + "<color=green>" + (Geekplay.Instance.PlayerData.RebornCount + 1) + "</color>";
+            reachingLevel.text = "É NECESSÁRIO ATINGIR O <color=green>NÍVEL" + " " + ((Geekplay.Instance.PlayerData.RebornCount + 1) * 10) + " </color>PARA O RENASCIMENTO";
+        }
+        else if(Geekplay.Instance.language == "gr")
+        {
+            permenantIncome.text = "AKTUELLES DAUERHAFTES EINKOMMEN: " + "<color=green>" + (Geekplay.Instance.PlayerData.RebornCount + 1) + "</color>";
+            reachingLevel.text = "MÜSSEN SIE DIE <color=green>STUFE" + " " + ((Geekplay.Instance.PlayerData.RebornCount + 1) * 10) + " </color>FÜR DIE WIEDERGEBURT";
+        }
+        else if(Geekplay.Instance.language == "ar")
+        {
+            permenantIncome.text = "الدخل الدائم الحالي: " + "<color=green>" + (Geekplay.Instance.PlayerData.RebornCount + 1) + "</color>";
+            reachingLevel.text = "عليك أن تصل إلى <color=green>المستوى" + " " + ((Geekplay.Instance.PlayerData.RebornCount + 1) * 10) + " </color>من أجل العودة إلى الحياة";
+        }
         rebornPanel.SetActive(true);
         BallSpawner.Instance.PanelIsActive = true;
     }
