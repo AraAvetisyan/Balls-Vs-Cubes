@@ -97,20 +97,20 @@ public class Rewarder : MonoBehaviour
 
     public void GetDollarPur1()
     {
-        Geekplay.Instance.PlayerData.MoneyToAdd += PurchaseForDollar_Dollar1;
+        Geekplay.Instance.PlayerData.MoneyToAdd += (ulong)PurchaseForDollar_Dollar1;
         moneyText.text = FormatMoney(Geekplay.Instance.PlayerData.MoneyToAdd);
         Geekplay.Instance.Save();
 
     }
     public void GetDollarPur2()
     {
-        Geekplay.Instance.PlayerData.MoneyToAdd += PurchaseForDollar_Dollar2;
+        Geekplay.Instance.PlayerData.MoneyToAdd += (ulong)PurchaseForDollar_Dollar2;
         moneyText.text = FormatMoney(Geekplay.Instance.PlayerData.MoneyToAdd);
         Geekplay.Instance.Save();
     }
     public void GetDollarPur3()
     {
-        Geekplay.Instance.PlayerData.MoneyToAdd += PurchaseForDollar_Dollar3;
+        Geekplay.Instance.PlayerData.MoneyToAdd += (ulong)PurchaseForDollar_Dollar3;
         moneyText.text = FormatMoney(Geekplay.Instance.PlayerData.MoneyToAdd);
         Geekplay.Instance.Save();
     }

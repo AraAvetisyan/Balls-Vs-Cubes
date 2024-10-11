@@ -233,6 +233,10 @@ MonoBehaviour:
   powerPriceText: {fileID: 217494334}
   incomePriceText: {fileID: 62702494}
   countPriceText: {fileID: 2132158882}
+  healthPrice: 0
+  powerPrice: 0
+  incomePrice: 0
+  countPrice: 0
   healthButton: {fileID: 858639463}
   powerButton: {fileID: 1390888725}
   incomeButton: {fileID: 1244916674}
@@ -396,7 +400,7 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 19759714}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -404,7 +408,7 @@ RectTransform:
   - {fileID: 450186499}
   - {fileID: 382396698}
   - {fileID: 1698381200}
-  m_Father: {fileID: 2059718739}
+  m_Father: {fileID: 169414193}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -1022,7 +1026,7 @@ PrefabInstance:
     - target: {fileID: 5023734575896185641, guid: 275f8a7c89da8458f9efd280784a4bfe, type: 3}
       propertyPath: rewardsList.Array.data[8].rewardEvent.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
-      objectReference: {fileID: 2059718740}
+      objectReference: {fileID: 0}
     - target: {fileID: 5023734575896185641, guid: 275f8a7c89da8458f9efd280784a4bfe, type: 3}
       propertyPath: rewardsList.Array.data[9].rewardEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -3198,6 +3202,86 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 158464808}
   m_CullTransparentMesh: 1
+--- !u!1 &169414192
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 169414193}
+  - component: {fileID: 169414195}
+  - component: {fileID: 169414194}
+  m_Layer: 5
+  m_Name: Market Panel (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!224 &169414193
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 169414192}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1133530206}
+  - {fileID: 469361939}
+  - {fileID: 19759715}
+  - {fileID: 1281983115}
+  - {fileID: 1200710032}
+  m_Father: {fileID: 2059718739}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 768, y: 768}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &169414194
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 169414192}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 0.6618921, g: 0.2235294, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 21300000, guid: 5f2f1db11bb9d4a2094f41a43faf9d88, type: 3}
+  m_Type: 1
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 0.38
+--- !u!222 &169414195
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 169414192}
+  m_CullTransparentMesh: 1
 --- !u!1 &170129355
 GameObject:
   m_ObjectHideFlags: 0
@@ -4213,7 +4297,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   PurName: AppForBalls2
   BuyDollarButton: {fileID: 293818471}
-  DollarCount: {fileID: 0}
+  DollarCount: {fileID: 522103347}
   isNotDollar: 1
   _marketScript: {fileID: 2059718740}
   index: 8
@@ -4261,7 +4345,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 293818472}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2059718740}
+        m_TargetAssemblyTypeName: MarketScript, Assembly-CSharp
+        m_MethodName: PressedBall9
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 8
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &293818472
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4939,7 +5035,7 @@ MonoBehaviour:
   BuyDollarButton: {fileID: 382396699}
   DollarCount: {fileID: 1520137950}
   isNotDollar: 0
-  _marketScript: {fileID: 0}
+  _marketScript: {fileID: 2059718740}
   index: 0
   isBallButton: 0
 --- !u!1 &386440112
@@ -5657,7 +5753,7 @@ MonoBehaviour:
   BuyDollarButton: {fileID: 450186500}
   DollarCount: {fileID: 650042145}
   isNotDollar: 0
-  _marketScript: {fileID: 0}
+  _marketScript: {fileID: 2059718740}
   index: 0
   isBallButton: 0
 --- !u!1 &450278927
@@ -6162,12 +6258,12 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 469361938}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 2059718739}
+  m_Father: {fileID: 169414193}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -12951,14 +13047,14 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1133530205}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 879773125}
   - {fileID: 179217093}
-  m_Father: {fileID: 2059718739}
+  m_Father: {fileID: 169414193}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
@@ -13876,13 +13972,13 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1200710031}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1859795117}
-  m_Father: {fileID: 2059718739}
+  m_Father: {fileID: 169414193}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
@@ -14820,7 +14916,7 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1281983114}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -14834,7 +14930,7 @@ RectTransform:
   - {fileID: 304093865}
   - {fileID: 1838651295}
   - {fileID: 293818469}
-  m_Father: {fileID: 2059718739}
+  m_Father: {fileID: 169414193}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -16337,7 +16433,7 @@ MonoBehaviour:
   settingsPanel: {fileID: 386440112}
   rebornPanel: {fileID: 695077981}
   passiveIncomePanel: {fileID: 1587544396}
-  marketPanel: {fileID: 2059718736}
+  marketPanel: {fileID: 169414192}
   permenantIncome: {fileID: 656760163}
   reachingLevel: {fileID: 1931086919}
   powererButton: {fileID: 668366074}
@@ -17259,6 +17355,16 @@ MonoBehaviour:
   upgradesBallsText: {fileID: 0}
   upgradesBallsLevelText: {fileID: 0}
   boostsTitleText: {fileID: 0}
+  ballsBoostText: {fileID: 0}
+  incomeBoostText: {fileID: 0}
+  autoBoostText: {fileID: 0}
+  clickBoostText: {fileID: 0}
+  ballForeverText: {fileID: 0}
+  incomeForeverText: {fileID: 0}
+  autoClickForeverText: {fileID: 0}
+  settingsText: {fileID: 0}
+  marketText: {fileID: 0}
+  rebornText: {fileID: 0}
 --- !u!4 &1574200159
 Transform:
   m_ObjectHideFlags: 0
@@ -18350,7 +18456,7 @@ MonoBehaviour:
   BuyDollarButton: {fileID: 1698381201}
   DollarCount: {fileID: 8712693883173101852}
   isNotDollar: 0
-  _marketScript: {fileID: 0}
+  _marketScript: {fileID: 2059718740}
   index: 0
   isBallButton: 0
 --- !u!1 &1713175096
@@ -19518,13 +19624,14 @@ MonoBehaviour:
   speedSliderValue: 0.1
   speedSliderValueMin: 0.01
   BallMaxCountBooster: 1
+  ShopBallPower: 0
   MaximumBallCount: 0
   PanelIsActive: 0
   _buttonPressPosiition: {fileID: 541073138}
   cursorImage: {fileID: 2116475636}
   canvas: {fileID: 1183979975}
   BallColors:
-  - {r: 0.02520132, g: 1, b: 0, a: 1}
+  - {r: 1, g: 1, b: 1, a: 1}
   - {r: 1, g: 0, b: 0, a: 1}
   - {r: 1, g: 0, b: 0.5072875, a: 1}
   - {r: 0.68179417, g: 0, b: 1, a: 1}
@@ -19534,7 +19641,7 @@ MonoBehaviour:
   - {r: 1, g: 0.9490196, b: 0, a: 1}
   - {r: 0, g: 1, b: 0.41017795, a: 1}
   TrailColors:
-  - {r: 0.02745098, g: 1, b: 0, a: 1}
+  - {r: 1, g: 1, b: 1, a: 1}
   - {r: 1, g: 0, b: 0, a: 1}
   - {r: 1, g: 0, b: 0.50980395, a: 1}
   - {r: 0.68235296, g: 0, b: 1, a: 1}
@@ -19823,7 +19930,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   PurName: AppForBalls1
   BuyDollarButton: {fileID: 1838651297}
-  DollarCount: {fileID: 0}
+  DollarCount: {fileID: 522103347}
   isNotDollar: 1
   _marketScript: {fileID: 2059718740}
   index: 7
@@ -19871,7 +19978,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1838651298}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2059718740}
+        m_TargetAssemblyTypeName: MarketScript, Assembly-CSharp
+        m_MethodName: PressedBall8
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 7
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1838651298
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -19944,7 +20063,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 0, y: 8}
+  m_AnchoredPosition: {x: 0, y: 58}
   m_SizeDelta: {x: 128, y: 100}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &1843357964
@@ -21705,7 +21824,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &2059718737
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -21713,7 +21832,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2059718736}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
@@ -21756,11 +21875,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 1133530206}
-  - {fileID: 469361939}
-  - {fileID: 19759715}
-  - {fileID: 1281983115}
-  - {fileID: 1200710032}
+  - {fileID: 169414193}
   m_Father: {fileID: 1183979976}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}

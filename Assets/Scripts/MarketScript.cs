@@ -24,14 +24,7 @@ public class MarketScript : MonoBehaviour
     }
     public IEnumerator WaitAFrameForMarket()
     {
-        if(Geekplay.Instance.PlayerData.BallsBought == null)
-        {
-            Geekplay.Instance.PlayerData.BallsBought = new bool[9];
-        }
-        if (Geekplay.Instance.PlayerData.BallEnabled == null)
-        {
-            Geekplay.Instance.PlayerData.BallEnabled = new bool[9];
-        }
+        
         yield return new WaitForEndOfFrame();
         for (int i = 0; i < Geekplay.Instance.PlayerData.BallsBought.Length; i++)
         {
@@ -44,7 +37,7 @@ public class MarketScript : MonoBehaviour
         
         for (int i = 0; i < prices.Length; i++)
         {
-            if (Geekplay.Instance.PlayerData.MoneyToAdd > prices[i])
+            if (Geekplay.Instance.PlayerData.MoneyToAdd > (ulong)prices[i])
             {
                 ballButtons[i].interactable = true;
             }
@@ -92,9 +85,9 @@ public class MarketScript : MonoBehaviour
     {
         if (!Geekplay.Instance.PlayerData.BallsBought[index])
         {
-            if (Geekplay.Instance.PlayerData.MoneyToAdd > prices[index])
+            if (Geekplay.Instance.PlayerData.MoneyToAdd > (ulong)prices[index])
             {
-                Geekplay.Instance.PlayerData.MoneyToAdd -= prices[index];
+                Geekplay.Instance.PlayerData.MoneyToAdd -= (ulong)prices[index];
                 dollarsText.text = FormatPrice(Geekplay.Instance.PlayerData.MoneyToAdd);
               
                 Geekplay.Instance.PlayerData.BallsBought[index] = true;
@@ -121,9 +114,9 @@ public class MarketScript : MonoBehaviour
     {
         if (!Geekplay.Instance.PlayerData.BallsBought[index])
         {
-            if (Geekplay.Instance.PlayerData.MoneyToAdd > prices[index])
+            if (Geekplay.Instance.PlayerData.MoneyToAdd > (ulong)prices[index])
             {
-                Geekplay.Instance.PlayerData.MoneyToAdd -= prices[index];
+                Geekplay.Instance.PlayerData.MoneyToAdd -= (ulong)prices[index];
                 dollarsText.text = FormatPrice(Geekplay.Instance.PlayerData.MoneyToAdd);
                 Geekplay.Instance.PlayerData.BallsBought[index] = true;
                 BallSpawner.Instance.ColorIndex = index;
@@ -149,9 +142,9 @@ public class MarketScript : MonoBehaviour
     {
         if (!Geekplay.Instance.PlayerData.BallsBought[index])
         {
-            if (Geekplay.Instance.PlayerData.MoneyToAdd > prices[index])
+            if (Geekplay.Instance.PlayerData.MoneyToAdd > (ulong)prices[index])
             {
-                Geekplay.Instance.PlayerData.MoneyToAdd -= prices[index];
+                Geekplay.Instance.PlayerData.MoneyToAdd -= (ulong)prices[index];
                 dollarsText.text = FormatPrice(Geekplay.Instance.PlayerData.MoneyToAdd);
                 Geekplay.Instance.PlayerData.BallsBought[index] = true; 
                 BallSpawner.Instance.ColorIndex = index;
@@ -177,9 +170,9 @@ public class MarketScript : MonoBehaviour
     {
         if (!Geekplay.Instance.PlayerData.BallsBought[index])
         {
-            if (Geekplay.Instance.PlayerData.MoneyToAdd > prices[index])
+            if (Geekplay.Instance.PlayerData.MoneyToAdd > (ulong)prices[index])
             {
-                Geekplay.Instance.PlayerData.MoneyToAdd -= prices[index];
+                Geekplay.Instance.PlayerData.MoneyToAdd -= (ulong)prices[index];
                 dollarsText.text = FormatPrice(Geekplay.Instance.PlayerData.MoneyToAdd);
                 Geekplay.Instance.PlayerData.BallsBought[index] = true;
                 BallSpawner.Instance.ColorIndex = index;
@@ -205,9 +198,9 @@ public class MarketScript : MonoBehaviour
     {
         if (!Geekplay.Instance.PlayerData.BallsBought[index])
         {
-            if (Geekplay.Instance.PlayerData.MoneyToAdd > prices[index])
+            if (Geekplay.Instance.PlayerData.MoneyToAdd > (ulong)prices[index])
             {
-                Geekplay.Instance.PlayerData.MoneyToAdd -= prices[index];
+                Geekplay.Instance.PlayerData.MoneyToAdd -= (ulong)prices[index];
                 dollarsText.text = FormatPrice(Geekplay.Instance.PlayerData.MoneyToAdd);
                 Geekplay.Instance.PlayerData.BallsBought[index] = true;
                 BallSpawner.Instance.ColorIndex = index;

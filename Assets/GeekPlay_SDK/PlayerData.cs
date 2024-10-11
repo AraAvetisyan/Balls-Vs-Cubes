@@ -32,7 +32,7 @@ public class PlayerData
     public float CountPrice;
     public float IncomePrice;
 
-    public int MoneyToAdd;
+    public ulong MoneyToAdd;
     public int RebornCount;
 
     public int Level;

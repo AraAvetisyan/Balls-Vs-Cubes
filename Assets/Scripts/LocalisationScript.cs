@@ -23,6 +23,28 @@ public class LocalisationScript : MonoBehaviour
     [Header("Boosts")]
     [SerializeField] private TextMeshProUGUI boostsTitleText;
 
+    [SerializeField] private TextMeshProUGUI ballsBoostText;
+    [SerializeField] private TextMeshProUGUI incomeBoostText;
+    [SerializeField] private TextMeshProUGUI autoBoostText;
+    [SerializeField] private TextMeshProUGUI clickBoostText;
+
+    [Header("InAppBoosts")]
+    [SerializeField] private TextMeshProUGUI ballForeverText;
+    [SerializeField] private TextMeshProUGUI incomeForeverText;
+    [SerializeField] private TextMeshProUGUI autoClickForeverText;
+
+    [Header("Header")]
+    [SerializeField] private TextMeshProUGUI settingsHeaderText;
+    [SerializeField] private TextMeshProUGUI marketHeaderText;
+    [SerializeField] private TextMeshProUGUI rebornHeaderText;
+
+    [Header("Settings")]
+    [SerializeField] private TextMeshProUGUI settingsTitleText;
+    [SerializeField] private TextMeshProUGUI soundEffectsVolumeText;
+    [SerializeField] private TextMeshProUGUI musicVolumeText;
+
+
+
     void Start()
     {
         

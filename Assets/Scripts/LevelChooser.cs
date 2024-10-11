@@ -56,15 +56,15 @@ public class LevelChooser : MonoBehaviour
         if (CurrentLevelCount <= 45)
         {
             CurrentLevel = Instantiate(levelPrefabs[Geekplay.Instance.PlayerData.Level], levelsPosition);
-            _levelsUIController = CurrentLevel.GetComponent<LevelsUIController>();
         }
         else
         {
-
             int randLevel = Random.Range(0, higherLevels.Count);
             CurrentLevel = Instantiate(higherLevels[randLevel], levelsPosition);
+            Debug.Log(CurrentLevelCount);
         }
 
+        _levelsUIController = CurrentLevel.GetComponent<LevelsUIController>();
         SpawnPoint = _levelsUIController.SpawnPoint;
         SpawnedText = _levelsUIController.SpawnText;
         BallSpawner.Instance.SetSpawnPoint();

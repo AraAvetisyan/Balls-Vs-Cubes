@@ -24,6 +24,9 @@ public class BallSpawner : MonoBehaviour
     [SerializeField] private float speedSliderValueMin;
     public int BallMaxCountBooster = 1;
 
+
+    public int ShopBallPower;
+
     public int MaximumBallCount;
 
     public bool PanelIsActive;
@@ -58,23 +61,37 @@ public class BallSpawner : MonoBehaviour
         if (Geekplay.Instance.PlayerData.MaxSpawnCount == 0)
         {
             Geekplay.Instance.PlayerData.MaxSpawnCount = 1;
-            Geekplay.Instance.Save();
         }
         if (Geekplay.Instance.PlayerData.BallSpeed == 0)
         {
             Geekplay.Instance.PlayerData.BallSpeed = 3f;
-            Geekplay.Instance.Save();
         }
         if (Geekplay.Instance.PlayerData.Level == 0)
         {
             Geekplay.Instance.PlayerData.Level = 1;
         }
+        if (Geekplay.Instance.PlayerData.BallsBought == null)
+        {
+            Geekplay.Instance.PlayerData.BallsBought = new bool[9];
+            Geekplay.Instance.PlayerData.BallsBought[0] = true;
+        }
+        if (Geekplay.Instance.PlayerData.BallEnabled == null)
+        {
+            Geekplay.Instance.PlayerData.BallEnabled = new bool[9];
+            Geekplay.Instance.PlayerData.BallEnabled[0] = true;
+        }
+
         yield return new WaitForEndOfFrame();
         // Geekplay.Instance.PlayerData.MaxSpawnCount = Geekplay.Instance.PlayerData.MaxSpawnCount * BallMaxCountBooster;
+       
         SpawnCount = Geekplay.Instance.PlayerData.MaxSpawnCount;
         MaximumBallCount = Geekplay.Instance.PlayerData.MaxSpawnCount;
 
         PowerBoostTenTimes = 1;
+
+
+        yield return new WaitForEndOfFrame();
+        Geekplay.Instance.Save();
     }
 
     void Update()
@@ -99,6 +116,28 @@ public class BallSpawner : MonoBehaviour
         if (SpawnCount < 0)
         {
             SpawnCount = 0;
+        }
+
+
+        if (Geekplay.Instance.PlayerData.BallEnabled[8])
+        {
+            ShopBallPower = 2;
+        }
+        else if (Geekplay.Instance.PlayerData.BallEnabled[7])
+        {
+            ShopBallPower = 2;
+        }
+        else if (Geekplay.Instance.PlayerData.BallEnabled[6])
+        {
+            ShopBallPower = 2;
+        }
+        else if (Geekplay.Instance.PlayerData.BallEnabled[5])
+        {
+            ShopBallPower = 2;
+        }
+        else
+        {
+            ShopBallPower = 1;
         }
     }
 
@@ -126,19 +165,15 @@ public class BallSpawner : MonoBehaviour
 
     public void ActivateCursorAtMousePosition()
     {
-        // �������� ������� �������
         Vector2 cursorScreenPosition = Input.mousePosition;
 
-        // ����������� �������� ���������� � �������, ���� �����
         RectTransformUtility.ScreenPointToWorldPointInRectangle(canvas.transform as RectTransform, cursorScreenPosition, canvas.worldCamera, out Vector3 worldPosition);
 
-        // ������������� ������ � ������� ������� ���������
         cursorImage.transform.position = worldPosition;
 
         // ���������� ������
         cursorImage.SetActive(true);
 
-        // ��������� �������� ��� ������� �������
         StartMouseCorutine();
     }
     public void StartMouseCorutine()

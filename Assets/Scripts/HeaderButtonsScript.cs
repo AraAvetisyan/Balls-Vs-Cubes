@@ -130,7 +130,7 @@ public class HeaderButtonsScript : MonoBehaviour
     public void PressedMarketButton()
     {
         marketPanel.SetActive(true);
-        StartCoroutine(_marketScript.WaitAFrameForMarket());
+       // StartCoroutine(_marketScript.WaitAFrameForMarket());
 
         BallSpawner.Instance.PanelIsActive = true;
     }

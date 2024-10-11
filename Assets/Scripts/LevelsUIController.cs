@@ -11,9 +11,6 @@ public class LevelsUIController : MonoBehaviour
     [SerializeField] private int maxValue;
     [SerializeField] private TextMeshProUGUI levelText;
     private int progressValue;
-    //[SerializeField] private GameObject nextLevel; 
-    //[SerializeField] private GameObject thisLevel;
-    private bool levelAdded;
 
     private Coroutine enumerator;
 
@@ -55,16 +52,16 @@ public class LevelsUIController : MonoBehaviour
     }
     public IEnumerator LevelPass()
     {
-        
+        progressValue = 0;
         yield return new WaitForSeconds(0.1f);
-        //nextLevel.SetActive(true);
-        //thisLevel.SetActive(false);
         for(int i = 0;i< BallSpawner.Instance.SpawnedObjects.Count; i++)
         {
             Destroy(BallSpawner.Instance.SpawnedObjects[i]);
         }
         BallSpawner.Instance.SpawnedObjects.Clear();
-        BallSpawner.Instance.SpawnCount = BallSpawner.Instance.MaximumBallCount;
+        BallSpawner.Instance.SpawnCount = BallSpawner.Instance.MaximumBallCount;            
+        Geekplay.Instance.PlayerData.Level += 1;   
+        LevelChooser.Instance.SpawnNewLevel();
         StopCorutine();
     }
     public void StopCorutine()
@@ -74,12 +71,6 @@ public class LevelsUIController : MonoBehaviour
             StopCoroutine(enumerator);
             enumerator = null;
         }
-        if (!levelAdded)
-        {
-            levelAdded = true;
-            Geekplay.Instance.PlayerData.Level += 1;
-        }
-        levelAdded = false;
-        LevelChooser.Instance.SpawnNewLevel();
+        
     }
 }

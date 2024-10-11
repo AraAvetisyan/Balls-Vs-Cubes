@@ -16,10 +16,10 @@ public class UpgradesScript : MonoBehaviour
     [SerializeField] private TextMeshProUGUI incomePriceText;
     [SerializeField] private TextMeshProUGUI countPriceText;
 
-    private int healthPrice;
-    private int powerPrice;
-    private int incomePrice;
-    private int countPrice;
+    [SerializeField] private ulong healthPrice;
+    [SerializeField] private ulong powerPrice;
+    [SerializeField] private ulong incomePrice;
+    [SerializeField] private ulong countPrice;
 
     [SerializeField] private Button healthButton;
     [SerializeField] private Button powerButton;
@@ -61,10 +61,10 @@ public class UpgradesScript : MonoBehaviour
             }
             Geekplay.Instance.Save();
             yield return new WaitForEndOfFrame();
-            healthPrice = Mathf.FloorToInt(Geekplay.Instance.PlayerData.HealthPrice);
-            powerPrice = Mathf.FloorToInt(Geekplay.Instance.PlayerData.PowerPrice);
-            incomePrice = Mathf.FloorToInt(Geekplay.Instance.PlayerData.IncomePrice);
-            countPrice = Mathf.FloorToInt(Geekplay.Instance.PlayerData.CountPrice);
+            healthPrice = (ulong)(Mathf.FloorToInt(Geekplay.Instance.PlayerData.HealthPrice));
+            powerPrice = (ulong)(Mathf.FloorToInt(Geekplay.Instance.PlayerData.PowerPrice));
+            incomePrice = (ulong)(Mathf.FloorToInt(Geekplay.Instance.PlayerData.IncomePrice));
+            countPrice = (ulong)(Mathf.FloorToInt(Geekplay.Instance.PlayerData.CountPrice));
 
             healthLevel.text = "LEVEL " + Geekplay.Instance.PlayerData.BallHealth.ToString();
             powerLevel.text = "LEVEL " + Geekplay.Instance.PlayerData.BallPower.ToString();
@@ -105,21 +105,43 @@ public class UpgradesScript : MonoBehaviour
         }
         if(Geekplay.Instance.PlayerData.MoneyToAdd >= Geekplay.Instance.PlayerData.CountPrice)
         {
-            countButton.interactable = true;
+            if(Geekplay.Instance.PlayerData.MaxSpawnCount < 30)
+            {
+                countButton.interactable = true;
+            }
+            
         }
         else
         {
             countButton.interactable = false;
         }
+        if (Geekplay.Instance.PlayerData.BallHealth >= 46)
+        {
+            healthPriceText.text = "INFINITELY";
+        }
+        if (Geekplay.Instance.PlayerData.BallPower >= 46)
+        {
+            powerPriceText.text = "INFINITELY";
+        }
+        if (Geekplay.Instance.PlayerData.Income >= 46)
+        {
+            incomePriceText.text = "INFINITELY";
+        }
+        if (Geekplay.Instance.PlayerData.MaxSpawnCount >= 30)
+        {
+            countButton.interactable = false;
+            Geekplay.Instance.PlayerData.MaxSpawnCount = 30;
+            countPriceText.text = "MAX";
+        }
     }
 
     public void PressedBallHealth()
     {
-        Geekplay.Instance.PlayerData.MoneyToAdd = Geekplay.Instance.PlayerData.MoneyToAdd - Mathf.FloorToInt(Geekplay.Instance.PlayerData.HealthPrice);
+        Geekplay.Instance.PlayerData.MoneyToAdd =( Geekplay.Instance.PlayerData.MoneyToAdd - (ulong)(Mathf.FloorToInt(Geekplay.Instance.PlayerData.HealthPrice)));
         Geekplay.Instance.PlayerData.BallHealth += 1;
         healthLevel.text = "LEVEL " + Geekplay.Instance.PlayerData.BallHealth.ToString();
         Geekplay.Instance.PlayerData.HealthPrice = (Geekplay.Instance.PlayerData.HealthPrice + Geekplay.Instance.PlayerData.HealthPrice) + Geekplay.Instance.PlayerData.HealthPrice / 2;
-        healthPrice = Mathf.FloorToInt(Geekplay.Instance.PlayerData.HealthPrice);
+        healthPrice = (ulong)(Geekplay.Instance.PlayerData.HealthPrice);
         healthPriceText.text = "$" + FormatPrice(healthPrice);
         Geekplay.Instance.Save();
         MoneyText.text = "$" + FormatPrice(Geekplay.Instance.PlayerData.MoneyToAdd);
@@ -128,11 +150,11 @@ public class UpgradesScript : MonoBehaviour
 
     public void PressedBallPower()
     {
-        Geekplay.Instance.PlayerData.MoneyToAdd = Geekplay.Instance.PlayerData.MoneyToAdd - Mathf.FloorToInt(Geekplay.Instance.PlayerData.PowerPrice);
+        Geekplay.Instance.PlayerData.MoneyToAdd = Geekplay.Instance.PlayerData.MoneyToAdd - (ulong)(Mathf.FloorToInt(Geekplay.Instance.PlayerData.PowerPrice));
         Geekplay.Instance.PlayerData.BallPower += 1;
         powerLevel.text = "LEVEL " + Geekplay.Instance.PlayerData.BallPower.ToString();
         Geekplay.Instance.PlayerData.PowerPrice = (Geekplay.Instance.PlayerData.PowerPrice + Geekplay.Instance.PlayerData.PowerPrice) + Geekplay.Instance.PlayerData.PowerPrice / 2;
-        powerPrice = Mathf.FloorToInt(Geekplay.Instance.PlayerData.PowerPrice);
+        powerPrice = (ulong)(Geekplay.Instance.PlayerData.PowerPrice);
         powerPriceText.text = "$" + FormatPrice(powerPrice);
         Geekplay.Instance.Save();
         MoneyText.text = "$" + FormatPrice(Geekplay.Instance.PlayerData.MoneyToAdd);
@@ -141,11 +163,11 @@ public class UpgradesScript : MonoBehaviour
 
     public void PressedIncome()
     {
-        Geekplay.Instance.PlayerData.MoneyToAdd = Geekplay.Instance.PlayerData.MoneyToAdd - Mathf.FloorToInt(Geekplay.Instance.PlayerData.IncomePrice);
+        Geekplay.Instance.PlayerData.MoneyToAdd = Geekplay.Instance.PlayerData.MoneyToAdd - (ulong)(Mathf.FloorToInt(Geekplay.Instance.PlayerData.IncomePrice));
         Geekplay.Instance.PlayerData.Income += 1;
         incomeLevel.text = "LEVEL " + Geekplay.Instance.PlayerData.Income.ToString();
         Geekplay.Instance.PlayerData.IncomePrice = (Geekplay.Instance.PlayerData.IncomePrice + Geekplay.Instance.PlayerData.IncomePrice) + Geekplay.Instance.PlayerData.IncomePrice / 2;
-        incomePrice = Mathf.CeilToInt(Geekplay.Instance.PlayerData.IncomePrice);
+        incomePrice = (ulong)(Geekplay.Instance.PlayerData.IncomePrice);
         incomePriceText.text = "$" + FormatPrice(incomePrice);
         Geekplay.Instance.Save();
         MoneyText.text = "$" + FormatPrice(Geekplay.Instance.PlayerData.MoneyToAdd);
@@ -154,33 +176,36 @@ public class UpgradesScript : MonoBehaviour
 
     public void PressedBallCount()
     {
-        Geekplay.Instance.PlayerData.MoneyToAdd = Geekplay.Instance.PlayerData.MoneyToAdd - Mathf.FloorToInt(Geekplay.Instance.PlayerData.CountPrice);
+        Geekplay.Instance.PlayerData.MoneyToAdd = Geekplay.Instance.PlayerData.MoneyToAdd - (ulong)(Mathf.FloorToInt(Geekplay.Instance.PlayerData.CountPrice));
         Geekplay.Instance.PlayerData.MaxSpawnCount += 1;
         BallSpawner.Instance.MaximumBallCount += BallSpawner.Instance.BallMaxCountBooster;
         BallSpawner.Instance.SpawnCount += BallSpawner.Instance.BallMaxCountBooster;
         countLevel.text = "LEVEL " + Geekplay.Instance.PlayerData.MaxSpawnCount.ToString();
         Geekplay.Instance.PlayerData.CountPrice = Geekplay.Instance.PlayerData.CountPrice + Geekplay.Instance.PlayerData.CountPrice + Geekplay.Instance.PlayerData.CountPrice;
-        countPrice = Mathf.CeilToInt(Geekplay.Instance.PlayerData.CountPrice);
+        countPrice = (ulong)(Mathf.CeilToInt(Geekplay.Instance.PlayerData.CountPrice));
         countPriceText.text = "$" + FormatPrice(countPrice);
         Geekplay.Instance.Save();
         MoneyText.text = "$" + FormatPrice(Geekplay.Instance.PlayerData.MoneyToAdd);
     }
-    string FormatPrice(double value)
+    string FormatPrice(ulong value)
     {
+        if (value < 0)
+        {
+            return "Invalid value"; // Обрабатываем отрицательные значения
+        }
+
         string[] suffixes = { "", "k", "m", "b", "t", "aa", "ab", "ac", "ad", "ae", "af", "ag", "ah", "ai", "aj", "ak", "al", "am", "an", "ao", "ap", "aq", "ar", "as", "at", "au", "av", "aw", "ax", "ay", "az" };
         int suffixIndex = 0;
+        decimal formattedValue = value; // Преобразуем в double для работы с дробной частью
 
-        while (value >= 1000 && suffixIndex < suffixes.Length - 1)
+        // Пока значение больше или равно 1000, уменьшаем его и добавляем суффикс
+        while (formattedValue >= 1000 && suffixIndex < suffixes.Length - 1)
         {
-            value /= 1000;
+            formattedValue /= 1000;
             suffixIndex++;
         }
 
-        if (value >= 1000)
-        {
-            value = 999.99;
-        }
-
-        return $"{value:0.#}{suffixes[suffixIndex]}";
+        // Форматируем результат с одной десятичной частью
+        return $"{formattedValue:0.#}{suffixes[suffixIndex]}";
     }
 }

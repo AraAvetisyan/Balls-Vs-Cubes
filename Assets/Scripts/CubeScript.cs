@@ -61,7 +61,7 @@ public class CubeScript : MonoBehaviour
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        damage = Geekplay.Instance.PlayerData.BallPower * BallSpawner.Instance.PowerBoostTenTimes;
+        damage = Geekplay.Instance.PlayerData.BallPower * BallSpawner.Instance.PowerBoostTenTimes * BallSpawner.Instance.ShopBallPower;
         if (collision.gameObject.CompareTag("Ball"))
         {
             GetSmoller = true;
@@ -110,7 +110,7 @@ public class CubeScript : MonoBehaviour
     {
         TextMeshProUGUI incomeText = Instantiate(incomeTextPrefab, incomeSpawnPos.transform);
         //incomeText.transform.SetParent(incomeSpawnPos.parent);
-        incomeText.text = "$" + FormatPrice(((Geekplay.Instance.PlayerData.Income + Geekplay.Instance.PlayerData.RebornCount) * BallSpawner.Instance.IncomeBoost) * Geekplay.Instance.PlayerData.BallPower * BallSpawner.Instance.PowerBoostTenTimes);
+        incomeText.text = "$" + FormatPrice(((Geekplay.Instance.PlayerData.Income + Geekplay.Instance.PlayerData.RebornCount) * BallSpawner.Instance.IncomeBoost) * Geekplay.Instance.PlayerData.BallPower * BallSpawner.Instance.ShopBallPower * BallSpawner.Instance.PowerBoostTenTimes);
         yield return new WaitForSeconds(.1f);
         StopShowCorutine();
     }
