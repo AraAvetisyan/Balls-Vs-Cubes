@@ -48,6 +48,8 @@ public class Rewarder : MonoBehaviour
 
     [SerializeField] private BoosterUIScript _boosterUIScript;
 
+
+
     Dictionary<string, int> OperationNameAndReward = new();
     private void Awake()
     {
@@ -77,6 +79,8 @@ public class Rewarder : MonoBehaviour
 
         Geekplay.Instance.SubscribeOnPurchase(AppForBalls1, GetBall1);
         Geekplay.Instance.SubscribeOnPurchase(AppForBalls2, GetBall2);
+
+
     }
     public int GetDiamondCountByName(string Name)
     {
@@ -89,7 +93,8 @@ public class Rewarder : MonoBehaviour
             Debug.Log("мебепмне хлъ дкъ PURCHASE");
             return -1;
         }
-    }
+    }    
+
     public void GetDollarPur1()
     {
         Geekplay.Instance.PlayerData.MoneyToAdd += PurchaseForDollar_Dollar1;

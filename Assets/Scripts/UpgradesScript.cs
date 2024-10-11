@@ -29,37 +29,53 @@ public class UpgradesScript : MonoBehaviour
     [SerializeField] private TextMeshProUGUI MoneyText;
     private void Start()
     {
-        if(Geekplay.Instance.PlayerData.BallHealth == 0)
+        StartCoroutine(WaitAFrameForUpgrates());
+        
+    }
+    public IEnumerator WaitAFrameForUpgrates()
+    {
         {
-            Geekplay.Instance.PlayerData.BallHealth = 1;
+            if (Geekplay.Instance.PlayerData.BallHealth == 0)
+            {
+                Geekplay.Instance.PlayerData.BallHealth = 1;
+            }
+            if (Geekplay.Instance.PlayerData.HealthPrice == 0)
+            {
+                Geekplay.Instance.PlayerData.HealthPrice = 10;
+            }
+            if (Geekplay.Instance.PlayerData.BallPower == 0)
+            {
+                Geekplay.Instance.PlayerData.BallPower = 1;
+            }
+            if (Geekplay.Instance.PlayerData.PowerPrice == 0)
+            {
+                Geekplay.Instance.PlayerData.PowerPrice = 20;
+            }
+            if (Geekplay.Instance.PlayerData.IncomePrice == 0)
+            {
+                Geekplay.Instance.PlayerData.IncomePrice = 30;
+            }
+            if (Geekplay.Instance.PlayerData.CountPrice == 0)
+            {
+                Geekplay.Instance.PlayerData.CountPrice = 100;
+            }
             Geekplay.Instance.Save();
-        }
+            yield return new WaitForEndOfFrame();
+            healthPrice = Mathf.FloorToInt(Geekplay.Instance.PlayerData.HealthPrice);
+            powerPrice = Mathf.FloorToInt(Geekplay.Instance.PlayerData.PowerPrice);
+            incomePrice = Mathf.FloorToInt(Geekplay.Instance.PlayerData.IncomePrice);
+            countPrice = Mathf.FloorToInt(Geekplay.Instance.PlayerData.CountPrice);
 
-        if(Geekplay.Instance.PlayerData.HealthPrice == 0)
-        {
-            Geekplay.Instance.PlayerData.HealthPrice = 10;
-            Geekplay.Instance.Save();
+            healthLevel.text = "LEVEL " + Geekplay.Instance.PlayerData.BallHealth.ToString();
+            powerLevel.text = "LEVEL " + Geekplay.Instance.PlayerData.BallPower.ToString();
+            incomeLevel.text = "LEVEL " + Geekplay.Instance.PlayerData.Income.ToString();
+            countLevel.text = "LEVEL " + Geekplay.Instance.PlayerData.MaxSpawnCount.ToString();
+
+            healthPriceText.text = "$" + FormatPrice(healthPrice);
+            powerPriceText.text = "$" + FormatPrice(powerPrice);
+            incomePriceText.text = "$" + FormatPrice(incomePrice);
+            countPriceText.text = "$" + FormatPrice(countPrice);
         }
-        if(Geekplay.Instance.PlayerData.PowerPrice == 0)
-        {
-            Geekplay.Instance.PlayerData.PowerPrice = 20;
-            Geekplay.Instance.Save();
-        }
-        if(Geekplay.Instance.PlayerData.IncomePrice == 0)
-        {
-            Geekplay.Instance.PlayerData.IncomePrice = 30;
-            Geekplay.Instance.Save();
-        }
-        if(Geekplay.Instance.PlayerData.CountPrice == 0)
-        {
-            Geekplay.Instance.PlayerData.CountPrice = 100;
-            Geekplay.Instance.Save();
-        }
-        healthPrice = Mathf.FloorToInt(Geekplay.Instance.PlayerData.HealthPrice);
-        powerPrice = Mathf.FloorToInt(Geekplay.Instance.PlayerData.PowerPrice);
-        incomePrice = Mathf.FloorToInt(Geekplay.Instance.PlayerData.IncomePrice);
-        countPrice = Mathf.FloorToInt(Geekplay.Instance.PlayerData.CountPrice);
-        StartCoroutine(WaitFrame());
     }
     private void Update()
     {
@@ -95,20 +111,6 @@ public class UpgradesScript : MonoBehaviour
         {
             countButton.interactable = false;
         }
-    }
-    public IEnumerator WaitFrame()
-    {
-        yield return new WaitForFixedUpdate();
-        healthLevel.text = "LEVEL " + Geekplay.Instance.PlayerData.BallHealth.ToString();
-        powerLevel.text = "LEVEL " + Geekplay.Instance.PlayerData.BallPower.ToString();
-        incomeLevel.text = "LEVEL " + Geekplay.Instance.PlayerData.Income.ToString();
-        countLevel.text = "LEVEL " + Geekplay.Instance.PlayerData.MaxSpawnCount.ToString();
-
-        healthPriceText.text = "$" + FormatPrice(healthPrice);
-        powerPriceText.text = "$" + FormatPrice(powerPrice);
-        incomePriceText.text = "$" + FormatPrice(incomePrice);
-        countPriceText.text = "$" + FormatPrice(countPrice);
-
     }
 
     public void PressedBallHealth()

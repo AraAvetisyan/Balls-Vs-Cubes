@@ -25,6 +25,9 @@ public class HeaderButtonsScript : MonoBehaviour
     public bool Pressed;
 
     [SerializeField] private MarketScript _marketScript;
+    [SerializeField] private UpgradesScript _upgradesScript;
+    [SerializeField] private MoneyScript _moneyScript;
+    [SerializeField] private BoosterUIScript _bosterUIScript;
     void Start()
     {
         StartShowCorutine();
@@ -169,7 +172,14 @@ public class HeaderButtonsScript : MonoBehaviour
         Geekplay.Instance.PlayerData.Level = 0;
         Geekplay.Instance.PlayerData.RebornCount += 1;
         Geekplay.Instance.Save();
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+
+        StartCoroutine(BallSpawner.Instance.WaitAFrameForSpawner());
+        StartCoroutine(LevelChooser.Instance.WaitAFrame());
+        StartCoroutine(_upgradesScript.WaitAFrameForUpgrates());
+        StartCoroutine(_moneyScript.WaitAFrameForMoney());
+        StartCoroutine(_bosterUIScript.WaitNextFrameForBoosters());
+        _marketScript.PressedDollarsButton();
+        StartCoroutine(_marketScript.WaitAFrameForMarket());
     }
     public void ResetSettings()
     {
@@ -186,6 +196,13 @@ public class HeaderButtonsScript : MonoBehaviour
         Geekplay.Instance.PlayerData.Level = 0;
         Geekplay.Instance.PlayerData.RebornCount = 0;
         Geekplay.Instance.Save();
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+
+        StartCoroutine(BallSpawner.Instance.WaitAFrameForSpawner());
+        StartCoroutine(LevelChooser.Instance.WaitAFrame());
+        StartCoroutine(_upgradesScript.WaitAFrameForUpgrates());
+        StartCoroutine(_moneyScript.WaitAFrameForMoney());
+        StartCoroutine(_bosterUIScript.WaitNextFrameForBoosters());
+        _marketScript.PressedDollarsButton();
+        StartCoroutine(_marketScript.WaitAFrameForMarket());
     }
 }

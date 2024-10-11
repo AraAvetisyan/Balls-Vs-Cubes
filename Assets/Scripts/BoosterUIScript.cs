@@ -42,6 +42,7 @@ public class BoosterUIScript : MonoBehaviour
     public IEnumerator WaitNextFrameForBoosters()
     {
         yield return new WaitForEndOfFrame();
+        yield return new WaitForEndOfFrame();
         if (Geekplay.Instance.PlayerData.ForeverAutoClickBoost)
         {
             autoClickButton.interactable = false;

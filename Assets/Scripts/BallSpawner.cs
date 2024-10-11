@@ -1,16 +1,18 @@
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 public class BallSpawner : MonoBehaviour
 {
+    public bool LevelStarts;
     public static BallSpawner Instance;
-    [SerializeField] private Transform[] spawnPoints;
+    public Transform spawnPoints;
     [SerializeField] private GameObject ballPrefab;
-    [SerializeField] private TextMeshProUGUI[] spawnedTexts;
+    public TextMeshProUGUI  spawnedTexts;
     public List<GameObject> SpawnedObjects;
     public int SpawnCount = 0;
     public float SpeedBoost = 1;
@@ -49,7 +51,10 @@ public class BallSpawner : MonoBehaviour
 
         Geekplay.Instance.GameStart();
         Geekplay.Instance.GameReady();
-
+        StartCoroutine(WaitAFrameForSpawner());
+    }
+    public IEnumerator WaitAFrameForSpawner()
+    {
         if (Geekplay.Instance.PlayerData.MaxSpawnCount == 0)
         {
             Geekplay.Instance.PlayerData.MaxSpawnCount = 1;
@@ -60,20 +65,24 @@ public class BallSpawner : MonoBehaviour
             Geekplay.Instance.PlayerData.BallSpeed = 3f;
             Geekplay.Instance.Save();
         }
-        if(Geekplay.Instance.PlayerData.Level == 0)
+        if (Geekplay.Instance.PlayerData.Level == 0)
         {
             Geekplay.Instance.PlayerData.Level = 1;
         }
-       // Geekplay.Instance.PlayerData.MaxSpawnCount = Geekplay.Instance.PlayerData.MaxSpawnCount * BallMaxCountBooster;
+        yield return new WaitForEndOfFrame();
+        // Geekplay.Instance.PlayerData.MaxSpawnCount = Geekplay.Instance.PlayerData.MaxSpawnCount * BallMaxCountBooster;
         SpawnCount = Geekplay.Instance.PlayerData.MaxSpawnCount;
         MaximumBallCount = Geekplay.Instance.PlayerData.MaxSpawnCount;
 
         PowerBoostTenTimes = 1;
     }
+
     void Update()
     {
-        spawnedTexts[Geekplay.Instance.PlayerData.Level].text = SpawnCount.ToString() + " / " + MaximumBallCount.ToString();
-       
+        if (LevelStarts)
+        {
+            spawnedTexts.text = SpawnCount.ToString() + " / " + MaximumBallCount.ToString();
+        }
         speedSlider.value -= speedSliderValueMin;
         if(speedSlider.value >= 2)
         {
@@ -92,6 +101,13 @@ public class BallSpawner : MonoBehaviour
             SpawnCount = 0;
         }
     }
+
+    public void SetSpawnPoint()
+    {
+        spawnPoints = LevelChooser.Instance.SpawnPoint;
+        spawnedTexts = LevelChooser.Instance.SpawnedText;
+        
+    }
     public void SpawnBall()
     {
        
@@ -101,7 +117,7 @@ public class BallSpawner : MonoBehaviour
             if (SpawnedObjects.Count <= MaximumBallCount)
             {
                 SpawnCount--; // = MaximumBallCount - SpawnedObjects.Count;
-                SpawnedObjects.Add(Instantiate(ballPrefab, spawnPoints[Geekplay.Instance.PlayerData.Level].transform));
+                SpawnedObjects.Add(Instantiate(ballPrefab, spawnPoints.transform));
             }
         }
         ActivateCursorAtMousePosition();
@@ -110,19 +126,19 @@ public class BallSpawner : MonoBehaviour
 
     public void ActivateCursorAtMousePosition()
     {
-        // Получаем позицию курсора
+        // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
         Vector2 cursorScreenPosition = Input.mousePosition;
 
-        // Преобразуем экранные координаты в мировые, если нужно
+        // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
         RectTransformUtility.ScreenPointToWorldPointInRectangle(canvas.transform as RectTransform, cursorScreenPosition, canvas.worldCamera, out Vector3 worldPosition);
 
-        // Устанавливаем курсор в позицию мировых координат
+        // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
         cursorImage.transform.position = worldPosition;
 
-        // Активируем курсор
+        // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
         cursorImage.SetActive(true);
 
-        // Запускаем корутину для скрытия курсора
+        // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
         StartMouseCorutine();
     }
     public void StartMouseCorutine()

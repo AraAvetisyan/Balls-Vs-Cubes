@@ -6,14 +6,27 @@ using UnityEngine;
 
 public class MoneyScript : MonoBehaviour
 {
+    public static MoneyScript Instance;
     [SerializeField] private TextMeshProUGUI MoneyText;
     public int income;
     [SerializeField] private GameObject passiveIncomePanel;
     [SerializeField] private TextMeshProUGUI passiveText;
     private int passivIncome;
+    private void Awake()
+    {
+        if (Instance == null)
+        {
+            Instance = this;
+        }
+    }
 
     private void Start()
     {
+        StartCoroutine(WaitAFrameForMoney());
+    }
+    public IEnumerator WaitAFrameForMoney()
+    {
+        yield return new WaitForEndOfFrame();
         if (!Geekplay.Instance.PlayerData.IsNotFirstTime)
         {
             Geekplay.Instance.PlayerData.IsNotFirstTime = true;

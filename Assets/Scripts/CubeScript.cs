@@ -35,7 +35,7 @@ public class CubeScript : MonoBehaviour
             Geekplay.Instance.Save();
         }
         Health = Random.Range(HealthRandOne, HealthRandTwo);
-        healthText.text = Health.ToString();
+        healthText.text = FormatPrice(Health);
     }
 
     private void Update()
@@ -86,9 +86,9 @@ public class CubeScript : MonoBehaviour
 
             StartShowCorutine();
 
-            healthText.text=Health.ToString();
-            
-            if(Health <= 0)
+            healthText.text = FormatPrice(Health);
+
+            if (Health <= 0)
             {
                 Destroy(gameObject);
             }

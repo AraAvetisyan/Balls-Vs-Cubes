@@ -24,7 +24,6 @@ public class MarketScript : MonoBehaviour
     }
     public IEnumerator WaitAFrameForMarket()
     {
-        yield return new WaitForEndOfFrame();
         if(Geekplay.Instance.PlayerData.BallsBought == null)
         {
             Geekplay.Instance.PlayerData.BallsBought = new bool[9];
@@ -33,6 +32,7 @@ public class MarketScript : MonoBehaviour
         {
             Geekplay.Instance.PlayerData.BallEnabled = new bool[9];
         }
+        yield return new WaitForEndOfFrame();
         for (int i = 0; i < Geekplay.Instance.PlayerData.BallsBought.Length; i++)
         {
             if (Geekplay.Instance.PlayerData.BallsBought[i])

@@ -30,9 +30,8 @@ public class PlayerData
     public float HealthPrice;
     public float PowerPrice;
     public float CountPrice;
-
-
     public float IncomePrice;
+
     public int MoneyToAdd;
     public int RebornCount;
 

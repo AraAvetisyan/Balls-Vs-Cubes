@@ -9,13 +9,16 @@ public class LevelsUIController : MonoBehaviour
     [SerializeField] CubeScript[] cubes;
     [SerializeField] private Slider progress;
     [SerializeField] private int maxValue;
+    [SerializeField] private TextMeshProUGUI levelText;
     private int progressValue;
-    [SerializeField] private MoneyScript _moneyScript;
-    [SerializeField] private GameObject nextLevel; 
-    [SerializeField] private GameObject thisLevel;
+    //[SerializeField] private GameObject nextLevel; 
+    //[SerializeField] private GameObject thisLevel;
     private bool levelAdded;
 
     private Coroutine enumerator;
+
+    public Transform SpawnPoint;
+    public TextMeshProUGUI SpawnText;
     void Start()
     {
         StartCoroutine(WaitFrameBeforeStart());
@@ -29,11 +32,16 @@ public class LevelsUIController : MonoBehaviour
             maxValue += cubes[i].Health;
         }
         progress.maxValue = maxValue;
+
+        if(LevelChooser.Instance.CurrentLevelCount > 45)
+        {
+            levelText.text = "Level " + LevelChooser.Instance.CurrentLevelCount;
+        }
     }
     public void ChangeValue(int value)
     {
         progressValue+= value;
-        _moneyScript.AddMoney();
+        MoneyScript.Instance.AddMoney();
         progress.value = progressValue;
         if(progressValue >= maxValue) 
         {
@@ -49,8 +57,8 @@ public class LevelsUIController : MonoBehaviour
     {
         
         yield return new WaitForSeconds(0.1f);
-        nextLevel.SetActive(true);
-        thisLevel.SetActive(false);
+        //nextLevel.SetActive(true);
+        //thisLevel.SetActive(false);
         for(int i = 0;i< BallSpawner.Instance.SpawnedObjects.Count; i++)
         {
             Destroy(BallSpawner.Instance.SpawnedObjects[i]);
@@ -72,5 +80,6 @@ public class LevelsUIController : MonoBehaviour
             Geekplay.Instance.PlayerData.Level += 1;
         }
         levelAdded = false;
+        LevelChooser.Instance.SpawnNewLevel();
     }
 }
