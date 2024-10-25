@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
@@ -32,7 +32,18 @@ public class LevelsUIController : MonoBehaviour
 
         if (Geekplay.Instance.language == "en")
             levelText.text = "LEVEL " + LevelChooser.Instance.CurrentLevelCount;
-        
+        else if(Geekplay.Instance.language == "ru")
+            levelText.text = "УРОВЕНЬ " + LevelChooser.Instance.CurrentLevelCount;
+        else if(Geekplay.Instance.language == "tr")
+            levelText.text = "SEVİYE " + LevelChooser.Instance.CurrentLevelCount;
+        else if(Geekplay.Instance.language == "es")
+            levelText.text = "NIVEL " + LevelChooser.Instance.CurrentLevelCount;
+        else if(Geekplay.Instance.language == "de")
+            levelText.text = "NIVEAU " + LevelChooser.Instance.CurrentLevelCount;
+        else if(Geekplay.Instance.language == "ar")
+            levelText.text = "المستوى " + LevelChooser.Instance.CurrentLevelCount;
+
+
     }
     public void ChangeValue(int value)
     {

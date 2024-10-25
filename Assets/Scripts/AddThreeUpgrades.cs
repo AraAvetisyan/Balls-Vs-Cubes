@@ -65,14 +65,76 @@ public class AddThreeUpgrades : MonoBehaviour
             elapsed += Time.deltaTime;
             yield return null;
         }
+
+
         if (Geekplay.Instance.PlayerData.MaxSpawnCount < 30)
         {
-            randButton = Random.Range(0, multyplayerButtonObjects.Length);
+            randButton = Random.Range(0, multyplayerButtonObjects.Length); 
         }
         if (Geekplay.Instance.PlayerData.MaxSpawnCount >= 30)
         {
             Geekplay.Instance.PlayerData.MaxSpawnCount = 30;
             randButton = Random.Range(0, multyplayerButtonObjects.Length - 1);
+        }
+        if (multyplayerButtons[randButton].interactable)
+        {
+            if (Geekplay.Instance.PlayerData.MaxSpawnCount < 30)
+            {
+                randButton = Random.Range(0, multyplayerButtonObjects.Length);
+            }
+            if (Geekplay.Instance.PlayerData.MaxSpawnCount >= 30)
+            {
+                Geekplay.Instance.PlayerData.MaxSpawnCount = 30;
+                randButton = Random.Range(0, multyplayerButtonObjects.Length - 1);
+            }
+        }
+        if (multyplayerButtons[randButton].interactable)
+        {
+            if (Geekplay.Instance.PlayerData.MaxSpawnCount < 30)
+            {
+                randButton = Random.Range(0, multyplayerButtonObjects.Length);
+            }
+            if (Geekplay.Instance.PlayerData.MaxSpawnCount >= 30)
+            {
+                Geekplay.Instance.PlayerData.MaxSpawnCount = 30;
+                randButton = Random.Range(0, multyplayerButtonObjects.Length - 1);
+            }
+        }
+        if (multyplayerButtons[randButton].interactable)
+        {
+            if (Geekplay.Instance.PlayerData.MaxSpawnCount < 30)
+            {
+                randButton = Random.Range(0, multyplayerButtonObjects.Length);
+            }
+            if (Geekplay.Instance.PlayerData.MaxSpawnCount >= 30)
+            {
+                Geekplay.Instance.PlayerData.MaxSpawnCount = 30;
+                randButton = Random.Range(0, multyplayerButtonObjects.Length - 1);
+            }
+        }
+        if (multyplayerButtons[randButton].interactable)
+        {
+            if (Geekplay.Instance.PlayerData.MaxSpawnCount < 30)
+            {
+                randButton = Random.Range(0, multyplayerButtonObjects.Length);
+            }
+            if (Geekplay.Instance.PlayerData.MaxSpawnCount >= 30)
+            {
+                Geekplay.Instance.PlayerData.MaxSpawnCount = 30;
+                randButton = Random.Range(0, multyplayerButtonObjects.Length - 1);
+            }
+        }
+        if (multyplayerButtons[randButton].interactable)
+        {
+            if (Geekplay.Instance.PlayerData.MaxSpawnCount < 30)
+            {
+                randButton = Random.Range(0, multyplayerButtonObjects.Length);
+            }
+            if (Geekplay.Instance.PlayerData.MaxSpawnCount >= 30)
+            {
+                Geekplay.Instance.PlayerData.MaxSpawnCount = 30;
+                randButton = Random.Range(0, multyplayerButtonObjects.Length - 1);
+            }
         }
         for (int i = 0; i < multyplayerButtonObjects.Length; i++)
         {
@@ -82,6 +144,9 @@ public class AddThreeUpgrades : MonoBehaviour
         {
             multyplayerButtonObjects[randButton].SetActive(true);
         }
+
+
+
         StopShowCorutine();
     }
     public IEnumerator UnshowButton()
@@ -118,9 +183,9 @@ public class AddThreeUpgrades : MonoBehaviour
                 healthLevel.text = "УРОВЕНЬ " + Geekplay.Instance.PlayerData.BallHealth.ToString();
             else if (Geekplay.Instance.language == "tr")
                 healthLevel.text = "SEVİYE " + Geekplay.Instance.PlayerData.BallHealth.ToString();
-            else if (Geekplay.Instance.language == "pr")
-                healthLevel.text = "NÍVEL " + Geekplay.Instance.PlayerData.BallHealth.ToString();
-            else if (Geekplay.Instance.language == "gr")
+            else if (Geekplay.Instance.language == "es")
+                healthLevel.text = "NIVEL " + Geekplay.Instance.PlayerData.BallHealth.ToString();
+            else if (Geekplay.Instance.language == "de")
                 healthLevel.text = "NIVEAU " + Geekplay.Instance.PlayerData.BallHealth.ToString();
             else if (Geekplay.Instance.language == "ar")
                 healthLevel.text = "المستوى " + Geekplay.Instance.PlayerData.BallHealth.ToString();
@@ -148,9 +213,9 @@ public class AddThreeUpgrades : MonoBehaviour
                 powerLevel.text = "УРОВЕНЬ " + Geekplay.Instance.PlayerData.BallPower.ToString();
             else if (Geekplay.Instance.language == "tr")
                 powerLevel.text = "SEVİYE " + Geekplay.Instance.PlayerData.BallPower.ToString();
-            else if (Geekplay.Instance.language == "pr")
-                powerLevel.text = "NÍVEL " + Geekplay.Instance.PlayerData.BallPower.ToString();
-            else if (Geekplay.Instance.language == "gr")
+            else if (Geekplay.Instance.language == "es")
+                powerLevel.text = "NIVEL " + Geekplay.Instance.PlayerData.BallPower.ToString();
+            else if (Geekplay.Instance.language == "de")
                 powerLevel.text = "NIVEAU " + Geekplay.Instance.PlayerData.BallPower.ToString();
             else if (Geekplay.Instance.language == "ar")
                 powerLevel.text = "المستوى " + Geekplay.Instance.PlayerData.BallPower.ToString();
@@ -178,9 +243,9 @@ public class AddThreeUpgrades : MonoBehaviour
                 incomeLevel.text = "УРОВЕНЬ " + Geekplay.Instance.PlayerData.Income.ToString();
             else if (Geekplay.Instance.language == "tr")
                 incomeLevel.text = "SEVİYE " + Geekplay.Instance.PlayerData.Income.ToString();
-            else if (Geekplay.Instance.language == "pr")
-                incomeLevel.text = "NÍVEL " + Geekplay.Instance.PlayerData.Income.ToString();
-            else if (Geekplay.Instance.language == "gr")
+            else if (Geekplay.Instance.language == "es")
+                incomeLevel.text = "NIVEL " + Geekplay.Instance.PlayerData.Income.ToString();
+            else if (Geekplay.Instance.language == "de")
                 incomeLevel.text = "NIVEAU " + Geekplay.Instance.PlayerData.Income.ToString();
             else if (Geekplay.Instance.language == "ar")
                 incomeLevel.text = "المستوى " + Geekplay.Instance.PlayerData.Income.ToString();
@@ -211,6 +276,12 @@ public class AddThreeUpgrades : MonoBehaviour
                 countLevel.text = "УРОВЕНЬ " + Geekplay.Instance.PlayerData.MaxSpawnCount.ToString();
             else if (Geekplay.Instance.language == "tr")
                 countLevel.text = "SEVİYE " + Geekplay.Instance.PlayerData.MaxSpawnCount.ToString();
+            else if (Geekplay.Instance.language == "es")
+                countLevel.text = "NIVEL " + Geekplay.Instance.PlayerData.MaxSpawnCount.ToString();
+            else if (Geekplay.Instance.language == "de")
+                countLevel.text = "NIVEAU " + Geekplay.Instance.PlayerData.MaxSpawnCount.ToString();
+            else if (Geekplay.Instance.language == "ar")
+                countLevel.text = "المستوى " + Geekplay.Instance.PlayerData.MaxSpawnCount.ToString();
             Geekplay.Instance.PlayerData.CountPrice = Geekplay.Instance.PlayerData.CountPrice + Geekplay.Instance.PlayerData.CountPrice + Geekplay.Instance.PlayerData.CountPrice;
             countPrice = (ulong)(Geekplay.Instance.PlayerData.CountPrice);
             countPriceText.text = "$" + FormatPrice(countPrice);

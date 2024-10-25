@@ -36,6 +36,7 @@ public class PlayerData
     public int RebornCount;
 
     public int Level;
+    public int MaxLevel;
 
     public string LastSaveTime;
     public bool IsNotFirstTime;
@@ -46,4 +47,8 @@ public class PlayerData
 
     public bool[] BallsBought;
     public bool[] BallEnabled;
+
+    public float MusicVolume;
+    public float SoundEffectsVolume;
+
 }

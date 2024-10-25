@@ -35,6 +35,11 @@ public class BoosterUIScript : MonoBehaviour
     [SerializeField] private GameObject foreverIncomeBoostObject;
     [SerializeField] private GameObject foreverAutoClickObject;
 
+
+    private Coroutine doubleBallBoost;
+    private Coroutine incomeBoost;
+    private Coroutine autoClickBoost;
+
     private void Start()
     {
        StartCoroutine(WaitNextFrameForBoosters());
@@ -43,6 +48,7 @@ public class BoosterUIScript : MonoBehaviour
     {
         yield return new WaitForEndOfFrame();
         yield return new WaitForEndOfFrame();
+        Debug.Log("boosters wait 1");
         if (Geekplay.Instance.PlayerData.ForeverAutoClickBoost)
         {
             autoClickButton.interactable = false;
@@ -71,13 +77,20 @@ public class BoosterUIScript : MonoBehaviour
     {
         if (!foreverIncomeCoolDown)
         {
-            BallSpawner.Instance.IncomeBoost = 5;
-            foreverIncomeBoost = StartCoroutine(ForeverIncomeBoostCorutine());
+            if (foreverIncomeBoost == null)
+            {
+                BallSpawner.Instance.IncomeBoost = 5;
+                foreverIncomeBoost = StartCoroutine(ForeverIncomeBoostCorutine());
+            }
         }
     }
     public void StopForeverIncomeBoostCorutine()
     {
-        if(foreverIncomeBoost != null)
+        BallSpawner.Instance.IncomeBoost = 1;
+        incomeImage.fillAmount = 0f;
+        incomeBallText.text = "0";
+        incomeBallText.gameObject.SetActive(false);
+        if (foreverIncomeBoost != null)
         {
             StopCoroutine(foreverIncomeBoost);
             foreverIncomeBoost = null;
@@ -89,12 +102,18 @@ public class BoosterUIScript : MonoBehaviour
     {
         if (foreverIncomeCoolDown)
         {
-            foreverIncomeBoostCoolDown = StartCoroutine(ForeverIncomeBoostCoolDownCorutine());
+            if (foreverIncomeBoostCoolDown == null)
+            {
+                foreverIncomeBoostCoolDown = StartCoroutine(ForeverIncomeBoostCoolDownCorutine());
+            }
         }
     }
     public void StopForeverStopBoostCoolDownCorutine()
-    {
-        if(foreverIncomeBoostCoolDown != null)
+    {     
+        incomeImage.fillAmount = 0f;
+        incomeBallText.text = "0";
+        incomeBallText.gameObject.SetActive(false);
+        if (foreverIncomeBoostCoolDown != null)
         {
             StopCoroutine(foreverIncomeBoostCoolDown);
             foreverIncomeBoostCoolDown = null;
@@ -114,10 +133,7 @@ public class BoosterUIScript : MonoBehaviour
             incomeBallText.text = Mathf.CeilToInt(duration - elapsed).ToString();
             yield return null;
         }
-        BallSpawner.Instance.IncomeBoost = 1;
-        incomeImage.fillAmount = 0f;
-        incomeBallText.text = "0";
-        incomeBallText.gameObject.SetActive(false);
+       
         StopForeverIncomeBoostCorutine();
     }
     public IEnumerator ForeverIncomeBoostCoolDownCorutine()
@@ -132,9 +148,6 @@ public class BoosterUIScript : MonoBehaviour
             incomeBallText.text = Mathf.CeilToInt(duration - elapsed).ToString();
             yield return null;
         }
-        incomeImage.fillAmount = 0f;
-        incomeBallText.text = "0";
-        incomeBallText.gameObject.SetActive(false);
         StopForeverStopBoostCoolDownCorutine();
     }
     public void ForeverAutoClickBoostBought()
@@ -145,12 +158,18 @@ public class BoosterUIScript : MonoBehaviour
     {
         if (!foreverAutoClickCoolDown)
         {
-            foreverAutoClickBoost = StartCoroutine(ForeverAutoClickBoostCorutine());
+            if (foreverAutoClickBoost == null)
+            {
+                foreverAutoClickBoost = StartCoroutine(ForeverAutoClickBoostCorutine());
+            }
         }
     }
     public void StopForeverAutoClickBoostCorutine()
     {
-        if(foreverAutoClickBoost != null)
+        autoClickImage.fillAmount = 0f;
+        autoClickBallText.text = "0";
+        autoClickBallText.gameObject.SetActive(false);
+        if (foreverAutoClickBoost != null)
         {
             StopCoroutine(foreverAutoClickBoost);
             foreverAutoClickBoost = null;
@@ -162,12 +181,18 @@ public class BoosterUIScript : MonoBehaviour
     {
         if (foreverAutoClickCoolDown)
         {
-            foreverAutoClickBoostCoolDown = StartCoroutine(ForeverAutoClickBoostCoolDownCorutine());
+            if (foreverAutoClickBoostCoolDown == null)
+            {
+                foreverAutoClickBoostCoolDown = StartCoroutine(ForeverAutoClickBoostCoolDownCorutine());
+            }
         }
     }
     public void StopForeverAutoClickBoostCoolDownCorutine()
     {
-        if(foreverAutoClickBoostCoolDown != null)
+        autoClickImage.fillAmount = 0f;
+        autoClickBallText.text = "0";
+        autoClickBallText.gameObject.SetActive(false);
+        if (foreverAutoClickBoostCoolDown != null)
         {
             StopCoroutine(foreverAutoClickBoostCoolDown);
             foreverAutoClickBoostCoolDown = null;
@@ -179,18 +204,24 @@ public class BoosterUIScript : MonoBehaviour
     {
         float duration = 60f;
         float elapsed = 0f;
+        int spawnInterval = 4;
+        int spawnCounter = 0;
         autoClickBallText.gameObject.SetActive(true);
         while (elapsed < duration)
         {
             elapsed += Time.deltaTime;
             autoClickImage.fillAmount = (elapsed / duration);
             autoClickBallText.text = Mathf.CeilToInt(duration - elapsed).ToString();
-            BallSpawner.Instance.SpawnBall();
+        
+            spawnCounter++;
+            if (spawnCounter >= spawnInterval)
+            {
+                BallSpawner.Instance.SpawnBall();
+                spawnCounter = 0;
+            }
             yield return null;
         }
-        autoClickImage.fillAmount = 0f;
-        autoClickBallText.text = "0";
-        autoClickBallText.gameObject.SetActive(false);
+      
         StopForeverAutoClickBoostCorutine();
     }
     public IEnumerator ForeverAutoClickBoostCoolDownCorutine()
@@ -205,9 +236,7 @@ public class BoosterUIScript : MonoBehaviour
             autoClickBallText.text = Mathf.CeilToInt(duration - elapsed).ToString();
             yield return null;
         }
-        autoClickImage.fillAmount = 0f;
-        autoClickBallText.text = "0";
-        autoClickBallText.gameObject.SetActive(false);
+       
         StopForeverAutoClickBoostCoolDownCorutine();
     }
     public void ForeverBallsBoostBought()
@@ -218,15 +247,23 @@ public class BoosterUIScript : MonoBehaviour
     {
         if (!foreverBallCoolDown)
         {
-            BallSpawner.Instance.BallMaxCountBooster = 2;
-            BallSpawner.Instance.SpawnCount += BallSpawner.Instance.MaximumBallCount;
-            BallSpawner.Instance.MaximumBallCount = Geekplay.Instance.PlayerData.MaxSpawnCount * BallSpawner.Instance.BallMaxCountBooster;
-            foreverBallsBoost = StartCoroutine(ForeverBallsBoostCorutine());
+            if (foreverBallsBoost == null)
+            {
+                BallSpawner.Instance.BallMaxCountBooster = 2;
+                BallSpawner.Instance.SpawnCount += BallSpawner.Instance.MaximumBallCount;
+                BallSpawner.Instance.MaximumBallCount = Geekplay.Instance.PlayerData.MaxSpawnCount * BallSpawner.Instance.BallMaxCountBooster;
+                foreverBallsBoost = StartCoroutine(ForeverBallsBoostCorutine());
+            }
         }
     }
     public void StopForeverBallsBoostCorutine()
     {
-        if(foreverBallsBoost != null)
+        BallSpawner.Instance.MaximumBallCount = Geekplay.Instance.PlayerData.MaxSpawnCount;
+        BallSpawner.Instance.BallMaxCountBooster = 1;
+        doubleBallImage.fillAmount = 0f;
+        doubleBallText.text = "0";
+        doubleBallText.gameObject.SetActive(false);
+        if (foreverBallsBoost != null)
         {
             StopCoroutine(foreverBallsBoost);
             foreverBallsBoost = null;
@@ -238,12 +275,18 @@ public class BoosterUIScript : MonoBehaviour
     {
         if (foreverBallCoolDown)
         {
-            foreverBallsBoostCoolDown = StartCoroutine(ForeverBallsBoostCoolDownCorutine());
+            if (foreverBallsBoostCoolDown == null)
+            {
+                foreverBallsBoostCoolDown = StartCoroutine(ForeverBallsBoostCoolDownCorutine());
+            }
         }
     }
     public void StopForeverBallsBoostCoolDownCorutine()
     {
-        if(foreverBallsBoostCoolDown != null)
+        doubleBallImage.fillAmount = 0f;
+        doubleBallText.text = "0";
+        doubleBallText.gameObject.SetActive(false);
+        if (foreverBallsBoostCoolDown != null)
         {
             StopCoroutine(foreverBallsBoostCoolDown);
             foreverBallsBoostCoolDown = null;
@@ -263,11 +306,7 @@ public class BoosterUIScript : MonoBehaviour
             doubleBallText.text = Mathf.CeilToInt(duration - elapsed).ToString();
             yield return null;
         }
-        BallSpawner.Instance.MaximumBallCount = Geekplay.Instance.PlayerData.MaxSpawnCount;
-        BallSpawner.Instance.BallMaxCountBooster = 1;
-        doubleBallImage.fillAmount = 0f;
-        doubleBallText.text = "0";
-        doubleBallText.gameObject.SetActive(false);
+       
         StopForeverBallsBoostCorutine();
     }
     public IEnumerator ForeverBallsBoostCoolDownCorutine()
@@ -282,9 +321,6 @@ public class BoosterUIScript : MonoBehaviour
             doubleBallText.text = Mathf.CeilToInt(duration - elapsed).ToString();
             yield return null;
         }
-        doubleBallImage.fillAmount = 0f;
-        doubleBallText.text = "0";
-        doubleBallText.gameObject.SetActive(false);
         StopForeverBallsBoostCoolDownCorutine();
     }
 
@@ -300,7 +336,28 @@ public class BoosterUIScript : MonoBehaviour
         BallSpawner.Instance.SpawnCount += BallSpawner.Instance.MaximumBallCount;
         BallSpawner.Instance.MaximumBallCount = Geekplay.Instance.PlayerData.MaxSpawnCount * BallSpawner.Instance.BallMaxCountBooster;
         doubleBallButton.interactable = false;
-        StartCoroutine(DoubleBall());
+        StartDoubleBallBoost();
+    }
+    public void StartDoubleBallBoost()
+    {
+        if (doubleBallBoost == null)
+        {
+            doubleBallBoost = StartCoroutine(DoubleBall());
+        }
+    }
+    public void StopDoubleBallBoost()
+    {
+        BallSpawner.Instance.MaximumBallCount = Geekplay.Instance.PlayerData.MaxSpawnCount;
+        BallSpawner.Instance.BallMaxCountBooster = 1;
+        doubleBallImage.fillAmount = 0f;
+        doubleBallText.text = "0";
+        doubleBallText.gameObject.SetActive(false);
+        doubleBallButton.interactable = true;
+        if (doubleBallBoost != null)
+        {
+            StopCoroutine(doubleBallBoost);
+            doubleBallBoost = null;
+        }
     }
     public void Pressed5XIncome()
     {
@@ -310,7 +367,27 @@ public class BoosterUIScript : MonoBehaviour
     {
         BallSpawner.Instance.IncomeBoost = 5;
         incomeButton.interactable = false;
-        StartCoroutine(IncomeTimer());
+        StartIncomeBoost();
+    }
+    public void StartIncomeBoost()
+    {
+        if(incomeBoost == null)
+        {
+            incomeBoost = StartCoroutine(IncomeTimer());
+        }
+    }
+    public void StopIncomeBoost()
+    {
+        BallSpawner.Instance.IncomeBoost = 1;
+        incomeImage.fillAmount = 0f;
+        incomeBallText.text = "0";
+        incomeBallText.gameObject.SetActive(false);
+        incomeButton.interactable = true;
+        if (incomeBoost != null)
+        {
+            StopCoroutine(incomeBoost);
+            incomeBoost = null;
+        }
     }
     public void PressedAutoClick()
     {
@@ -318,10 +395,28 @@ public class BoosterUIScript : MonoBehaviour
     }
     public void AutoClickBoostReward()
     {
-        StartCoroutine(AutoClickTimer());
+        StartAutoClickBoost();
         autoClickButton.interactable = false;
     }
-
+    public void StartAutoClickBoost()
+    {
+        if(autoClickBoost == null)
+        {
+            autoClickBoost = StartCoroutine(AutoClickTimer());
+        }
+    }
+    public void StopAutoClickBoost()
+    {
+        autoClickImage.fillAmount = 0f;
+        autoClickBallText.text = "0";
+        autoClickBallText.gameObject.SetActive(false);
+        autoClickButton.interactable = true;
+        if ( autoClickBoost != null)
+        {
+            StopCoroutine (autoClickBoost);
+            autoClickBoost = null;
+        }
+    }
     public IEnumerator DoubleBall()
     {
         float duration = 60f;
@@ -334,30 +429,36 @@ public class BoosterUIScript : MonoBehaviour
             doubleBallText.text = Mathf.CeilToInt(duration - elapsed).ToString();
             yield return null;
         }
-        BallSpawner.Instance.MaximumBallCount = Geekplay.Instance.PlayerData.MaxSpawnCount;
-        BallSpawner.Instance.BallMaxCountBooster = 1;
-        doubleBallImage.fillAmount = 0f;
-        doubleBallText.text = "0";
-        doubleBallText.gameObject.SetActive(false);
-        doubleBallButton.interactable = true;
+      
+        StopDoubleBallBoost();
     }
     public IEnumerator AutoClickTimer()
     {
         float duration = 60f;
         float elapsed = 0f;
+        int spawnInterval = 4;
+        int spawnCounter = 0;
+
         autoClickBallText.gameObject.SetActive(true);
+
         while (elapsed < duration)
         {
             elapsed += Time.deltaTime;
             autoClickImage.fillAmount = (elapsed / duration);
             autoClickBallText.text = Mathf.CeilToInt(duration - elapsed).ToString();
-            BallSpawner.Instance.SpawnBall();
+
+            spawnCounter++;
+            if (spawnCounter >= spawnInterval)
+            {
+                BallSpawner.Instance.SpawnBall();
+                spawnCounter = 0;
+            }
+
             yield return null;
         }
-        autoClickImage.fillAmount = 0f;
-        autoClickBallText.text = "0";
-        autoClickBallText.gameObject.SetActive(false);
-        autoClickButton.interactable = true;
+
+       
+        StopAutoClickBoost();
     }
     public IEnumerator IncomeTimer()
     {
@@ -371,10 +472,7 @@ public class BoosterUIScript : MonoBehaviour
             incomeBallText.text = Mathf.CeilToInt(duration - elapsed).ToString();
             yield return null;
         }
-        BallSpawner.Instance.IncomeBoost = 1;
-        incomeImage.fillAmount = 0f;
-        incomeBallText.text = "0";
-        incomeBallText.gameObject.SetActive(false);
-        incomeButton.interactable = true;
+       
+        StopIncomeBoost();
     }
 }

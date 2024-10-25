@@ -34,84 +34,88 @@ public class UpgradesScript : MonoBehaviour
     }
     public IEnumerator WaitAFrameForUpgrates()
     {
+
+        yield return new WaitForEndOfFrame();
+        Debug.Log("upgrades wait 1");
+
+        if (Geekplay.Instance.PlayerData.BallHealth == 0)
         {
-            if (Geekplay.Instance.PlayerData.BallHealth == 0)
-            {
-                Geekplay.Instance.PlayerData.BallHealth = 1;
-            }
-            if (Geekplay.Instance.PlayerData.HealthPrice == 0)
-            {
-                Geekplay.Instance.PlayerData.HealthPrice = 10;
-            }
-            if (Geekplay.Instance.PlayerData.BallPower == 0)
-            {
-                Geekplay.Instance.PlayerData.BallPower = 1;
-            }
-            if (Geekplay.Instance.PlayerData.PowerPrice == 0)
-            {
-                Geekplay.Instance.PlayerData.PowerPrice = 20;
-            }
-            if (Geekplay.Instance.PlayerData.IncomePrice == 0)
-            {
-                Geekplay.Instance.PlayerData.IncomePrice = 30;
-            }
-            if (Geekplay.Instance.PlayerData.CountPrice == 0)
-            {
-                Geekplay.Instance.PlayerData.CountPrice = 100;
-            }
-            Geekplay.Instance.Save();
-            yield return new WaitForEndOfFrame();
-            healthPrice = (ulong)(Mathf.FloorToInt(Geekplay.Instance.PlayerData.HealthPrice));
-            powerPrice = (ulong)(Mathf.FloorToInt(Geekplay.Instance.PlayerData.PowerPrice));
-            incomePrice = (ulong)(Mathf.FloorToInt(Geekplay.Instance.PlayerData.IncomePrice));
-            countPrice = (ulong)(Mathf.FloorToInt(Geekplay.Instance.PlayerData.CountPrice));
-            if (Geekplay.Instance.language == "en")
-            {
-                healthLevel.text = "LEVEL " + Geekplay.Instance.PlayerData.BallHealth.ToString();
-                powerLevel.text = "LEVEL " + Geekplay.Instance.PlayerData.BallPower.ToString();
-                incomeLevel.text = "LEVEL " + Geekplay.Instance.PlayerData.Income.ToString();
-                countLevel.text = "LEVEL " + Geekplay.Instance.PlayerData.MaxSpawnCount.ToString();
-            }
-            else if (Geekplay.Instance.language == "ru")
-            {
-                healthLevel.text = "УРОВЕНЬ " + Geekplay.Instance.PlayerData.BallHealth.ToString();
-                powerLevel.text = "УРОВЕНЬ " + Geekplay.Instance.PlayerData.BallPower.ToString();
-                incomeLevel.text = "УРОВЕНЬ " + Geekplay.Instance.PlayerData.Income.ToString();
-                countLevel.text = "УРОВЕНЬ " + Geekplay.Instance.PlayerData.MaxSpawnCount.ToString();
-            }
-            else if (Geekplay.Instance.language == "tr")
-            {
-                healthLevel.text = "SEVİYE " + Geekplay.Instance.PlayerData.BallHealth.ToString();
-                powerLevel.text = "SEVİYE " + Geekplay.Instance.PlayerData.BallPower.ToString();
-                incomeLevel.text = "SEVİYE " + Geekplay.Instance.PlayerData.Income.ToString();
-                countLevel.text = "SEVİYE " + Geekplay.Instance.PlayerData.MaxSpawnCount.ToString();
-            }
-            else if (Geekplay.Instance.language == "pr")
-            {
-                healthLevel.text = "NÍVEL " + Geekplay.Instance.PlayerData.BallHealth.ToString();
-                powerLevel.text = "NÍVEL " + Geekplay.Instance.PlayerData.BallPower.ToString();
-                incomeLevel.text = "NÍVEL " + Geekplay.Instance.PlayerData.Income.ToString();
-                countLevel.text = "NÍVEL " + Geekplay.Instance.PlayerData.MaxSpawnCount.ToString();
-            }
-            else if (Geekplay.Instance.language == "gr")
-            {
-                healthLevel.text = "NIVEAU " + Geekplay.Instance.PlayerData.BallHealth.ToString();
-                powerLevel.text = "NIVEAU " + Geekplay.Instance.PlayerData.BallPower.ToString();
-                incomeLevel.text = "NIVEAU " + Geekplay.Instance.PlayerData.Income.ToString();
-                countLevel.text = "NIVEAU " + Geekplay.Instance.PlayerData.MaxSpawnCount.ToString();
-            }
-            else if (Geekplay.Instance.language == "ar")
-            {
-                healthLevel.text = "المستوى " + Geekplay.Instance.PlayerData.BallHealth.ToString();
-                powerLevel.text = "المستوى " + Geekplay.Instance.PlayerData.BallPower.ToString();
-                incomeLevel.text = "المستوى " + Geekplay.Instance.PlayerData.Income.ToString();
-                countLevel.text = "المستوى " + Geekplay.Instance.PlayerData.MaxSpawnCount.ToString();
-            }
-            healthPriceText.text = "$" + FormatPrice(healthPrice);
-            powerPriceText.text = "$" + FormatPrice(powerPrice);
-            incomePriceText.text = "$" + FormatPrice(incomePrice);
-            countPriceText.text = "$" + FormatPrice(countPrice);
+            Geekplay.Instance.PlayerData.BallHealth = 1;
         }
+        if (Geekplay.Instance.PlayerData.HealthPrice == 0)
+        {
+            Geekplay.Instance.PlayerData.HealthPrice = 10;
+        }
+        if (Geekplay.Instance.PlayerData.BallPower == 0)
+        {
+            Geekplay.Instance.PlayerData.BallPower = 1;
+        }
+        if (Geekplay.Instance.PlayerData.PowerPrice == 0)
+        {
+            Geekplay.Instance.PlayerData.PowerPrice = 20;
+        }
+        if (Geekplay.Instance.PlayerData.IncomePrice == 0)
+        {
+            Geekplay.Instance.PlayerData.IncomePrice = 30;
+        }
+        if (Geekplay.Instance.PlayerData.CountPrice == 0)
+        {
+            Geekplay.Instance.PlayerData.CountPrice = 100;
+        }
+        Geekplay.Instance.Save();
+        yield return new WaitForEndOfFrame();
+        Debug.Log("upgrades wait 2");
+        healthPrice = (ulong)(Mathf.FloorToInt(Geekplay.Instance.PlayerData.HealthPrice));
+        powerPrice = (ulong)(Mathf.FloorToInt(Geekplay.Instance.PlayerData.PowerPrice));
+        incomePrice = (ulong)(Mathf.FloorToInt(Geekplay.Instance.PlayerData.IncomePrice));
+        countPrice = (ulong)(Mathf.FloorToInt(Geekplay.Instance.PlayerData.CountPrice));
+        if (Geekplay.Instance.language == "en")
+        {
+            healthLevel.text = "LEVEL " + Geekplay.Instance.PlayerData.BallHealth.ToString();
+            powerLevel.text = "LEVEL " + Geekplay.Instance.PlayerData.BallPower.ToString();
+            incomeLevel.text = "LEVEL " + Geekplay.Instance.PlayerData.Income.ToString();
+            countLevel.text = "LEVEL " + Geekplay.Instance.PlayerData.MaxSpawnCount.ToString();
+        }
+        else if (Geekplay.Instance.language == "ru")
+        {
+            healthLevel.text = "УРОВЕНЬ " + Geekplay.Instance.PlayerData.BallHealth.ToString();
+            powerLevel.text = "УРОВЕНЬ " + Geekplay.Instance.PlayerData.BallPower.ToString();
+            incomeLevel.text = "УРОВЕНЬ " + Geekplay.Instance.PlayerData.Income.ToString();
+            countLevel.text = "УРОВЕНЬ " + Geekplay.Instance.PlayerData.MaxSpawnCount.ToString();
+        }
+        else if (Geekplay.Instance.language == "tr")
+        {
+            healthLevel.text = "SEVİYE " + Geekplay.Instance.PlayerData.BallHealth.ToString();
+            powerLevel.text = "SEVİYE " + Geekplay.Instance.PlayerData.BallPower.ToString();
+            incomeLevel.text = "SEVİYE " + Geekplay.Instance.PlayerData.Income.ToString();
+            countLevel.text = "SEVİYE " + Geekplay.Instance.PlayerData.MaxSpawnCount.ToString();
+        }
+        else if (Geekplay.Instance.language == "es")
+        {
+            healthLevel.text = "NIVEL " + Geekplay.Instance.PlayerData.BallHealth.ToString();
+            powerLevel.text = "NIVEL " + Geekplay.Instance.PlayerData.BallPower.ToString();
+            incomeLevel.text = "NIVEL " + Geekplay.Instance.PlayerData.Income.ToString();
+            countLevel.text = "NIVEL " + Geekplay.Instance.PlayerData.MaxSpawnCount.ToString();
+        }
+        else if (Geekplay.Instance.language == "de")
+        {
+            healthLevel.text = "NIVEAU " + Geekplay.Instance.PlayerData.BallHealth.ToString();
+            powerLevel.text = "NIVEAU " + Geekplay.Instance.PlayerData.BallPower.ToString();
+            incomeLevel.text = "NIVEAU " + Geekplay.Instance.PlayerData.Income.ToString();
+            countLevel.text = "NIVEAU " + Geekplay.Instance.PlayerData.MaxSpawnCount.ToString();
+        }
+        else if (Geekplay.Instance.language == "ar")
+        {
+            healthLevel.text = "المستوى " + Geekplay.Instance.PlayerData.BallHealth.ToString();
+            powerLevel.text = "المستوى " + Geekplay.Instance.PlayerData.BallPower.ToString();
+            incomeLevel.text = "المستوى " + Geekplay.Instance.PlayerData.Income.ToString();
+            countLevel.text = "المستوى " + Geekplay.Instance.PlayerData.MaxSpawnCount.ToString();
+        }
+        healthPriceText.text = "$" + FormatPrice(healthPrice);
+        powerPriceText.text = "$" + FormatPrice(powerPrice);
+        incomePriceText.text = "$" + FormatPrice(incomePrice);
+        countPriceText.text = "$" + FormatPrice(countPrice);
+
     }
     private void Update()
     {
@@ -159,9 +163,9 @@ public class UpgradesScript : MonoBehaviour
                 healthPriceText.text = "БЕСКОНЕЧНО";
             else if (Geekplay.Instance.language == "tr")
                 healthPriceText.text = "SONSUZ";
-            else if (Geekplay.Instance.language == "pr")
-                healthPriceText.text = "INFINITAMENTE";
-            else if (Geekplay.Instance.language == "gr")
+            else if (Geekplay.Instance.language == "es")
+                healthPriceText.text = "INFINITO";
+            else if (Geekplay.Instance.language == "de")
                 healthPriceText.text = "INFINITELY";
             else if (Geekplay.Instance.language == "ar")
                 healthPriceText.text = "غير محدود";
@@ -174,9 +178,9 @@ public class UpgradesScript : MonoBehaviour
                 powerPriceText.text = "БЕСКОНЕЧНО";
             else if (Geekplay.Instance.language == "tr")
                 powerPriceText.text = "SONSUZ";
-            else if (Geekplay.Instance.language == "pr")
-                powerPriceText.text = "INFINITAMENTE";
-            else if (Geekplay.Instance.language == "gr")
+            else if (Geekplay.Instance.language == "es")
+                powerPriceText.text = "INFINITO";
+            else if (Geekplay.Instance.language == "de")
                 powerPriceText.text = "INFINITELY";
             else if (Geekplay.Instance.language == "ar")
                 powerPriceText.text = "غير محدود";
@@ -189,9 +193,9 @@ public class UpgradesScript : MonoBehaviour
                 incomePriceText.text = "БЕСКОНЕЧНО";
             else if (Geekplay.Instance.language == "tr")
                 incomePriceText.text = "SONSUZ";
-            else if (Geekplay.Instance.language == "pr")
-                incomePriceText.text = "INFINITAMENTE";
-            else if (Geekplay.Instance.language == "gr")
+            else if (Geekplay.Instance.language == "es")
+                incomePriceText.text = "INFINITO";
+            else if (Geekplay.Instance.language == "de")
                 incomePriceText.text = "INFINITELY";
             else if (Geekplay.Instance.language == "ar")
                 incomePriceText.text = "غير محدود";
@@ -206,10 +210,10 @@ public class UpgradesScript : MonoBehaviour
                 countPriceText.text = "МАКС.";
             else if (Geekplay.Instance.language == "tr")
                 countPriceText.text = "MAX.";
-            else if (Geekplay.Instance.language == "pr")
-                countPriceText.text = "MAX";
-            else if (Geekplay.Instance.language == "gr")
-                countPriceText.text = "MAX";
+            else if (Geekplay.Instance.language == "es")
+                countPriceText.text = "MAX.";
+            else if (Geekplay.Instance.language == "de")
+                countPriceText.text = "MAX.";
             else if (Geekplay.Instance.language == "ar")
                 countPriceText.text = "ماكس";
         }
@@ -225,9 +229,9 @@ public class UpgradesScript : MonoBehaviour
             healthLevel.text = "УРОВЕНЬ " + Geekplay.Instance.PlayerData.BallHealth.ToString();
         else if(Geekplay.Instance.language == "tr")
             healthLevel.text = "SEVİYE " + Geekplay.Instance.PlayerData.BallHealth.ToString();
-        else if (Geekplay.Instance.language == "pr")
-            healthLevel.text = "NÍVEL " + Geekplay.Instance.PlayerData.BallHealth.ToString();
-        else if (Geekplay.Instance.language == "gr")
+        else if (Geekplay.Instance.language == "es")
+            healthLevel.text = "NIVEL " + Geekplay.Instance.PlayerData.BallHealth.ToString();
+        else if (Geekplay.Instance.language == "de")
             healthLevel.text = "NIVEAU " + Geekplay.Instance.PlayerData.BallHealth.ToString();
         else if (Geekplay.Instance.language == "ar")
             healthLevel.text = "المستوى " + Geekplay.Instance.PlayerData.BallHealth.ToString();
@@ -249,9 +253,9 @@ public class UpgradesScript : MonoBehaviour
             powerLevel.text = "УРОВЕНЬ " + Geekplay.Instance.PlayerData.BallPower.ToString();
         else if (Geekplay.Instance.language == "tr")
             powerLevel.text = "SEVİYE " + Geekplay.Instance.PlayerData.BallPower.ToString();
-        else if (Geekplay.Instance.language == "pr")
-            powerLevel.text = "NÍVEL " + Geekplay.Instance.PlayerData.BallPower.ToString();
-        else if (Geekplay.Instance.language == "gr")
+        else if (Geekplay.Instance.language == "es")
+            powerLevel.text = "NIVEL " + Geekplay.Instance.PlayerData.BallPower.ToString();
+        else if (Geekplay.Instance.language == "de")
             powerLevel.text = "NIVEAU " + Geekplay.Instance.PlayerData.BallPower.ToString();
         else if (Geekplay.Instance.language == "ar")
             powerLevel.text = "المستوى " + Geekplay.Instance.PlayerData.BallPower.ToString();
@@ -273,9 +277,9 @@ public class UpgradesScript : MonoBehaviour
             incomeLevel.text = "УРОВЕНЬ " + Geekplay.Instance.PlayerData.Income.ToString();
         else if (Geekplay.Instance.language == "tr")
             incomeLevel.text = "SEVİYE " + Geekplay.Instance.PlayerData.Income.ToString();
-        else if (Geekplay.Instance.language == "pr")
-            incomeLevel.text = "NÍVEL " + Geekplay.Instance.PlayerData.Income.ToString();
-        else if (Geekplay.Instance.language == "gr")
+        else if (Geekplay.Instance.language == "es")
+            incomeLevel.text = "NIVEL " + Geekplay.Instance.PlayerData.Income.ToString();
+        else if (Geekplay.Instance.language == "de")
             incomeLevel.text = "NIVEAU " + Geekplay.Instance.PlayerData.Income.ToString();
         else if (Geekplay.Instance.language == "ar")
             incomeLevel.text = "المستوى " + Geekplay.Instance.PlayerData.Income.ToString();
@@ -299,9 +303,9 @@ public class UpgradesScript : MonoBehaviour
             countLevel.text = "УРОВЕНЬ " + Geekplay.Instance.PlayerData.MaxSpawnCount.ToString();
         else if (Geekplay.Instance.language == "tr")
             countLevel.text = "SEVİYE " + Geekplay.Instance.PlayerData.MaxSpawnCount.ToString();
-        else if (Geekplay.Instance.language == "pr")
-            countLevel.text = "NÍVEL " + Geekplay.Instance.PlayerData.MaxSpawnCount.ToString();
-        else if (Geekplay.Instance.language == "gr")
+        else if (Geekplay.Instance.language == "es")
+            countLevel.text = "NIVEL " + Geekplay.Instance.PlayerData.MaxSpawnCount.ToString();
+        else if (Geekplay.Instance.language == "de")
             countLevel.text = "NIVEAU " + Geekplay.Instance.PlayerData.MaxSpawnCount.ToString();
         else if (Geekplay.Instance.language == "ar")
             countLevel.text = "المستوى " + Geekplay.Instance.PlayerData.MaxSpawnCount.ToString();

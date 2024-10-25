@@ -25,6 +25,8 @@ public class CubeScript : MonoBehaviour
 
     [SerializeField] private Ease easeToBig;
     [SerializeField] private Ease easeToSmoll;
+
+    [SerializeField] private GameObject hitBlockAudioPrefab;
     private void Start()
     {
         smollScale = new Vector2(0.9f, 0.9f);
@@ -64,6 +66,10 @@ public class CubeScript : MonoBehaviour
         damage = Geekplay.Instance.PlayerData.BallPower * BallSpawner.Instance.PowerBoostTenTimes * BallSpawner.Instance.ShopBallPower;
         if (collision.gameObject.CompareTag("Ball"))
         {
+            AudioSource hitBlockAudio = Instantiate(hitBlockAudioPrefab.GetComponent<AudioSource>());
+            hitBlockAudio.volume = Geekplay.Instance.PlayerData.SoundEffectsVolume;
+            hitBlockAudio.Play();
+            Destroy(hitBlockAudio.gameObject, 1f);
             GetSmoller = true;
             if (Health >= damage)
             {

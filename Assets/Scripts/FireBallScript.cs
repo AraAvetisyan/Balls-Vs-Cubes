@@ -10,6 +10,7 @@ public class FireBallScript : MonoBehaviour
     [SerializeField] private HeaderButtonsScript _headerButtonsScript;
     [SerializeField] private Image fillImage;
     [SerializeField] private TextMeshProUGUI timerText;
+    [SerializeField] private float corutineDuration;
     public void StartFireCorutine()
     {
         Geekplay.Instance.ShowRewardedAd("FireBall");       
@@ -21,6 +22,7 @@ public class FireBallScript : MonoBehaviour
     }
     public void StopFireCorutine()
     {
+        HeaderButtonsScript.Instance.ChangeMat = false;
         if(boosterCorutine != null)
         {
             StopCoroutine(boosterCorutine);
@@ -29,11 +31,12 @@ public class FireBallScript : MonoBehaviour
     }
     public IEnumerator StartFireBallTimer()
     {
-        float duration = 15;
+        float duration = corutineDuration;
         float elapsed = 0f;
         timerText.gameObject.SetActive(true);
         while (elapsed < duration)
         {
+            HeaderButtonsScript.Instance.ChangeMat = true;
             elapsed += Time.deltaTime;
             BallSpawner.Instance.PowerBoostTenTimes = 10;
             BallSpawner.Instance.FireSpeedBoost = 1.5f;

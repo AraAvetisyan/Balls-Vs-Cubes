@@ -44,7 +44,13 @@ public class BallSpawner : MonoBehaviour
 
     public Color[] BallColors;
     public Color[] TrailColors;
+    public Color[] LightColors;
     public int ColorIndex;
+
+    public Color FireBallColor;
+    [SerializeField] private GameObject ballSpawnEffect;
+
+    [SerializeField] private TextMeshProUGUI sliderText;
     private void Awake()
     {
         Instance = this;
@@ -58,13 +64,14 @@ public class BallSpawner : MonoBehaviour
     }
     public IEnumerator WaitAFrameForSpawner()
     {
+        Debug.Log("Ball wait 1");
         if (Geekplay.Instance.PlayerData.MaxSpawnCount == 0)
         {
             Geekplay.Instance.PlayerData.MaxSpawnCount = 1;
         }
         if (Geekplay.Instance.PlayerData.BallSpeed == 0)
         {
-            Geekplay.Instance.PlayerData.BallSpeed = 3f;
+            Geekplay.Instance.PlayerData.BallSpeed = 2.5f;
         }
         if (Geekplay.Instance.PlayerData.Level == 0)
         {
@@ -80,18 +87,30 @@ public class BallSpawner : MonoBehaviour
             Geekplay.Instance.PlayerData.BallEnabled = new bool[9];
             Geekplay.Instance.PlayerData.BallEnabled[0] = true;
         }
-
+        if(Geekplay.Instance.PlayerData.SoundEffectsVolume == 0)
+        {
+            Geekplay.Instance.PlayerData.SoundEffectsVolume = 1;
+        }
+        if (Geekplay.Instance.PlayerData.MusicVolume == 0)
+        {
+            Geekplay.Instance.PlayerData.MusicVolume = 0.35f;
+        }
         yield return new WaitForEndOfFrame();
+        Debug.Log("Ball wait 2");
         // Geekplay.Instance.PlayerData.MaxSpawnCount = Geekplay.Instance.PlayerData.MaxSpawnCount * BallMaxCountBooster;
-       
-        SpawnCount = Geekplay.Instance.PlayerData.MaxSpawnCount;
-        MaximumBallCount = Geekplay.Instance.PlayerData.MaxSpawnCount;
+
+        MaximumBallCount = Geekplay.Instance.PlayerData.MaxSpawnCount * BallMaxCountBooster;
+        SpawnCount = Geekplay.Instance.PlayerData.MaxSpawnCount * BallMaxCountBooster;
 
         PowerBoostTenTimes = 1;
 
 
         yield return new WaitForEndOfFrame();
+        Debug.Log("Ball wait 3");
         Geekplay.Instance.Save();
+
+        HeaderButtonsScript.Instance.soundEffectsVolumeSlider.value = Geekplay.Instance.PlayerData.SoundEffectsVolume;
+        HeaderButtonsScript.Instance.musicVolumeSlider.value = Geekplay.Instance.PlayerData.MusicVolume;
     }
 
     void Update()
@@ -101,12 +120,14 @@ public class BallSpawner : MonoBehaviour
             spawnedTexts.text = SpawnCount.ToString() + " / " + MaximumBallCount.ToString();
         }
         speedSlider.value -= speedSliderValueMin;
-        if(speedSlider.value >= 2)
+        if(speedSlider.value >= 2.06f)
         {
+            sliderText.text = "x2";
             SpeedBoost = 2f;
         }
-        if(speedSlider.value < 2)
+        if(speedSlider.value < 2f)
         {
+            sliderText.text = "x1";
             SpeedBoost = speedSlider.value;
         }
         if (SpawnCount > MaximumBallCount)
@@ -139,6 +160,11 @@ public class BallSpawner : MonoBehaviour
         {
             ShopBallPower = 1;
         }
+
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            SpawnBall();
+        }
     }
 
     public void SetSpawnPoint()
@@ -149,6 +175,10 @@ public class BallSpawner : MonoBehaviour
     }
     public void SpawnBall()
     {
+        AudioSource ballSpawnAudio = Instantiate(ballSpawnEffect.GetComponent<AudioSource>());
+        ballSpawnAudio.volume = Geekplay.Instance.PlayerData.SoundEffectsVolume;
+        ballSpawnAudio.Play();
+        Destroy(ballSpawnAudio.gameObject, 1f);
        
         speedSlider.value += speedSliderValue;
         if (SpawnCount > 0)

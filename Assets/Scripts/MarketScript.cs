@@ -22,10 +22,8 @@ public class MarketScript : MonoBehaviour
         StartCoroutine(WaitAFrameForMarket());
        
     }
-    public IEnumerator WaitAFrameForMarket()
+    public void CheckIfCanBuy()
     {
-        
-        yield return new WaitForEndOfFrame();
         for (int i = 0; i < Geekplay.Instance.PlayerData.BallsBought.Length; i++)
         {
             if (Geekplay.Instance.PlayerData.BallsBought[i])
@@ -34,7 +32,7 @@ public class MarketScript : MonoBehaviour
                 ballButtons[i].interactable = true;
             }
         }
-        
+
         for (int i = 0; i < prices.Length; i++)
         {
             if (Geekplay.Instance.PlayerData.MoneyToAdd > (ulong)prices[i])
@@ -57,10 +55,23 @@ public class MarketScript : MonoBehaviour
                 ballButtons[i].interactable = false;
             }
         }
+        for (int i = 0; i < prices.Length; i++)
+        {
+            pricesObjects[i].GetComponent<TextMeshProUGUI>().text = prices[i].ToString();
+        }
         Geekplay.Instance.Save();
+    }
+    public IEnumerator WaitAFrameForMarket()
+    {
+        
+        yield return new WaitForEndOfFrame();
+        CheckIfCanBuy();
+
+
     }
     public void PressedDollarsButton()
     {
+        Debug.Log("dollar 1");
         ballsMarker.SetActive(false);
         ballsPanel.SetActive(false);
         dollarsMarker.SetActive(true);
@@ -95,18 +106,18 @@ public class MarketScript : MonoBehaviour
             titleText.text = "ШАРИКИ";
         else if (Geekplay.Instance.language == "tr")
             titleText.text = "MISKETLER";
-        else if (Geekplay.Instance.language == "pr")
+        else if (Geekplay.Instance.language == "es")
             titleText.text = "BOLAS";
-        else if (Geekplay.Instance.language == "gr")
+        else if (Geekplay.Instance.language == "de")
             titleText.text = "KUGELN";
         else if (Geekplay.Instance.language == "ar")
             titleText.text = "البالونات";
-
 
     }
 
     public void PressedBall1(int index)
     {
+
         if (!Geekplay.Instance.PlayerData.BallsBought[index])
         {
             if (Geekplay.Instance.PlayerData.MoneyToAdd > (ulong)prices[index])
@@ -132,6 +143,7 @@ public class MarketScript : MonoBehaviour
             }
             Geekplay.Instance.PlayerData.BallEnabled[index] = true;
         }
+
         StartCoroutine(WaitAFrameForMarket());
     }
     public void PressedBall2(int index)

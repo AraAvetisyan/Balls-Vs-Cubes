@@ -30,19 +30,16 @@ public class LevelChooser : MonoBehaviour
     {
         yield return new WaitForEndOfFrame();
         yield return new WaitForEndOfFrame();
-        //CurrentLevelCount = Geekplay.Instance.PlayerData.Level;
-        //CurrentLevel = Instantiate(levelPrefabs[Geekplay.Instance.PlayerData.Level], levelsPosition);
-        //_levelsUIController = CurrentLevel.GetComponent<LevelsUIController>();
-        //SpawnPoint = _levelsUIController.SpawnPoint;
-        //SpawnedText = _levelsUIController.SpawnText;
-        
-        //BallSpawner.Instance.SetSpawnPoint();
-        //BallSpawner.Instance.LevelStarts = true;
+        if(Geekplay.Instance.PlayerData.MaxLevel == 0)
+        {
+            Geekplay.Instance.PlayerData.MaxLevel = 1;
+        }
         SpawnNewLevel();
     }
 
     public void SpawnNewLevel()
     {
+
         Destroy(CurrentLevel);
         BallSpawner.Instance.LevelStarts = false;
         CurrentLevel = null;
@@ -69,5 +66,10 @@ public class LevelChooser : MonoBehaviour
         SpawnedText = _levelsUIController.SpawnText;
         BallSpawner.Instance.SetSpawnPoint();
         BallSpawner.Instance.LevelStarts = true;
+        if(Geekplay.Instance.PlayerData.MaxLevel < Geekplay.Instance.PlayerData.Level)
+        {
+            Geekplay.Instance.PlayerData.MaxLevel = Geekplay.Instance.PlayerData.Level;
+            Geekplay.Instance.Save();
+        }
     }
 }

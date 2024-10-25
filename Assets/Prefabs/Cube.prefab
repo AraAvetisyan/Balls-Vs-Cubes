@@ -282,6 +282,7 @@ MonoBehaviour:
   GetSmoller: 0
   easeToBig: 0
   easeToSmoll: 0
+  hitBlockAudioPrefab: {fileID: 985453337834384897, guid: 445cedab719fa8f45bcbaa2eced48ee6, type: 3}
 --- !u!1 &7531635585795435330
 GameObject:
   m_ObjectHideFlags: 0

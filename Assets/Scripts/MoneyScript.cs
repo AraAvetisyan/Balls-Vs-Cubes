@@ -27,6 +27,14 @@ public class MoneyScript : MonoBehaviour
     public IEnumerator WaitAFrameForMoney()
     {
         yield return new WaitForEndOfFrame();
+        Debug.Log("money wait 1");
+        if (Geekplay.Instance.PlayerData.Income == 0)
+        {
+            Geekplay.Instance.PlayerData.Income = 1;
+            Geekplay.Instance.Save();
+        }
+        yield return new WaitForEndOfFrame();
+        Debug.Log("money wait 2");
         if (!Geekplay.Instance.PlayerData.IsNotFirstTime)
         {
             Geekplay.Instance.PlayerData.IsNotFirstTime = true;
@@ -37,7 +45,7 @@ public class MoneyScript : MonoBehaviour
             TimeSpan timePassed = DateTime.UtcNow - lastSaveTime;
             int secondsPassed = (int)timePassed.TotalSeconds;
             secondsPassed = Mathf.Clamp(secondsPassed, 0, 7 * 24 * 60 * 60);
-            passivIncome = (((Geekplay.Instance.PlayerData.Income + Geekplay.Instance.PlayerData.RebornCount) * BallSpawner.Instance.IncomeBoost) * secondsPassed) / 10;
+            passivIncome = (((Geekplay.Instance.PlayerData.Income + Geekplay.Instance.PlayerData.RebornCount) * BallSpawner.Instance.IncomeBoost) * secondsPassed) / 20;
             passiveIncomePanel.SetActive(true);
             BallSpawner.Instance.PanelIsActive = true;
             if (Geekplay.Instance.language == "en")
@@ -52,11 +60,11 @@ public class MoneyScript : MonoBehaviour
             {
                 passiveText.text = "SEN ERND $" + passivIncome;
             }
-            else if (Geekplay.Instance.language == "pr")
+            else if (Geekplay.Instance.language == "es")
             {
-                passiveText.text = "VOCÊ ERND  $" + passivIncome;
+                passiveText.text = "USTED ERND  $" + passivIncome;
             }
-            else if (Geekplay.Instance.language == "gr")
+            else if (Geekplay.Instance.language == "de")
             {
                 passiveText.text = "DU ERND $" + passivIncome;
             }
@@ -66,11 +74,6 @@ public class MoneyScript : MonoBehaviour
             }
             Geekplay.Instance.PlayerData.MoneyToAdd += (ulong)passivIncome;
             MoneyText.text = "$" + FormatMoney(Geekplay.Instance.PlayerData.MoneyToAdd);
-        }
-        if (Geekplay.Instance.PlayerData.Income == 0)
-        {
-            Geekplay.Instance.PlayerData.Income = 1;
-            Geekplay.Instance.Save();
         }
         MoneyText.text = "$" + FormatMoney(Geekplay.Instance.PlayerData.MoneyToAdd);
     }

@@ -33,6 +33,7 @@ public class LocalisationScript : MonoBehaviour
     [SerializeField] private TextMeshProUGUI settingsHeaderText;
     [SerializeField] private TextMeshProUGUI marketHeaderText;
     [SerializeField] private TextMeshProUGUI rebornHeaderText;
+    [SerializeField] private TextMeshProUGUI rebornGameWillStart;
 
     [Header("Settings")]
     [SerializeField] private TextMeshProUGUI settingsTitleText;
@@ -54,7 +55,11 @@ public class LocalisationScript : MonoBehaviour
     [SerializeField] private TextMeshProUGUI buyIncomeAddText;
     [SerializeField] private TextMeshProUGUI buyBallAddText;
 
-
+    [Header("BallsPower")]
+    [SerializeField] private TextMeshProUGUI ball6power;
+    [SerializeField] private TextMeshProUGUI ball7power;
+    [SerializeField] private TextMeshProUGUI ball8power;
+    [SerializeField] private TextMeshProUGUI ball9power;
 
     void Start()
     {
@@ -94,170 +99,20 @@ public class LocalisationScript : MonoBehaviour
 
             rebornTitleText.text = "REBIRTH";
             acceptRebornText.text = "ACCEPT";
+            rebornGameWillStart.text = "GAME WILL START AT LEVEL 1";
 
             offlineIncomeTitleText.text = "OFFLINE INCOME";
             acceptOfflineIncomeText.text = "ACCEPT";
 
-            buyHealthAddText.text = "BUY";
-            buyPowerAddText.text = "BUY";
-            buyIncomeAddText.text = "BUY";
-            buyBallAddText.text = "BUY";
-        }
-        else if (Geekplay.Instance.language == "ru")
-        {
-            upgradesTitleText.text = "УЛУЧШЕНИЯ";
-            upgradesHealthText.text = "ЗДОРОВЬЕ";
-            upgradesPowerText.text = "СИЛА";
-            upgradesIncomeText.text = "ДОХОД";
-            upgradesBallsText.text = "ШАРИКИ";
+            buyHealthAddText.text = "BUY x3";
+            buyPowerAddText.text = "BUY x3";
+            buyIncomeAddText.text = "BUY x3";
+            buyBallAddText.text = "BUY x3";
 
-            boostsTitleText.text = "УСИЛЕНИЯ";
-            ballsBoostText.text = "ШАРИКИ";
-            incomeBoostText.text = "ДОХОД";
-            autoBoostText.text = "АВТО";
-            clickBoostText.text = "КЛИК";
-            fireBallText.text = "ОГНЕННЫЙ ШАР";
-
-            ballForeverText.text = "НАВСЕГДА";
-            incomeForeverText.text = "НАВСЕГДА";
-            autoClickForeverText.text = "НАВСЕГДА";
-
-            settingsHeaderText.text = "НАСТРОЙКИ";
-            marketHeaderText.text = "МАГАЗИН";
-            rebornHeaderText.text = "ПЕРЕРОЖДЕНИЕ";
-
-            settingsTitleText.text = "НАСТРОЙКИ";
-            soundEffectsVolumeText.text = "ГРОМКОСТЬ ЗВУКОВЫХ ЭФФЕКТОВ";
-            musicVolumeText.text = "ГРОМКОСТЬ МУЗЫКИ";
-            resetGameText.text = "СБРОС ИГРЫ";
-
-            rebornTitleText.text = "ПЕРЕРОЖДЕНИЕ";
-            acceptRebornText.text = "ПРИНЯТЬ";
-
-            offlineIncomeTitleText.text = "ОФЛАЙН ДОХОД";
-            acceptOfflineIncomeText.text = "ПРИНЯТЬ";
-
-            buyHealthAddText.text = "КУПИТЬ";
-            buyPowerAddText.text = "КУПИТЬ";
-            buyIncomeAddText.text = "КУПИТЬ";
-            buyBallAddText.text = "КУПИТЬ";
-        }
-        else if (Geekplay.Instance.language == "tr")
-        {
-            upgradesTitleText.text = "YÜKSELTMELER";
-            upgradesHealthText.text = "SAĞLIK";
-            upgradesPowerText.text = "GÜÇ";
-            upgradesIncomeText.text = "GELİR";
-            upgradesBallsText.text = "TOPLAR";
-
-            boostsTitleText.text = "BOOSTLAR";
-            ballsBoostText.text = "TOPLAR";
-            incomeBoostText.text = "GELİR";
-            autoBoostText.text = "OTOMATİK";
-            clickBoostText.text = "TIKLAMA";
-            fireBallText.text = "ATEŞ TOPU";
-
-            ballForeverText.text = "SONSUZA KADAR";
-            incomeForeverText.text = "SONSUZA KADAR";
-            autoClickForeverText.text = "SONSUZA KADAR";
-
-            settingsHeaderText.text = "AYARLAR";
-            marketHeaderText.text = "PAZAR";
-            rebornHeaderText.text = "YENİDEN DOĞUŞ";
-
-            settingsTitleText.text = "AYARLAR";
-            soundEffectsVolumeText.text = "SES EFEKTLERI SES SEVIYESI";
-            musicVolumeText.text = "MÜZİK SESİ";
-            resetGameText.text = "OYUNU SIFIRLA";
-
-            rebornTitleText.text = "YENİDEN DOĞUŞ";
-            acceptRebornText.text = "KABUL";
-
-            offlineIncomeTitleText.text = "OFFLINE GELİR";
-            acceptOfflineIncomeText.text = "KABUL";
-
-            buyHealthAddText.text = "SATIN AL";
-            buyPowerAddText.text = "SATIN AL";
-            buyIncomeAddText.text = "SATIN AL";
-            buyBallAddText.text = "SATIN AL";
-        }
-        else if (Geekplay.Instance.language == "pr")
-        {
-            upgradesTitleText.text = "ACTUALIZAÇÕES";
-            upgradesHealthText.text = "SAÚDE";
-            upgradesPowerText.text = "PODER";
-            upgradesIncomeText.text = "RENDIMENTO";
-            upgradesBallsText.text = "BOLAS";
-
-            boostsTitleText.text = "BOOSTS";
-            ballsBoostText.text = "BOLAS";
-            incomeBoostText.text = "RENDIMENTO";
-            autoBoostText.text = "AUTOMÁTICO";
-            clickBoostText.text = "CLIQUE";
-            fireBallText.text = "BOLA DE FOGO";
-
-            ballForeverText.text = "PARA SEMPRE";
-            incomeForeverText.text = "PARA SEMPRE";
-            autoClickForeverText.text = "PARA SEMPRE";
-
-            settingsHeaderText.text = "DEFINIÇÕES";
-            marketHeaderText.text = "MERCADO";
-            rebornHeaderText.text = "RENASCER";
-
-            settingsTitleText.text = "DEFINIÇÕES";
-            soundEffectsVolumeText.text = "VOLUME DOS EFEITOS SONOROS";
-            musicVolumeText.text = "VOLUME DA MÚSICA";
-            resetGameText.text = "REINICIAR O JOGO";
-
-            rebornTitleText.text = "RENASCER";
-            acceptRebornText.text = "ACEITO";
-
-            offlineIncomeTitleText.text = "FORA DE LINHA RENDIMENTO";
-            acceptOfflineIncomeText.text = "ACEITO";
-
-            buyHealthAddText.text = "COMPRAR";
-            buyPowerAddText.text = "COMPRAR";
-            buyIncomeAddText.text = "COMPRAR";
-            buyBallAddText.text = "COMPRAR";
-        }
-        else if (Geekplay.Instance.language == "gr")
-        {
-            upgradesTitleText.text = "UPGRADEN";
-            upgradesHealthText.text = "GESUNDHEIT";
-            upgradesPowerText.text = "LEISTUNG";
-            upgradesIncomeText.text = "EINKOMMEN";
-            upgradesBallsText.text = "KUGELN";
-
-            boostsTitleText.text = "BOOSTEN";
-            ballsBoostText.text = "KUGELN";
-            incomeBoostText.text = "EINKOMMEN";
-            autoBoostText.text = "AUTO";
-            clickBoostText.text = "CLICK";
-            fireBallText.text = "FEUERKUGELN";
-
-            ballForeverText.text = "FÜR IMMER";
-            incomeForeverText.text = "FÜR IMMER";
-            autoClickForeverText.text = "FÜR IMMER";
-
-            settingsHeaderText.text = "EINSTELLUNGEN";
-            marketHeaderText.text = "MÄRKTE";
-            rebornHeaderText.text = "WIEDERGEBURT";
-
-            settingsTitleText.text = "EINSTELLUNGEN";
-            soundEffectsVolumeText.text = "LAUTSTÄRKE DER SOUNDEFFEKTE ";
-            musicVolumeText.text = "MUSIK LAUTSTÄRKE";
-            resetGameText.text = "SPIEL ZURÜCKSETZEN";
-
-            rebornTitleText.text = "WIEDERGEBURT";
-            acceptRebornText.text = "AKZEPT";
-
-            offlineIncomeTitleText.text = "OFFLINE-EINKOMMEN";
-            acceptOfflineIncomeText.text = "AKZEPT";
-
-            buyHealthAddText.text = "KAUFEN";
-            buyPowerAddText.text = "KAUFEN";
-            buyIncomeAddText.text = "KAUFEN";
-            buyBallAddText.text = "KAUFEN";
+            ball6power.text = "x2 POWER";
+            ball7power.text = "x2 POWER";
+            ball8power.text = "x2 POWER";
+            ball9power.text = "x2 POWER";
         }
         else if (Geekplay.Instance.language == "ar")
         {
@@ -289,14 +144,202 @@ public class LocalisationScript : MonoBehaviour
 
             rebornTitleText.text = "ريبيرث";
             acceptRebornText.text = "قبول";
+            rebornGameWillStart.text = "ستبدأ اللعبة من المستوى 1";
 
             offlineIncomeTitleText.text = "الدخل غير المباشر";
             acceptOfflineIncomeText.text = "قبول";
 
-            buyHealthAddText.text = "الشراء";
-            buyPowerAddText.text = "الشراء";
-            buyIncomeAddText.text = "الشراء";
-            buyBallAddText.text = "الشراء";
+            buyHealthAddText.text = "الشراء x3";
+            buyPowerAddText.text = "الشراء x3";
+            buyIncomeAddText.text = "الشراء x3";
+            buyBallAddText.text = "الشراء x3";
+
+            ball6power.text = "x2 الطاقة";
+            ball7power.text = "x2 الطاقة";
+            ball8power.text = "x2 الطاقة";
+            ball9power.text = "x2 الطاقة";
         }
+        else if (Geekplay.Instance.language == "es")
+        {
+            upgradesTitleText.text = "ACTUALIZACIONES";
+            upgradesHealthText.text = "SALUD";
+            upgradesPowerText.text = "PODER";
+            upgradesIncomeText.text = "INGRESOS";
+            upgradesBallsText.text = "BOLAS";
+
+            boostsTitleText.text = "AUMENTA";
+            ballsBoostText.text = "BOLAS";
+            incomeBoostText.text = "INGRESOS";
+            autoBoostText.text = "AUTO";
+            clickBoostText.text = "CLICK";
+            fireBallText.text = "BOLA DE FUEGO";
+
+            ballForeverText.text = "PARA SIEMPRE";
+            incomeForeverText.text = "PARA SIEMPRE";
+            autoClickForeverText.text = "PARA SIEMPRE";
+
+            settingsHeaderText.text = "AJUSTES";
+            marketHeaderText.text = "MERCADO";
+            rebornHeaderText.text = "RENACIMIENTO";
+            rebornGameWillStart.text = "EL JUEGO COMENZARÁ EN EL NIVEL 1";
+
+            settingsTitleText.text = "AJUSTES";
+            soundEffectsVolumeText.text = "VOLUMEN DE LOS EFECTOS DE SONIDO";
+            musicVolumeText.text = "VOLUMEN DE LA MÚSICA";
+            resetGameText.text = "REINICIAR EL JUEGO";
+
+            rebornTitleText.text = "RENACIMIENTO";
+            acceptRebornText.text = "ACEPTAR";
+
+            offlineIncomeTitleText.text = "OFFLINE INGRESOS";
+            acceptOfflineIncomeText.text = "ACEPTAR";
+
+            buyHealthAddText.text = "COMPRAR x3";
+            buyPowerAddText.text = "COMPRAR x3";
+            buyIncomeAddText.text = "COMPRAR x3";
+            buyBallAddText.text = "COMPRAR x3";
+
+            ball6power.text = "x2 PODER";
+            ball7power.text = "x2 PODER";
+            ball8power.text = "x2 PODER";
+            ball9power.text = "x2 PODER";
+        }
+        else if (Geekplay.Instance.language == "ru")
+        {
+            upgradesTitleText.text = "УЛУЧШЕНИЯ";
+            upgradesHealthText.text = "ЗДОРОВЬЕ";
+            upgradesPowerText.text = "СИЛА";
+            upgradesIncomeText.text = "ДОХОД";
+            upgradesBallsText.text = "ШАРИКИ";
+
+            boostsTitleText.text = "УСИЛЕНИЯ";
+            ballsBoostText.text = "ШАРИКИ";
+            incomeBoostText.text = "ДОХОД";
+            autoBoostText.text = "АВТО";
+            clickBoostText.text = "КЛИК";
+            fireBallText.text = "ОГНЕННЫЙ ШАР";
+
+            ballForeverText.text = "НАВСЕГДА";
+            incomeForeverText.text = "НАВСЕГДА";
+            autoClickForeverText.text = "НАВСЕГДА";
+
+            settingsHeaderText.text = "НАСТРОЙКИ";
+            marketHeaderText.text = "МАГАЗИН";
+            rebornHeaderText.text = "ПЕРЕРОЖДЕНИЕ";
+            rebornGameWillStart.text = "ИГРА НАЧНЕТСЯ С УРОВНЯ 1";
+
+            settingsTitleText.text = "НАСТРОЙКИ";
+            soundEffectsVolumeText.text = "ГРОМКОСТЬ ЗВУКОВЫХ ЭФФЕКТОВ";
+            musicVolumeText.text = "ГРОМКОСТЬ МУЗЫКИ";
+            resetGameText.text = "СБРОС ИГРЫ";
+
+            rebornTitleText.text = "ПЕРЕРОЖДЕНИЕ";
+            acceptRebornText.text = "ПРИНЯТЬ";
+
+            offlineIncomeTitleText.text = "ОФЛАЙН ДОХОД";
+            acceptOfflineIncomeText.text = "ПРИНЯТЬ";
+
+            buyHealthAddText.text = "КУПИТЬ x3";
+            buyPowerAddText.text = "КУПИТЬ x3";
+            buyIncomeAddText.text = "КУПИТЬ x3";
+            buyBallAddText.text = "КУПИТЬ x3";
+
+            ball6power.text = "x2 СИЛА";
+            ball7power.text = "x2 СИЛА";
+            ball8power.text = "x2 СИЛА";
+            ball9power.text = "x2 СИЛА";
+        }
+        else if (Geekplay.Instance.language == "tr")
+        {
+            upgradesTitleText.text = "YÜKSELTMELER";
+            upgradesHealthText.text = "SAĞLIK";
+            upgradesPowerText.text = "GÜÇ";
+            upgradesIncomeText.text = "GELİR";
+            upgradesBallsText.text = "TOPLAR";
+
+            boostsTitleText.text = "BOOSTLAR";
+            ballsBoostText.text = "TOPLAR";
+            incomeBoostText.text = "GELİR";
+            autoBoostText.text = "OTOMATİK";
+            clickBoostText.text = "TIKLAMA";
+            fireBallText.text = "ATEŞ TOPU";
+
+            ballForeverText.text = "SONSUZA KADAR";
+            incomeForeverText.text = "SONSUZA KADAR";
+            autoClickForeverText.text = "SONSUZA KADAR";
+
+            settingsHeaderText.text = "AYARLAR";
+            marketHeaderText.text = "PAZAR";
+            rebornHeaderText.text = "YENİDEN DOĞUŞ";
+            rebornGameWillStart.text = "OYUN 1. SEVIYEDE BAŞLAYACAK";
+
+            settingsTitleText.text = "AYARLAR";
+            soundEffectsVolumeText.text = "SES EFEKTLERI SES SEVIYESI";
+            musicVolumeText.text = "MÜZİK SESİ";
+            resetGameText.text = "OYUNU SIFIRLA";
+
+            rebornTitleText.text = "YENİDEN DOĞUŞ";
+            acceptRebornText.text = "KABUL";
+
+            offlineIncomeTitleText.text = "OFFLINE GELİR";
+            acceptOfflineIncomeText.text = "KABUL";
+
+            buyHealthAddText.text = "SATIN AL x3";
+            buyPowerAddText.text = "SATIN AL x3";
+            buyIncomeAddText.text = "SATIN AL x3";
+            buyBallAddText.text = "SATIN AL x3";
+
+            ball6power.text = "x2 GÜÇ";
+            ball7power.text = "x2 GÜÇ";
+            ball8power.text = "x2 GÜÇ";
+            ball9power.text = "x2 GÜÇ";
+        }
+        
+        else if (Geekplay.Instance.language == "de")
+        {
+            upgradesTitleText.text = "UPGRADEN";
+            upgradesHealthText.text = "GESUNDHEIT";
+            upgradesPowerText.text = "LEISTUNG";
+            upgradesIncomeText.text = "EINKOMMEN";
+            upgradesBallsText.text = "KUGELN";
+
+            boostsTitleText.text = "BOOSTEN";
+            ballsBoostText.text = "KUGELN";
+            incomeBoostText.text = "EINKOMMEN";
+            autoBoostText.text = "AUTO";
+            clickBoostText.text = "CLICK";
+            fireBallText.text = "FEUERKUGELN";
+
+            ballForeverText.text = "FÜR IMMER";
+            incomeForeverText.text = "FÜR IMMER";
+            autoClickForeverText.text = "FÜR IMMER";
+
+            settingsHeaderText.text = "EINSTELLUNGEN";
+            marketHeaderText.text = "MÄRKTE";
+            rebornHeaderText.text = "WIEDERGEBURT";
+            rebornGameWillStart.text = "DAS SPIEL BEGINNT AUF STUFE 1";
+
+            settingsTitleText.text = "EINSTELLUNGEN";
+            soundEffectsVolumeText.text = "LAUTSTÄRKE DER SOUNDEFFEKTE ";
+            musicVolumeText.text = "MUSIK LAUTSTÄRKE";
+            resetGameText.text = "SPIEL ZURÜCKSETZEN";
+
+            rebornTitleText.text = "WIEDERGEBURT";
+            acceptRebornText.text = "AKZEPT";
+
+            offlineIncomeTitleText.text = "OFFLINE-EINKOMMEN";
+            acceptOfflineIncomeText.text = "AKZEPT";
+
+            buyHealthAddText.text = "KAUFEN x3";
+            buyPowerAddText.text = "KAUFEN x3";
+            buyIncomeAddText.text = "KAUFEN x3";
+            buyBallAddText.text = "KAUFEN x3";
+
+            ball6power.text = "x2 LEISTUNG";
+            ball7power.text = "x2 LEISTUNG";
+            ball8power.text = "x2 LEISTUNG";
+            ball9power.text = "x2 LEISTUNG";
+        }
+        
     }
 }

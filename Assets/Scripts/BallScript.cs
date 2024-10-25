@@ -16,14 +16,38 @@ public class BallScript : MonoBehaviour
     [SerializeField] private GameObject trail;
     [SerializeField] private Image ballImage;
     [SerializeField] private TrailRenderer trailRenderer;
+
+    [SerializeField] private GameObject fireballTrail;
+
+    [SerializeField] private Image ballLight;
+    [SerializeField] private int wallCounter;
+
+    int startColorIndex;
     void Start()
     {
+        startColorIndex = BallSpawner.Instance.ColorIndex;
         int randDir = Random.Range(0, moveTransforms.Length);
-        direction = (moveTransforms[randDir].position - transform.position).normalized;        
+
+        if (HeaderButtonsScript.Instance.ChangeMat)
+        {
+            fireballTrail.SetActive(true);
+            ballImage.color = BallSpawner.Instance.FireBallColor;
+            trail.SetActive(false);
+        }
+        else
+        {
+            ballImage.color = BallSpawner.Instance.BallColors[BallSpawner.Instance.ColorIndex];
+        }
+        fireballTrail.GetComponent<TrailRenderer>().startColor = BallSpawner.Instance.FireBallColor;
+        fireballTrail.GetComponent<TrailRenderer>().endColor = BallSpawner.Instance.FireBallColor;
+
+        direction = (moveTransforms[randDir].position - transform.position).normalized;
         health = Geekplay.Instance.PlayerData.BallHealth;
-        ballImage.color = BallSpawner.Instance.BallColors[BallSpawner.Instance.ColorIndex];
+       
+        ballLight.color = BallSpawner.Instance.LightColors[BallSpawner.Instance.ColorIndex];
         trailRenderer.startColor = BallSpawner.Instance.TrailColors[BallSpawner.Instance.ColorIndex];
-        trailRenderer.endColor = BallSpawner.Instance.TrailColors[BallSpawner.Instance.ColorIndex];
+        trailRenderer.endColor = BallSpawner.Instance.TrailColors[BallSpawner.Instance.ColorIndex]; 
+
     }
 
     private void Update()
@@ -37,6 +61,20 @@ public class BallScript : MonoBehaviour
         {
             trail.SetActive(true);
         }
+        if (HeaderButtonsScript.Instance.ChangeMat)
+        {
+            fireballTrail.SetActive(true);
+           
+            ballImage.color = BallSpawner.Instance.FireBallColor;
+            trail.SetActive(false);
+
+        }
+        else
+        {
+            ballImage.color = BallSpawner.Instance.BallColors[startColorIndex];
+            fireballTrail.SetActive(false);
+            trail.SetActive(true);
+        }
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -44,6 +82,7 @@ public class BallScript : MonoBehaviour
         //Debug.Log(Geekplay.Instance.PlayerData.BallSpeed * BallSpawner.Instance.SpeedBoost * BallSpawner.Instance.FireSpeedBoost);
         if (collision.gameObject.CompareTag("Cube"))
         {
+            wallCounter = 0;
             health--;
             if (health == 0)
             {
@@ -60,12 +99,32 @@ public class BallScript : MonoBehaviour
         }
         if (collision.gameObject.CompareTag("Wall"))
         {
-            Vector2 normal = collision.contacts[0].normal;
-
-            direction = Vector2.Reflect(direction, normal);
+          //  if (wallCounter < 5)
+          //  {
+                Vector2 normal = collision.contacts[0].normal;
+                direction = Vector2.Reflect(direction, normal);
+                wallCounter++;
+           // }
+            //else if (wallCounter >= 5)
+            //{
+            //    wallCounter = 0; 
+            //    Vector2 normal = collision.contacts[0].normal;
+            //    int randDir = Random.Range(0, moveTransforms.Length);
+            //    direction = (moveTransforms[randDir].position - transform.position).normalized;                
+            //    direction = Vector2.Reflect(direction, normal);
+            //}
         }
     }
-   
-  
-   
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("Killer"))
+        {
+            BallSpawner.Instance.SpawnedObjects.Remove(gameObject);
+            BallSpawner.Instance.SpawnCount++;
+            Destroy(this.gameObject);
+        }
+    }
+
+
+
 }
