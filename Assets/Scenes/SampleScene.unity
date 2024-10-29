@@ -25798,7 +25798,7 @@ MonoBehaviour:
   - {r: 1, g: 0.9490196, b: 0, a: 0.003921569}
   - {r: 0, g: 1, b: 0.41017795, a: 0.003921569}
   ColorIndex: 0
-  FireBallColor: {r: 1, g: 0.5381798, b: 0.19339621, a: 1}
+  FireBallColor: {r: 1, g: 0.76862746, b: 0.57254905, a: 1}
   ballSpawnEffect: {fileID: 185025417322587416, guid: 8c348d2f40e3db24795b477d7823a10d, type: 3}
   sliderText: {fileID: 948378689}
   tutorImage: {fileID: 460337565}
