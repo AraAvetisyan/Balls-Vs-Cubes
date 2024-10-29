@@ -51,6 +51,9 @@ public class BallSpawner : MonoBehaviour
     [SerializeField] private GameObject ballSpawnEffect;
 
     [SerializeField] private TextMeshProUGUI sliderText;
+
+    [Header("Tutorial")]
+    [SerializeField] private GameObject tutorImage;
     private void Awake()
     {
         Instance = this;
@@ -71,7 +74,7 @@ public class BallSpawner : MonoBehaviour
         }
         if (Geekplay.Instance.PlayerData.BallSpeed == 0)
         {
-            Geekplay.Instance.PlayerData.BallSpeed = 2.5f;
+            Geekplay.Instance.PlayerData.BallSpeed = 2f;
         }
         if (Geekplay.Instance.PlayerData.Level == 0)
         {
@@ -94,6 +97,10 @@ public class BallSpawner : MonoBehaviour
         if (Geekplay.Instance.PlayerData.MusicVolume == 0)
         {
             Geekplay.Instance.PlayerData.MusicVolume = 0.35f;
+        }
+        if(!Geekplay.Instance.PlayerData.UnshowTutor)
+        {
+            tutorImage.SetActive(true);
         }
         yield return new WaitForEndOfFrame();
         Debug.Log("Ball wait 2");
@@ -175,6 +182,11 @@ public class BallSpawner : MonoBehaviour
     }
     public void SpawnBall()
     {
+        if (tutorImage.activeSelf)
+        {
+            tutorImage.SetActive(false);
+            Geekplay.Instance.PlayerData.UnshowTutor = true;
+        }
         AudioSource ballSpawnAudio = Instantiate(ballSpawnEffect.GetComponent<AudioSource>());
         ballSpawnAudio.volume = Geekplay.Instance.PlayerData.SoundEffectsVolume;
         ballSpawnAudio.Play();

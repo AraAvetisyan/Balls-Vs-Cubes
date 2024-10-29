@@ -51,4 +51,6 @@ public class PlayerData
     public float MusicVolume;
     public float SoundEffectsVolume;
 
+    public bool UnshowTutor;
+
 }

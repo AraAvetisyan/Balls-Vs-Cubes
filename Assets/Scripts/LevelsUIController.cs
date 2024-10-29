@@ -19,6 +19,7 @@ public class LevelsUIController : MonoBehaviour
     void Start()
     {
         StartCoroutine(WaitFrameBeforeStart());
+        progress.interactable = false;
 
     }
     public IEnumerator WaitFrameBeforeStart()

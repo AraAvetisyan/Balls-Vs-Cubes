@@ -56,10 +56,12 @@ public class BallScript : MonoBehaviour
         if (BallSpawner.Instance.PanelIsActive)
         {
             trail.SetActive(false);
+            fireballTrail.SetActive(false);
         }
         else
         {
             trail.SetActive(true);
+            fireballTrail.SetActive(true);
         }
         if (HeaderButtonsScript.Instance.ChangeMat)
         {
