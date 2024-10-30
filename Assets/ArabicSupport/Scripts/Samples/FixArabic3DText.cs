@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Collections;
 using ArabicSupport;
+using TMPro;
 
 public class FixArabic3DText : MonoBehaviour {
 
@@ -9,11 +10,11 @@ public class FixArabic3DText : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-        TextMesh textMesh = gameObject.GetComponent<TextMesh>();
+        TextMeshProUGUI textMesh = gameObject.GetComponent<TextMeshProUGUI>();
 
         string fixedText = ArabicFixer.Fix(textMesh.text, showTashkeel, useHinduNumbers);
 
-        gameObject.GetComponent<TextMesh>().text = fixedText;
+        gameObject.GetComponent<TextMeshProUGUI>().text = fixedText;
 
 		Debug.Log(fixedText);
     }

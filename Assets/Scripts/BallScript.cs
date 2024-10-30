@@ -101,19 +101,18 @@ public class BallScript : MonoBehaviour
         }
         if (collision.gameObject.CompareTag("Wall"))
         {
-          //  if (wallCounter < 5)
-          //  {
+            //if (wallCounter < 5)
+            //{
                 Vector2 normal = collision.contacts[0].normal;
                 direction = Vector2.Reflect(direction, normal);
-                wallCounter++;
-           // }
+            //    wallCounter++;
+            //}
             //else if (wallCounter >= 5)
             //{
-            //    wallCounter = 0; 
-            //    Vector2 normal = collision.contacts[0].normal;
+            //    wallCounter = 0;
             //    int randDir = Random.Range(0, moveTransforms.Length);
-            //    direction = (moveTransforms[randDir].position - transform.position).normalized;                
-            //    direction = Vector2.Reflect(direction, normal);
+            //    direction = (moveTransforms[randDir].position - transform.position).normalized;
+                
             //}
         }
     }

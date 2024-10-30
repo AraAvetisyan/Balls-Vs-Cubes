@@ -70,6 +70,7 @@ public class LevelChooser : MonoBehaviour
         {
             Geekplay.Instance.PlayerData.MaxLevel = Geekplay.Instance.PlayerData.Level;
             Geekplay.Instance.Save();
+            Geekplay.Instance.Leaderboard("Levels", Geekplay.Instance.PlayerData.MaxLevel);
         }
     }
 }

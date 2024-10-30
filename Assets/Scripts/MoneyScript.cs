@@ -82,6 +82,7 @@ public class MoneyScript : MonoBehaviour
         income = (Geekplay.Instance.PlayerData.Income + Geekplay.Instance.PlayerData.RebornCount) * BallSpawner.Instance.IncomeBoost;
         Geekplay.Instance.PlayerData.MoneyToAdd += (ulong)income;        
         MoneyText.text = "$" + FormatMoney(Geekplay.Instance.PlayerData.MoneyToAdd);
+        Geekplay.Instance.Save();
 
     }
     private void OnApplicationQuit()

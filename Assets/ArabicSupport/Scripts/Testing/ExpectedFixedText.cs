@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using ArabicSupport;
+using TMPro;
 
 public class ExpectedFixedText : MonoBehaviour
 {
@@ -16,6 +17,7 @@ public class ExpectedFixedText : MonoBehaviour
 
 	public void Fix()
 	{
+        Unfixed = GetComponent<TextMeshProUGUI>().text;
 		Fixed = ArabicFixer.Fix(Unfixed, ShowTashkeel, UseHinduNumbers);
 	}
 }

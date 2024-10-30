@@ -134,16 +134,12 @@ public class Geekplay : MonoBehaviour
         string value = parts[0];
         string leaderboardName = parts[1];
 
-        lS.Add(value);
+        lS[leaderNumber] = value;
 
-        if (leaderNumber < 9)
+        if (leaderNumber < 5)
         {
             leaderNumber += 1;
             Utils.GetLeaderboard("score", leaderNumber, leaderboardName);
-        }
-        else if (leaderNumber == 9)
-        {
-            EndGetLeaderboardsValue();
         }
     }
 
@@ -153,9 +149,9 @@ public class Geekplay : MonoBehaviour
         string value = parts[0];
         string leaderboardName = parts[1];
 
-        lN.Add(value);
+        lN[leaderNumberN] = value;
 
-        if (leaderNumberN < 9)
+        if (leaderNumberN < 5)
         {
             leaderNumberN += 1;
             Utils.GetLeaderboard("name", leaderNumberN, leaderboardName);
@@ -235,7 +231,7 @@ public class Geekplay : MonoBehaviour
             PlayerData = new PlayerData();
         }
 
-       // remainingTimeUntilUpdateLeaderboard -= Time.deltaTime;
+        remainingTimeUntilUpdateLeaderboard -= Time.deltaTime;
     }
 
     IEnumerator CanReward()

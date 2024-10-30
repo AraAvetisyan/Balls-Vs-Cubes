@@ -33,6 +33,7 @@ public class LocalisationScript : MonoBehaviour
     [SerializeField] private TextMeshProUGUI settingsHeaderText;
     [SerializeField] private TextMeshProUGUI marketHeaderText;
     [SerializeField] private TextMeshProUGUI rebornHeaderText;
+    [SerializeField] private TextMeshProUGUI leaderboardHeaderText;
     [SerializeField] private TextMeshProUGUI rebornGameWillStart;
 
     [Header("Settings")]
@@ -61,14 +62,18 @@ public class LocalisationScript : MonoBehaviour
     [SerializeField] private TextMeshProUGUI ball8power;
     [SerializeField] private TextMeshProUGUI ball9power;
 
-    void Start()
+    [Header("LeaderBoard")]
+    [SerializeField] private TextMeshProUGUI leadersText;
+
+   /* void Start()
     {
         StartCoroutine(WaitAFrameForLocalisation());
-    }
+    }*/
 
-    public IEnumerator WaitAFrameForLocalisation()
+    //public IEnumerator WaitAFrameForLocalisation()
+    void Awake()
     {
-        yield return new WaitForEndOfFrame();
+        //yield return new WaitForEndOfFrame();
         if (Geekplay.Instance.language == "en")
         {
             upgradesTitleText.text = "UPGRADES";
@@ -113,6 +118,10 @@ public class LocalisationScript : MonoBehaviour
             ball7power.text = "x2 POWER";
             ball8power.text = "x2 POWER";
             ball9power.text = "x2 POWER";
+
+            leaderboardHeaderText.text = "LEADER BOARD";
+
+            leadersText.text = "LEADERS";
         }
         else if (Geekplay.Instance.language == "ar")
         {
@@ -129,9 +138,9 @@ public class LocalisationScript : MonoBehaviour
             clickBoostText.text = "النقر";
             fireBallText.text = "كرة النار";
 
-            ballForeverText.text = "إلى الأبد";
-            incomeForeverText.text = "إلى الأبد";
-            autoClickForeverText.text = "إلى الأبد";
+            ballForeverText.text = "إى الأبد";
+            incomeForeverText.text = "إى الأبد";
+            autoClickForeverText.text = "إى الأبد";
 
             settingsHeaderText.text = "الإعدادات";
             marketHeaderText.text = "السوق";
@@ -139,7 +148,7 @@ public class LocalisationScript : MonoBehaviour
 
             settingsTitleText.text = "الإعدادات";
             soundEffectsVolumeText.text = "حجم المؤثرات الصوتية";
-            musicVolumeText.text = "صوت الموسيقى";
+            musicVolumeText.text = "صوت الموسيق";
             resetGameText.text = "إعادة ضبط اللعبة";
 
             rebornTitleText.text = "ريبيرث";
@@ -158,6 +167,10 @@ public class LocalisationScript : MonoBehaviour
             ball7power.text = "x2 الطاقة";
             ball8power.text = "x2 الطاقة";
             ball9power.text = "x2 الطاقة";
+
+            leaderboardHeaderText.text = "مجلس القيادة";
+
+            leadersText.text = "القادة";
         }
         else if (Geekplay.Instance.language == "es")
         {
@@ -203,6 +216,10 @@ public class LocalisationScript : MonoBehaviour
             ball7power.text = "x2 PODER";
             ball8power.text = "x2 PODER";
             ball9power.text = "x2 PODER";
+
+            leaderboardHeaderText.text = "TABLA DE LÍDERES";
+
+            leadersText.text = "LÍDERES";
         }
         else if (Geekplay.Instance.language == "ru")
         {
@@ -248,6 +265,10 @@ public class LocalisationScript : MonoBehaviour
             ball7power.text = "x2 СИЛА";
             ball8power.text = "x2 СИЛА";
             ball9power.text = "x2 СИЛА";
+
+            leaderboardHeaderText.text = "ТАБЛИЦА ЛИДЕРОВ";
+
+            leadersText.text = "ЛИДЕРЫ";
         }
         else if (Geekplay.Instance.language == "tr")
         {
@@ -293,6 +314,10 @@ public class LocalisationScript : MonoBehaviour
             ball7power.text = "x2 GÜÇ";
             ball8power.text = "x2 GÜÇ";
             ball9power.text = "x2 GÜÇ";
+
+            leaderboardHeaderText.text = "LİDER KURULU";
+
+            leadersText.text = "LİDERLER";
         }
         
         else if (Geekplay.Instance.language == "de")
@@ -339,7 +364,11 @@ public class LocalisationScript : MonoBehaviour
             ball7power.text = "x2 LEISTUNG";
             ball8power.text = "x2 LEISTUNG";
             ball9power.text = "x2 LEISTUNG";
+
+            leaderboardHeaderText.text = "LEADER BOARD";
+
+            leadersText.text = "FÜHRER";
         }
-        
+
     }
 }

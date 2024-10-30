@@ -1983,6 +1983,10 @@ GameObject:
   - component: {fileID: 2189608828327877273}
   - component: {fileID: 3917794165182511276}
   - component: {fileID: 2901794633008047963}
+  - component: {fileID: 2035050192360997225}
+  - component: {fileID: 7747449275934950974}
+  - component: {fileID: 3488269388086055670}
+  - component: {fileID: 7165843814655670220}
   m_Layer: 5
   m_Name: Level 1
   m_TagString: Untagged
@@ -2039,8 +2043,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Level 1
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 21634396b0ca8b8488fd2098c61a6739, type: 2}
+  m_sharedMaterial: {fileID: -7695161517551746081, guid: 21634396b0ca8b8488fd2098c61a6739, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -2064,7 +2068,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 44.75
+  m_fontSize: 35.85
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -2106,6 +2110,63 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!114 &2035050192360997225
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8611734707405576326}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e0e88f7a13d6e47139fe7fced571935e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ExpectedTexts: []
+--- !u!114 &7747449275934950974
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8611734707405576326}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 084dbf9341d36fd4db9dfa21081c1cf3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  showTashkeel: 1
+  useHinduNumbers: 1
+--- !u!114 &3488269388086055670
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8611734707405576326}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 86a8be5f46c504833ad8097a534a7822, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Unfixed: 
+  Expected: 
+  ShowTashkeel: 0
+  UseHinduNumbers: 1
+--- !u!114 &7165843814655670220
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8611734707405576326}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 304b4eeb85570854d91d59d9468ce076, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  arabicFont: {fileID: 11400000, guid: 090708256c0daee40b98805928bb99f1, type: 2}
+  otherFont: {fileID: 11400000, guid: 21634396b0ca8b8488fd2098c61a6739, type: 2}
 --- !u!1 &8812380630718048071
 GameObject:
   m_ObjectHideFlags: 0
@@ -2342,6 +2403,18 @@ PrefabInstance:
     - target: {fileID: 5851039483725666066, guid: 9fad1b4fcfe781a40a6bd10bef766cf7, type: 3}
       propertyPath: m_Name
       value: Cube
+      objectReference: {fileID: 0}
+    - target: {fileID: 7278792856151201457, guid: 9fad1b4fcfe781a40a6bd10bef766cf7, type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: 21634396b0ca8b8488fd2098c61a6739, type: 2}
+    - target: {fileID: 7278792856151201457, guid: 9fad1b4fcfe781a40a6bd10bef766cf7, type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: -7695161517551746081, guid: 21634396b0ca8b8488fd2098c61a6739, type: 2}
+    - target: {fileID: 7278792856151201457, guid: 9fad1b4fcfe781a40a6bd10bef766cf7, type: 3}
+      propertyPath: m_hasFontAssetChanged
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8557374111952226089, guid: 9fad1b4fcfe781a40a6bd10bef766cf7, type: 3}
       propertyPath: m_Pivot.x

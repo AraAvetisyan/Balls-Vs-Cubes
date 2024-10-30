@@ -102,6 +102,10 @@ public class BallSpawner : MonoBehaviour
         {
             tutorImage.SetActive(true);
         }
+        else
+        {
+            tutorImage.SetActive(false);
+        }
         yield return new WaitForEndOfFrame();
         Debug.Log("Ball wait 2");
         // Geekplay.Instance.PlayerData.MaxSpawnCount = Geekplay.Instance.PlayerData.MaxSpawnCount * BallMaxCountBooster;
@@ -122,6 +126,11 @@ public class BallSpawner : MonoBehaviour
 
     void Update()
     {
+        if (Input.GetMouseButtonDown(0)) 
+        {
+            ActivateCursorAtMousePosition();
+        }
+
         if (LevelStarts)
         {
             spawnedTexts.text = SpawnCount.ToString() + " / " + MaximumBallCount.ToString();
@@ -201,7 +210,7 @@ public class BallSpawner : MonoBehaviour
                 SpawnedObjects.Add(Instantiate(ballPrefab, spawnPoints.transform));
             }
         }
-        ActivateCursorAtMousePosition();
+        //ActivateCursorAtMousePosition();
     }
 
 
@@ -213,7 +222,6 @@ public class BallSpawner : MonoBehaviour
 
         cursorImage.transform.position = worldPosition;
 
-        // ���������� ������
         cursorImage.SetActive(true);
 
         StartMouseCorutine();

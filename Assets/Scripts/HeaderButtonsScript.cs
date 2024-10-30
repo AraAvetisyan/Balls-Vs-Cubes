@@ -54,6 +54,9 @@ public class HeaderButtonsScript : MonoBehaviour
     [SerializeField] private Transform startPosition;
     [SerializeField] private Transform endPosition;
 
+    [Header("LeaderBoard")]
+    [SerializeField] private GameObject leaderBoard;
+
 
     private void Awake()
     {
@@ -71,6 +74,11 @@ public class HeaderButtonsScript : MonoBehaviour
         {
             canRebornObject.SetActive(true);
         }
+    }
+    public void PressedLeaderBoardButton()
+    {
+        leaderBoard.SetActive(true);
+        BallSpawner.Instance.PanelIsActive = true;
     }
     public void StartShowCorutine()
     {
@@ -174,6 +182,7 @@ public class HeaderButtonsScript : MonoBehaviour
         rebornPanel.SetActive(false);
         passiveIncomePanel.SetActive(false);
         marketPanel.SetActive(false);
+        leaderBoard.SetActive(false);
         BallSpawner.Instance.PanelIsActive = false;
     }
     public void PressedSettingsButton()
@@ -241,9 +250,9 @@ public class HeaderButtonsScript : MonoBehaviour
         }
         else if(Geekplay.Instance.language == "ar")
         {
-            permenantIncome.text = "الكسب مقابل الضربة: " + "<color=green>" + (Geekplay.Instance.PlayerData.RebornCount + 1) + "</color>" + " => " + "<color=green>" + (Geekplay.Instance.PlayerData.RebornCount + 1) + "</color>";
-            reachingLevel.text = "عليك أن تصل إلى <color=green>المستوى" + " " + ((Geekplay.Instance.PlayerData.RebornCount + 1) * 10) + " </color>من أجل العودة إلى الحياة";
-            passiveIncome.text = "الدخل غير المباشر: " + "<color=green>" + rebornOfflineIncome[Geekplay.Instance.PlayerData.RebornCount] + "</color>" + " => " + "<color=green>" + rebornOfflineIncome[Geekplay.Instance.PlayerData.RebornCount+1] + "</color>";
+            permenantIncome.text = "الكسب مقابل الضربة: " + (Geekplay.Instance.PlayerData.RebornCount + 1) + " =< " + (Geekplay.Instance.PlayerData.RebornCount + 1);
+            reachingLevel.text = "عليك أن تصل إى المستوى" + " " + ((Geekplay.Instance.PlayerData.RebornCount + 1) * 10) + "من أجل العودة إى الحياة";
+            passiveIncome.text = "الدخل غير المباشر: " + rebornOfflineIncome[Geekplay.Instance.PlayerData.RebornCount] + " =< " + rebornOfflineIncome[Geekplay.Instance.PlayerData.RebornCount+1];
         }
     }
 
