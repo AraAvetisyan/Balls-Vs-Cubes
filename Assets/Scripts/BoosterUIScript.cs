@@ -40,15 +40,14 @@ public class BoosterUIScript : MonoBehaviour
     private Coroutine incomeBoost;
     private Coroutine autoClickBoost;
 
+    [SerializeField] private GameObject ballBoostAdsIcon, incomeBoostAdsIcon, autoClickBoostAdsIcon;
+
     private void Start()
     {
-       StartCoroutine(WaitNextFrameForBoosters());
+        BoosterStart();
     }
-    public IEnumerator WaitNextFrameForBoosters()
+    public void BoosterStart()
     {
-        yield return new WaitForEndOfFrame();
-        yield return new WaitForEndOfFrame();
-        Debug.Log("boosters wait 1");
         if (Geekplay.Instance.PlayerData.ForeverAutoClickBoost)
         {
             autoClickButton.interactable = false;
@@ -212,7 +211,7 @@ public class BoosterUIScript : MonoBehaviour
             elapsed += Time.deltaTime;
             autoClickImage.fillAmount = (elapsed / duration);
             autoClickBallText.text = Mathf.CeilToInt(duration - elapsed).ToString();
-        
+
             spawnCounter++;
             if (spawnCounter >= spawnInterval)
             {
@@ -316,6 +315,7 @@ public class BoosterUIScript : MonoBehaviour
         doubleBallText.gameObject.SetActive(true);
         while (elapsed < duration)
         {
+
             elapsed += Time.deltaTime;
             doubleBallImage.fillAmount = (elapsed / duration);
             doubleBallText.text = Mathf.CeilToInt(duration - elapsed).ToString();
@@ -422,14 +422,17 @@ public class BoosterUIScript : MonoBehaviour
         float duration = 60f;
         float elapsed = 0f;
         doubleBallText.gameObject.SetActive(true);
+        ballBoostAdsIcon.SetActive(false);
         while (elapsed < duration)
         {
+
             elapsed += Time.deltaTime;
             doubleBallImage.fillAmount = (elapsed / duration);
             doubleBallText.text = Mathf.CeilToInt(duration - elapsed).ToString();
             yield return null;
         }
-      
+
+        ballBoostAdsIcon.SetActive(true);
         StopDoubleBallBoost();
     }
     public IEnumerator AutoClickTimer()
@@ -440,7 +443,7 @@ public class BoosterUIScript : MonoBehaviour
         int spawnCounter = 0;
 
         autoClickBallText.gameObject.SetActive(true);
-
+        autoClickBoostAdsIcon.SetActive(false);
         while (elapsed < duration)
         {
             elapsed += Time.deltaTime;
@@ -457,7 +460,8 @@ public class BoosterUIScript : MonoBehaviour
             yield return null;
         }
 
-       
+        autoClickBoostAdsIcon.SetActive(true);
+
         StopAutoClickBoost();
     }
     public IEnumerator IncomeTimer()
@@ -465,14 +469,17 @@ public class BoosterUIScript : MonoBehaviour
         float duration = 120f;
         float elapsed = 0f;
         incomeBallText.gameObject.SetActive(true);
+        incomeBoostAdsIcon.SetActive(false);
         while (elapsed < duration)
         {
+
             elapsed += Time.deltaTime;
             incomeImage.fillAmount = (elapsed / duration);
             incomeBallText.text = Mathf.CeilToInt(duration - elapsed).ToString();
             yield return null;
         }
-       
+        incomeBoostAdsIcon.SetActive(true);
+
         StopIncomeBoost();
     }
 }

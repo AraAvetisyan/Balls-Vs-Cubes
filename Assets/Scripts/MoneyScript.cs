@@ -7,11 +7,12 @@ using UnityEngine;
 public class MoneyScript : MonoBehaviour
 {
     public static MoneyScript Instance;
-    [SerializeField] private TextMeshProUGUI MoneyText;
+    public TextMeshProUGUI MoneyText;
     public int income;
     [SerializeField] private GameObject passiveIncomePanel;
     [SerializeField] private TextMeshProUGUI passiveText;
     private int passivIncome;
+    [SerializeField] private bool isSave;
     private void Awake()
     {
         if (Instance == null)
@@ -22,19 +23,15 @@ public class MoneyScript : MonoBehaviour
 
     private void Start()
     {
-        StartCoroutine(WaitAFrameForMoney());
+       // MoneyStart();
     }
-    public IEnumerator WaitAFrameForMoney()
+    public void MoneyStart()
     {
-        yield return new WaitForEndOfFrame();
-        Debug.Log("money wait 1");
         if (Geekplay.Instance.PlayerData.Income == 0)
         {
             Geekplay.Instance.PlayerData.Income = 1;
             Geekplay.Instance.Save();
         }
-        yield return new WaitForEndOfFrame();
-        Debug.Log("money wait 2");
         if (!Geekplay.Instance.PlayerData.IsNotFirstTime)
         {
             Geekplay.Instance.PlayerData.IsNotFirstTime = true;
@@ -82,8 +79,18 @@ public class MoneyScript : MonoBehaviour
         income = (Geekplay.Instance.PlayerData.Income + Geekplay.Instance.PlayerData.RebornCount) * BallSpawner.Instance.IncomeBoost;
         Geekplay.Instance.PlayerData.MoneyToAdd += (ulong)income;        
         MoneyText.text = "$" + FormatMoney(Geekplay.Instance.PlayerData.MoneyToAdd);
-        Geekplay.Instance.Save();
+        if (!isSave)
+        {
+            StartCoroutine(SaveMoney());
+        }
 
+    }
+    private IEnumerator SaveMoney()
+    {
+        isSave = true;
+        yield return new WaitForSeconds(1);
+        Geekplay.Instance.Save();
+        isSave = false;
     }
     private void OnApplicationQuit()
     {

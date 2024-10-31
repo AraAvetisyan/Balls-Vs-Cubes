@@ -52,6 +52,7 @@ public class BallScript : MonoBehaviour
 
     private void Update()
     {
+       
         transform.Translate(direction * Geekplay.Instance.PlayerData.BallSpeed * Time.deltaTime * BallSpawner.Instance.SpeedBoost * BallSpawner.Instance.FireSpeedBoost);
         if (BallSpawner.Instance.PanelIsActive)
         {
@@ -101,19 +102,26 @@ public class BallScript : MonoBehaviour
         }
         if (collision.gameObject.CompareTag("Wall"))
         {
-            //if (wallCounter < 5)
-            //{
+            if (wallCounter < 5)
+            {
                 Vector2 normal = collision.contacts[0].normal;
                 direction = Vector2.Reflect(direction, normal);
-            //    wallCounter++;
-            //}
-            //else if (wallCounter >= 5)
-            //{
-            //    wallCounter = 0;
-            //    int randDir = Random.Range(0, moveTransforms.Length);
-            //    direction = (moveTransforms[randDir].position - transform.position).normalized;
-                
-            //}
+                wallCounter++;
+            }
+            else if (wallCounter >= 5)
+            {
+                direction = new Vector2(Random.Range(-1f, 1f), Random.Range(-1f, 1f)).normalized;
+            }
+        }
+    }
+    private void OnCollisionStay2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Wall"))
+        {
+            if (wallCounter >= 5)
+            {
+                direction = new Vector2(Random.Range(-1f, 1f), Random.Range(-1f, 1f)).normalized;
+            }
         }
     }
     private void OnTriggerEnter2D(Collider2D collision)

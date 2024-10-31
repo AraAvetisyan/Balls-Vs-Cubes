@@ -29,6 +29,10 @@ public class CubeScript : MonoBehaviour
     [SerializeField] private GameObject hitBlockAudioPrefab;
     private void Start()
     {
+       
+    }
+    public void StartForCubes()
+    {
         smollScale = new Vector2(0.9f, 0.9f);
         originalScale = transform.localScale;
         if (Geekplay.Instance.PlayerData.BallPower == 0)
@@ -39,7 +43,6 @@ public class CubeScript : MonoBehaviour
         Health = Random.Range(HealthRandOne, HealthRandTwo);
         healthText.text = FormatPrice(Health);
     }
-
     private void Update()
     {
        

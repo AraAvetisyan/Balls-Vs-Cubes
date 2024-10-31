@@ -11,6 +11,7 @@ public class FireBallScript : MonoBehaviour
     [SerializeField] private Image fillImage;
     [SerializeField] private TextMeshProUGUI timerText;
     [SerializeField] private float corutineDuration;
+    [SerializeField] private GameObject fireballAdsImage;
     public void StartFireCorutine()
     {
         Geekplay.Instance.ShowRewardedAd("FireBall");       
@@ -28,12 +29,14 @@ public class FireBallScript : MonoBehaviour
             StopCoroutine(boosterCorutine);
             boosterCorutine = null;
         }
+        fireballAdsImage.SetActive(true);
     }
     public IEnumerator StartFireBallTimer()
     {
         float duration = corutineDuration;
         float elapsed = 0f;
         timerText.gameObject.SetActive(true);
+        fireballAdsImage.SetActive(false);
         while (elapsed < duration)
         {
             HeaderButtonsScript.Instance.ChangeMat = true;
@@ -50,6 +53,7 @@ public class FireBallScript : MonoBehaviour
         timerText.text = "0";
         timerText.gameObject.SetActive(false);
         _headerButtonsScript.Pressed = false;
+
         StopFireCorutine();
 
     }

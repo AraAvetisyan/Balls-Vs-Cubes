@@ -113,6 +113,8 @@ public class HeaderButtonsScript : MonoBehaviour
         float elapsed = 0f;
         while (elapsed < duration)
         {
+
+
             elapsed += Time.deltaTime;
             yield return null;
         }
@@ -133,6 +135,7 @@ public class HeaderButtonsScript : MonoBehaviour
         {
             elapsed += Time.deltaTime;
             yield return null;
+
         }
         if (!Pressed)
         {
@@ -204,7 +207,7 @@ public class HeaderButtonsScript : MonoBehaviour
         Destroy(spawnedSoundEffect.gameObject, 1f);
 
         marketPanel.SetActive(true);
-        StartCoroutine(_marketScript.WaitAFrameForMarket());
+        _marketScript.MarketStart();
        // StartCoroutine(_marketScript.WaitAFrameForMarket());
 
     }
@@ -330,13 +333,13 @@ public class HeaderButtonsScript : MonoBehaviour
         Geekplay.Instance.PlayerData.RebornCount += 1;
         Geekplay.Instance.PlayerData.IsNotFirstTime = false;
 
-        StartCoroutine(BallSpawner.Instance.WaitAFrameForSpawner());
-        StartCoroutine(LevelChooser.Instance.WaitAFrame());
-        StartCoroutine(_upgradesScript.WaitAFrameForUpgrates());
-        StartCoroutine(_moneyScript.WaitAFrameForMoney());
-        StartCoroutine(_bosterUIScript.WaitNextFrameForBoosters());
+        BallSpawner.Instance.SpawnerStart();
+        LevelChooser.Instance.LevelChooserStart();
+        _upgradesScript.UpgratesStart();
+        _moneyScript.MoneyStart();
+        _bosterUIScript.BoosterStart();
         _marketScript.PressedDollarsButton();
-        StartCoroutine(_marketScript.WaitAFrameForMarket());
+        _marketScript.MarketStart();
 
 
         Geekplay.Instance.Save();
@@ -392,13 +395,13 @@ public class HeaderButtonsScript : MonoBehaviour
         Geekplay.Instance.Save();
 
 
-        StartCoroutine(BallSpawner.Instance.WaitAFrameForSpawner());
-        StartCoroutine(LevelChooser.Instance.WaitAFrame());
-        StartCoroutine(_upgradesScript.WaitAFrameForUpgrates());
-        StartCoroutine(_moneyScript.WaitAFrameForMoney());
-        StartCoroutine(_bosterUIScript.WaitNextFrameForBoosters());
+        BallSpawner.Instance.SpawnerStart();
+       // LevelChooser.Instance.LevelChooserStart();
+        _upgradesScript.UpgratesStart();
+        //_moneyScript.MoneyStart();
+        _bosterUIScript.BoosterStart();
         _marketScript.PressedDollarsButton();
-        StartCoroutine(_marketScript.WaitAFrameForMarket());
+        _marketScript.MarketStart();
 
         BallSpawner.Instance.PanelIsActive = false;
 

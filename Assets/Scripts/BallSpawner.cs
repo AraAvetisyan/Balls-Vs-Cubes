@@ -51,9 +51,14 @@ public class BallSpawner : MonoBehaviour
     [SerializeField] private GameObject ballSpawnEffect;
 
     [SerializeField] private TextMeshProUGUI sliderText;
+    [SerializeField] private float StopValue;
 
     [Header("Tutorial")]
     [SerializeField] private GameObject tutorImage;
+
+
+    [Header("Scripts")]
+    [SerializeField] private LevelChooser _levelChooser;
     private void Awake()
     {
         Instance = this;
@@ -63,11 +68,10 @@ public class BallSpawner : MonoBehaviour
 
         Geekplay.Instance.GameStart();
         Geekplay.Instance.GameReady();
-        StartCoroutine(WaitAFrameForSpawner());
+        SpawnerStart();
     }
-    public IEnumerator WaitAFrameForSpawner()
+    public void SpawnerStart()
     {
-        Debug.Log("Ball wait 1");
         if (Geekplay.Instance.PlayerData.MaxSpawnCount == 0)
         {
             Geekplay.Instance.PlayerData.MaxSpawnCount = 1;
@@ -106,46 +110,58 @@ public class BallSpawner : MonoBehaviour
         {
             tutorImage.SetActive(false);
         }
-        yield return new WaitForEndOfFrame();
-        Debug.Log("Ball wait 2");
-        // Geekplay.Instance.PlayerData.MaxSpawnCount = Geekplay.Instance.PlayerData.MaxSpawnCount * BallMaxCountBooster;
 
         MaximumBallCount = Geekplay.Instance.PlayerData.MaxSpawnCount * BallMaxCountBooster;
         SpawnCount = Geekplay.Instance.PlayerData.MaxSpawnCount * BallMaxCountBooster;
 
         PowerBoostTenTimes = 1;
 
-
-        yield return new WaitForEndOfFrame();
-        Debug.Log("Ball wait 3");
         Geekplay.Instance.Save();
 
         HeaderButtonsScript.Instance.soundEffectsVolumeSlider.value = Geekplay.Instance.PlayerData.SoundEffectsVolume;
         HeaderButtonsScript.Instance.musicVolumeSlider.value = Geekplay.Instance.PlayerData.MusicVolume;
+
+        _levelChooser.LevelChooserStart();
+        MoneyScript.Instance.MoneyText.text = "$" + FormatMoney(Geekplay.Instance.PlayerData.MoneyToAdd);
+        MoneyScript.Instance.MoneyStart();
+        
     }
 
     void Update()
     {
-        if (Input.GetMouseButtonDown(0)) 
+        if (!Geekplay.Instance.GameStoped)
         {
-            ActivateCursorAtMousePosition();
+            if (Input.GetMouseButtonDown(0))
+            {
+                ActivateCursorAtMousePosition();
+            }
         }
 
         if (LevelStarts)
         {
             spawnedTexts.text = SpawnCount.ToString() + " / " + MaximumBallCount.ToString();
         }
-        speedSlider.value -= speedSliderValueMin;
-        if(speedSlider.value >= 2.06f)
+        if (!Geekplay.Instance.GameStoped)
+        {
+            speedSlider.value -= speedSliderValueMin;
+            StopValue = speedSlider.value;
+        }
+        if (Geekplay.Instance.GameStoped)
+        {
+            speedSlider.value = StopValue;
+        }
+
+        if (speedSlider.value >= 2.06f)
         {
             sliderText.text = "x2";
             SpeedBoost = 2f;
         }
-        if(speedSlider.value < 2f)
+        if (speedSlider.value < 2f)
         {
             sliderText.text = "x1";
             SpeedBoost = speedSlider.value;
         }
+
         if (SpawnCount > MaximumBallCount)
         {
             SpawnCount = MaximumBallCount;
@@ -191,23 +207,26 @@ public class BallSpawner : MonoBehaviour
     }
     public void SpawnBall()
     {
-        if (tutorImage.activeSelf)
+        if (!Geekplay.Instance.GameStoped)
         {
-            tutorImage.SetActive(false);
-            Geekplay.Instance.PlayerData.UnshowTutor = true;
-        }
-        AudioSource ballSpawnAudio = Instantiate(ballSpawnEffect.GetComponent<AudioSource>());
-        ballSpawnAudio.volume = Geekplay.Instance.PlayerData.SoundEffectsVolume;
-        ballSpawnAudio.Play();
-        Destroy(ballSpawnAudio.gameObject, 1f);
-       
-        speedSlider.value += speedSliderValue;
-        if (SpawnCount > 0)
-        {
-            if (SpawnedObjects.Count <= MaximumBallCount)
+            if (tutorImage.activeSelf)
             {
-                SpawnCount--; // = MaximumBallCount - SpawnedObjects.Count;
-                SpawnedObjects.Add(Instantiate(ballPrefab, spawnPoints.transform));
+                tutorImage.SetActive(false);
+                Geekplay.Instance.PlayerData.UnshowTutor = true;
+            }
+            AudioSource ballSpawnAudio = Instantiate(ballSpawnEffect.GetComponent<AudioSource>());
+            ballSpawnAudio.volume = Geekplay.Instance.PlayerData.SoundEffectsVolume;
+            ballSpawnAudio.Play();
+            Destroy(ballSpawnAudio.gameObject, 1f);
+
+            speedSlider.value += speedSliderValue;
+            if (SpawnCount > 0)
+            {
+                if (SpawnedObjects.Count <= MaximumBallCount)
+                {
+                    SpawnCount--; // = MaximumBallCount - SpawnedObjects.Count;
+                    SpawnedObjects.Add(Instantiate(ballPrefab, spawnPoints.transform));
+                }
             }
         }
         //ActivateCursorAtMousePosition();
@@ -243,5 +262,24 @@ public class BallSpawner : MonoBehaviour
     {
         yield return new WaitForSeconds(0.08f);
         cursorImage.SetActive(false);
+    }
+
+    string FormatMoney(double value)
+    {
+        string[] suffixes = { "", "k", "m", "b", "t", "aa", "ab", "ac", "ad", "ae", "af", "ag", "ah", "ai", "aj", "ak", "al", "am", "an", "ao", "ap", "aq", "ar", "as", "at", "au", "av", "aw", "ax", "ay", "az" };
+        int suffixIndex = 0;
+
+        while (value >= 1000 && suffixIndex < suffixes.Length - 1)
+        {
+            value /= 1000;
+            suffixIndex++;
+        }
+
+        if (value >= 1000)
+        {
+            value = 999.99;
+        }
+
+        return $"{value:0.#}{suffixes[suffixIndex]}";
     }
 }

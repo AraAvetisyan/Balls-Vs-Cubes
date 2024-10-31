@@ -16,14 +16,18 @@ public class MarketScript : MonoBehaviour
     [SerializeField] private int[] prices;
     [SerializeField] private GameObject[] pricesObjects;
     [SerializeField] private TextMeshProUGUI dollarsText;
+    [SerializeField] private GameObject adsIcon1,adsIcon2;
+    [SerializeField] private GameObject[] selectImages;
+    [SerializeField] private int enabledBallCounter;
     private void Start()
     {
         PressedDollarsButton();
-        StartCoroutine(WaitAFrameForMarket());
+        MarketStart();
        
     }
     public void CheckIfCanBuy()
     {
+        Geekplay.Instance.PlayerData.BallsBought[0] = true;
         for (int i = 0; i < Geekplay.Instance.PlayerData.BallsBought.Length; i++)
         {
             if (Geekplay.Instance.PlayerData.BallsBought[i])
@@ -49,29 +53,60 @@ public class MarketScript : MonoBehaviour
         }
         for (int i = 0; i < Geekplay.Instance.PlayerData.BallEnabled.Length; i++)
         {
+            if (!Geekplay.Instance.PlayerData.BallEnabled[i])
+            {
+                enabledBallCounter++;
+            }
+            else
+            {
+                enabledBallCounter = 0;
+            }
+        }
+        if(enabledBallCounter == Geekplay.Instance.PlayerData.BallEnabled.Length)
+        {
+            Debug.Log("isFirstTime");
+            Geekplay.Instance.PlayerData.BallEnabled[0] = true;
+        }
+        for (int i = 0; i < Geekplay.Instance.PlayerData.BallEnabled.Length; i++)
+        {
             if (Geekplay.Instance.PlayerData.BallEnabled[i])
             {
                 BallSpawner.Instance.ColorIndex = i;
                 ballButtons[i].interactable = false;
+                selectImages[i].SetActive(true);
             }
+            else
+            {
+                selectImages[i].SetActive(false);
+            }
+
         }
         for (int i = 0; i < prices.Length; i++)
         {
             pricesObjects[i].GetComponent<TextMeshProUGUI>().text = prices[i].ToString();
         }
+        if (Geekplay.Instance.PlayerData.BallsBought[5])
+        {
+            adsIcon1.SetActive(false);
+        }
+        if (Geekplay.Instance.PlayerData.BallsBought[6])
+        {
+            adsIcon2.SetActive(false);
+        }
+
         Geekplay.Instance.Save();
+
+     
     }
-    public IEnumerator WaitAFrameForMarket()
+    public void MarketStart()
     {
         
-        yield return new WaitForEndOfFrame();
         CheckIfCanBuy();
 
 
     }
     public void PressedDollarsButton()
     {
-        Debug.Log("dollar 1");
         ballsMarker.SetActive(false);
         ballsPanel.SetActive(false);
         dollarsMarker.SetActive(true);
@@ -143,8 +178,9 @@ public class MarketScript : MonoBehaviour
             }
             Geekplay.Instance.PlayerData.BallEnabled[index] = true;
         }
+        Geekplay.Instance.Save();
 
-        StartCoroutine(WaitAFrameForMarket());
+        MarketStart();
     }
     public void PressedBall2(int index)
     {
@@ -172,7 +208,8 @@ public class MarketScript : MonoBehaviour
             }
             Geekplay.Instance.PlayerData.BallEnabled[index] = true;
         }
-        StartCoroutine(WaitAFrameForMarket());
+        Geekplay.Instance.Save();
+        MarketStart();
     }
     public void PressedBall3(int index)
     {
@@ -200,7 +237,8 @@ public class MarketScript : MonoBehaviour
             }
             Geekplay.Instance.PlayerData.BallEnabled[index] = true;
         }
-        StartCoroutine(WaitAFrameForMarket());
+        Geekplay.Instance.Save();
+        MarketStart();
     }
     public void PressedBall4(int index)
     {
@@ -228,7 +266,8 @@ public class MarketScript : MonoBehaviour
             }
             Geekplay.Instance.PlayerData.BallEnabled[index] = true;
         }
-        StartCoroutine(WaitAFrameForMarket());
+        Geekplay.Instance.Save();
+        MarketStart();
     }
     public void PressedBall5(int index)
     {
@@ -256,7 +295,8 @@ public class MarketScript : MonoBehaviour
             }
             Geekplay.Instance.PlayerData.BallEnabled[index] = true;
         }
-        StartCoroutine(WaitAFrameForMarket());
+        Geekplay.Instance.Save();
+        MarketStart();
     }
     public void PressedBall6(int index)
     {
@@ -290,7 +330,9 @@ public class MarketScript : MonoBehaviour
         }
         Geekplay.Instance.PlayerData.BallEnabled[index] = true;
         Geekplay.Instance.PlayerData.BallsBought[index] = true;
-        StartCoroutine(WaitAFrameForMarket());
+        adsIcon1.SetActive(false);
+        Geekplay.Instance.Save();
+        MarketStart();
     }
     public void Ball7Reward(int index)
     {
@@ -301,7 +343,9 @@ public class MarketScript : MonoBehaviour
         }
         Geekplay.Instance.PlayerData.BallEnabled[index] = true;
         Geekplay.Instance.PlayerData.BallsBought[index] = true;
-        StartCoroutine(WaitAFrameForMarket());
+        adsIcon2.SetActive(false);
+        Geekplay.Instance.Save();
+        MarketStart();
     }
 
     public void PressedBall8(int index)
@@ -315,7 +359,8 @@ public class MarketScript : MonoBehaviour
             }
             Geekplay.Instance.PlayerData.BallEnabled[index] = true;
         }
-        StartCoroutine(WaitAFrameForMarket());
+        Geekplay.Instance.Save();
+        MarketStart();
     }
     public void PressedBall9(int index)
     {
@@ -328,7 +373,8 @@ public class MarketScript : MonoBehaviour
             }
             Geekplay.Instance.PlayerData.BallEnabled[index] = true;
         }
-        StartCoroutine(WaitAFrameForMarket());
+        Geekplay.Instance.Save();
+        MarketStart();
     }
     string FormatPrice(double value)
     {

@@ -29,14 +29,12 @@ public class UpgradesScript : MonoBehaviour
     [SerializeField] private TextMeshProUGUI MoneyText;
     private void Start()
     {
-        StartCoroutine(WaitAFrameForUpgrates());
+        UpgratesStart();
         
     }
-    public IEnumerator WaitAFrameForUpgrates()
+    public void UpgratesStart()
     {
 
-        yield return new WaitForEndOfFrame();
-        Debug.Log("upgrades wait 1");
 
         if (Geekplay.Instance.PlayerData.BallHealth == 0)
         {
@@ -63,8 +61,6 @@ public class UpgradesScript : MonoBehaviour
             Geekplay.Instance.PlayerData.CountPrice = 100;
         }
         Geekplay.Instance.Save();
-        yield return new WaitForEndOfFrame();
-        Debug.Log("upgrades wait 2");
         healthPrice = (ulong)(Mathf.FloorToInt(Geekplay.Instance.PlayerData.HealthPrice));
         powerPrice = (ulong)(Mathf.FloorToInt(Geekplay.Instance.PlayerData.PowerPrice));
         incomePrice = (ulong)(Mathf.FloorToInt(Geekplay.Instance.PlayerData.IncomePrice));
@@ -119,103 +115,106 @@ public class UpgradesScript : MonoBehaviour
     }
     private void Update()
     {
-        if(Geekplay.Instance.PlayerData.MoneyToAdd >= Geekplay.Instance.PlayerData.HealthPrice)
+        if (!Geekplay.Instance.GameStoped)
         {
-            healthButton.interactable = true;
-        }
-        else
-        {
-            healthButton.interactable = false;
-        }
-        if(Geekplay.Instance.PlayerData.MoneyToAdd >= Geekplay.Instance.PlayerData.PowerPrice)
-        {
-            powerButton.interactable = true;
-        }
-        else
-        {
-            powerButton.interactable = false;
-        }
-        if(Geekplay.Instance.PlayerData.MoneyToAdd >= Geekplay.Instance.PlayerData.IncomePrice)
-        {
-            incomeButton.interactable = true;
-        }
-        else
-        {
-            incomeButton.interactable = false;
-        }
-        if(Geekplay.Instance.PlayerData.MoneyToAdd >= Geekplay.Instance.PlayerData.CountPrice)
-        {
-            if(Geekplay.Instance.PlayerData.MaxSpawnCount < 30)
+            if (Geekplay.Instance.PlayerData.MoneyToAdd >= Geekplay.Instance.PlayerData.HealthPrice)
             {
-                countButton.interactable = true;
+                healthButton.interactable = true;
             }
-            
-        }
-        else
-        {
-            countButton.interactable = false;
-        }
-        if (Geekplay.Instance.PlayerData.BallHealth >= 46)
-        {
-            if(Geekplay.Instance.language == "en")
-                healthPriceText.text = "INFINITELY";
-            else if (Geekplay.Instance.language == "ru")
-                healthPriceText.text = "БЕСКОНЕЧНО";
-            else if (Geekplay.Instance.language == "tr")
-                healthPriceText.text = "SONSUZ";
-            else if (Geekplay.Instance.language == "es")
-                healthPriceText.text = "INFINITO";
-            else if (Geekplay.Instance.language == "de")
-                healthPriceText.text = "INFINITELY";
-            else if (Geekplay.Instance.language == "ar")
-                healthPriceText.text = "غير محدود";
-        }
-        if (Geekplay.Instance.PlayerData.BallPower >= 46)
-        {
-            if (Geekplay.Instance.language == "en")
-                powerPriceText.text = "INFINITELY";
-            else if (Geekplay.Instance.language == "ru")
-                powerPriceText.text = "БЕСКОНЕЧНО";
-            else if (Geekplay.Instance.language == "tr")
-                powerPriceText.text = "SONSUZ";
-            else if (Geekplay.Instance.language == "es")
-                powerPriceText.text = "INFINITO";
-            else if (Geekplay.Instance.language == "de")
-                powerPriceText.text = "INFINITELY";
-            else if (Geekplay.Instance.language == "ar")
-                powerPriceText.text = "غير محدود";
-        }
-        if (Geekplay.Instance.PlayerData.Income >= 46)
-        {
-            if (Geekplay.Instance.language == "en")
-                incomePriceText.text = "INFINITELY";
-            else if (Geekplay.Instance.language == "ru")
-                incomePriceText.text = "БЕСКОНЕЧНО";
-            else if (Geekplay.Instance.language == "tr")
-                incomePriceText.text = "SONSUZ";
-            else if (Geekplay.Instance.language == "es")
-                incomePriceText.text = "INFINITO";
-            else if (Geekplay.Instance.language == "de")
-                incomePriceText.text = "INFINITELY";
-            else if (Geekplay.Instance.language == "ar")
-                incomePriceText.text = "غير محدود";
-        }
-        if (Geekplay.Instance.PlayerData.MaxSpawnCount >= 30)
-        {
-            countButton.interactable = false;
-            Geekplay.Instance.PlayerData.MaxSpawnCount = 30;
-            if (Geekplay.Instance.language == "en")
-                countPriceText.text = "MAX.";
-            else if (Geekplay.Instance.language == "ru")
-                countPriceText.text = "МАКС.";
-            else if (Geekplay.Instance.language == "tr")
-                countPriceText.text = "MAX.";
-            else if (Geekplay.Instance.language == "es")
-                countPriceText.text = "MAX.";
-            else if (Geekplay.Instance.language == "de")
-                countPriceText.text = "MAX.";
-            else if (Geekplay.Instance.language == "ar")
-                countPriceText.text = "ماكس";
+            else
+            {
+                healthButton.interactable = false;
+            }
+            if (Geekplay.Instance.PlayerData.MoneyToAdd >= Geekplay.Instance.PlayerData.PowerPrice)
+            {
+                powerButton.interactable = true;
+            }
+            else
+            {
+                powerButton.interactable = false;
+            }
+            if (Geekplay.Instance.PlayerData.MoneyToAdd >= Geekplay.Instance.PlayerData.IncomePrice)
+            {
+                incomeButton.interactable = true;
+            }
+            else
+            {
+                incomeButton.interactable = false;
+            }
+            if (Geekplay.Instance.PlayerData.MoneyToAdd >= Geekplay.Instance.PlayerData.CountPrice)
+            {
+                if (Geekplay.Instance.PlayerData.MaxSpawnCount < 30)
+                {
+                    countButton.interactable = true;
+                }
+
+            }
+            else
+            {
+                countButton.interactable = false;
+            }
+            if (Geekplay.Instance.PlayerData.BallHealth >= 46)
+            {
+                if (Geekplay.Instance.language == "en")
+                    healthPriceText.text = "INFINITELY";
+                else if (Geekplay.Instance.language == "ru")
+                    healthPriceText.text = "БЕСКОНЕЧНО";
+                else if (Geekplay.Instance.language == "tr")
+                    healthPriceText.text = "SONSUZ";
+                else if (Geekplay.Instance.language == "es")
+                    healthPriceText.text = "INFINITO";
+                else if (Geekplay.Instance.language == "de")
+                    healthPriceText.text = "INFINITELY";
+                else if (Geekplay.Instance.language == "ar")
+                    healthPriceText.text = "غير محدود";
+            }
+            if (Geekplay.Instance.PlayerData.BallPower >= 46)
+            {
+                if (Geekplay.Instance.language == "en")
+                    powerPriceText.text = "INFINITELY";
+                else if (Geekplay.Instance.language == "ru")
+                    powerPriceText.text = "БЕСКОНЕЧНО";
+                else if (Geekplay.Instance.language == "tr")
+                    powerPriceText.text = "SONSUZ";
+                else if (Geekplay.Instance.language == "es")
+                    powerPriceText.text = "INFINITO";
+                else if (Geekplay.Instance.language == "de")
+                    powerPriceText.text = "INFINITELY";
+                else if (Geekplay.Instance.language == "ar")
+                    powerPriceText.text = "غير محدود";
+            }
+            if (Geekplay.Instance.PlayerData.Income >= 46)
+            {
+                if (Geekplay.Instance.language == "en")
+                    incomePriceText.text = "INFINITELY";
+                else if (Geekplay.Instance.language == "ru")
+                    incomePriceText.text = "БЕСКОНЕЧНО";
+                else if (Geekplay.Instance.language == "tr")
+                    incomePriceText.text = "SONSUZ";
+                else if (Geekplay.Instance.language == "es")
+                    incomePriceText.text = "INFINITO";
+                else if (Geekplay.Instance.language == "de")
+                    incomePriceText.text = "INFINITELY";
+                else if (Geekplay.Instance.language == "ar")
+                    incomePriceText.text = "غير محدود";
+            }
+            if (Geekplay.Instance.PlayerData.MaxSpawnCount >= 30)
+            {
+                countButton.interactable = false;
+                Geekplay.Instance.PlayerData.MaxSpawnCount = 30;
+                if (Geekplay.Instance.language == "en")
+                    countPriceText.text = "MAX.";
+                else if (Geekplay.Instance.language == "ru")
+                    countPriceText.text = "МАКС.";
+                else if (Geekplay.Instance.language == "tr")
+                    countPriceText.text = "MAX.";
+                else if (Geekplay.Instance.language == "es")
+                    countPriceText.text = "MAX.";
+                else if (Geekplay.Instance.language == "de")
+                    countPriceText.text = "MAX.";
+                else if (Geekplay.Instance.language == "ar")
+                    countPriceText.text = "ماكس";
+            }
         }
     }
 
@@ -238,8 +237,9 @@ public class UpgradesScript : MonoBehaviour
         Geekplay.Instance.PlayerData.HealthPrice = (Geekplay.Instance.PlayerData.HealthPrice + Geekplay.Instance.PlayerData.HealthPrice) + Geekplay.Instance.PlayerData.HealthPrice / 2;
         healthPrice = (ulong)(Geekplay.Instance.PlayerData.HealthPrice);
         healthPriceText.text = "$" + FormatPrice(healthPrice);
-        Geekplay.Instance.Save();
         MoneyText.text = "$" + FormatPrice(Geekplay.Instance.PlayerData.MoneyToAdd);
+
+        Geekplay.Instance.Save();
     }
 
 
@@ -262,8 +262,9 @@ public class UpgradesScript : MonoBehaviour
         Geekplay.Instance.PlayerData.PowerPrice = (Geekplay.Instance.PlayerData.PowerPrice + Geekplay.Instance.PlayerData.PowerPrice) + Geekplay.Instance.PlayerData.PowerPrice / 2;
         powerPrice = (ulong)(Geekplay.Instance.PlayerData.PowerPrice);
         powerPriceText.text = "$" + FormatPrice(powerPrice);
-        Geekplay.Instance.Save();
         MoneyText.text = "$" + FormatPrice(Geekplay.Instance.PlayerData.MoneyToAdd);
+
+        Geekplay.Instance.Save();
     }
 
 
@@ -286,8 +287,9 @@ public class UpgradesScript : MonoBehaviour
         Geekplay.Instance.PlayerData.IncomePrice = (Geekplay.Instance.PlayerData.IncomePrice + Geekplay.Instance.PlayerData.IncomePrice) + Geekplay.Instance.PlayerData.IncomePrice / 2;
         incomePrice = (ulong)(Geekplay.Instance.PlayerData.IncomePrice);
         incomePriceText.text = "$" + FormatPrice(incomePrice);
-        Geekplay.Instance.Save();
         MoneyText.text = "$" + FormatPrice(Geekplay.Instance.PlayerData.MoneyToAdd);
+
+        Geekplay.Instance.Save();
     }
 
 
@@ -312,8 +314,9 @@ public class UpgradesScript : MonoBehaviour
         Geekplay.Instance.PlayerData.CountPrice = Geekplay.Instance.PlayerData.CountPrice + Geekplay.Instance.PlayerData.CountPrice + Geekplay.Instance.PlayerData.CountPrice;
         countPrice = (ulong)(Mathf.CeilToInt(Geekplay.Instance.PlayerData.CountPrice));
         countPriceText.text = "$" + FormatPrice(countPrice);
-        Geekplay.Instance.Save();
         MoneyText.text = "$" + FormatPrice(Geekplay.Instance.PlayerData.MoneyToAdd);
+
+        Geekplay.Instance.Save();
     }
     string FormatPrice(ulong value)
     {

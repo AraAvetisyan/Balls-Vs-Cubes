@@ -64,6 +64,8 @@ public class AddThreeUpgrades : MonoBehaviour
         {
             elapsed += Time.deltaTime;
             yield return null;
+
+
         }
 
 
@@ -155,6 +157,7 @@ public class AddThreeUpgrades : MonoBehaviour
         float elapsed = 0f;
         while (elapsed < duration)
         {
+
             elapsed += Time.deltaTime;
             yield return null;
         }

@@ -24,12 +24,10 @@ public class LevelChooser : MonoBehaviour
     }
     void Start()
     {
-        StartCoroutine(WaitAFrame());
+       // LevelChooserStart();
     }
-    public IEnumerator WaitAFrame()
+    public void LevelChooserStart()
     {
-        yield return new WaitForEndOfFrame();
-        yield return new WaitForEndOfFrame();
         if(Geekplay.Instance.PlayerData.MaxLevel == 0)
         {
             Geekplay.Instance.PlayerData.MaxLevel = 1;
@@ -68,9 +66,90 @@ public class LevelChooser : MonoBehaviour
         BallSpawner.Instance.LevelStarts = true;
         if(Geekplay.Instance.PlayerData.MaxLevel < Geekplay.Instance.PlayerData.Level)
         {
-            Geekplay.Instance.PlayerData.MaxLevel = Geekplay.Instance.PlayerData.Level;
-            Geekplay.Instance.Save();
+            Geekplay.Instance.PlayerData.MaxLevel = Geekplay.Instance.PlayerData.Level;            
             Geekplay.Instance.Leaderboard("Levels", Geekplay.Instance.PlayerData.MaxLevel);
+            if (Geekplay.Instance.PlayerData.Level == 3 && Geekplay.Instance.PlayerData.MaxLevel == 3)
+            {
+                Geekplay.Instance.RateGameFunc();
+            }
+            else if (Geekplay.Instance.PlayerData.Level == 6 && Geekplay.Instance.PlayerData.MaxLevel == 6)
+            {
+                Geekplay.Instance.RateGameFunc();
+            }
+            else if (Geekplay.Instance.PlayerData.Level == 9 && Geekplay.Instance.PlayerData.MaxLevel == 9)
+            {
+                Geekplay.Instance.RateGameFunc();
+            }
+            else if (Geekplay.Instance.PlayerData.Level == 12 && Geekplay.Instance.PlayerData.MaxLevel == 12)
+            {
+                Geekplay.Instance.RateGameFunc();
+            }
+            else if (Geekplay.Instance.PlayerData.Level == 15 && Geekplay.Instance.PlayerData.MaxLevel == 15)
+            {
+                Geekplay.Instance.RateGameFunc();
+            }
+            else if (Geekplay.Instance.PlayerData.Level == 18 && Geekplay.Instance.PlayerData.MaxLevel == 18)
+            {
+                Geekplay.Instance.RateGameFunc();
+            }
+            else if (Geekplay.Instance.PlayerData.Level == 21 && Geekplay.Instance.PlayerData.MaxLevel == 21)
+            {
+                Geekplay.Instance.RateGameFunc();
+            }
+            else if (Geekplay.Instance.PlayerData.Level == 24 && Geekplay.Instance.PlayerData.MaxLevel == 24)
+            {
+                Geekplay.Instance.RateGameFunc();
+            }
+            else if (Geekplay.Instance.PlayerData.Level == 27 && Geekplay.Instance.PlayerData.MaxLevel == 27)
+            {
+                Geekplay.Instance.RateGameFunc();
+            }
+            else if (Geekplay.Instance.PlayerData.Level == 30 && Geekplay.Instance.PlayerData.MaxLevel == 30)
+            {
+                Geekplay.Instance.RateGameFunc();
+            }
+            else if (Geekplay.Instance.PlayerData.Level == 33 && Geekplay.Instance.PlayerData.MaxLevel == 33)
+            {
+                Geekplay.Instance.RateGameFunc();
+            }
+            else if (Geekplay.Instance.PlayerData.Level == 36 && Geekplay.Instance.PlayerData.MaxLevel == 36)
+            {
+                Geekplay.Instance.RateGameFunc();
+            }
+            else if (Geekplay.Instance.PlayerData.Level == 39 && Geekplay.Instance.PlayerData.MaxLevel == 39)
+            {
+                Geekplay.Instance.RateGameFunc();
+            }
+            else if (Geekplay.Instance.PlayerData.Level == 42 && Geekplay.Instance.PlayerData.MaxLevel == 42)
+            {
+                Geekplay.Instance.RateGameFunc();
+            }
+            else if (Geekplay.Instance.PlayerData.Level == 45 && Geekplay.Instance.PlayerData.MaxLevel == 45)
+            {
+                Geekplay.Instance.RateGameFunc();
+            }
+            else if (Geekplay.Instance.PlayerData.Level == 48 && Geekplay.Instance.PlayerData.MaxLevel == 48)
+            {
+                Geekplay.Instance.RateGameFunc();
+            }
+            else if (Geekplay.Instance.PlayerData.Level == 51 && Geekplay.Instance.PlayerData.MaxLevel == 51)
+            {
+                Geekplay.Instance.RateGameFunc();
+            }
+            else if (Geekplay.Instance.PlayerData.Level == 54 && Geekplay.Instance.PlayerData.MaxLevel == 54)
+            {
+                Geekplay.Instance.RateGameFunc();
+            }
+            else if (Geekplay.Instance.PlayerData.Level == 57 && Geekplay.Instance.PlayerData.MaxLevel == 57)
+            {
+                Geekplay.Instance.RateGameFunc();
+            }
+            else if (Geekplay.Instance.PlayerData.Level == 60 && Geekplay.Instance.PlayerData.MaxLevel == 60)
+            {
+                Geekplay.Instance.RateGameFunc();
+            }
         }
+        Geekplay.Instance.Save();
+        _levelsUIController.LevelsUIStart();
     }
 }

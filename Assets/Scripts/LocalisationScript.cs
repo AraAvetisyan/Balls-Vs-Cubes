@@ -65,15 +65,8 @@ public class LocalisationScript : MonoBehaviour
     [Header("LeaderBoard")]
     [SerializeField] private TextMeshProUGUI leadersText;
 
-   /* void Start()
+    void Start()
     {
-        StartCoroutine(WaitAFrameForLocalisation());
-    }*/
-
-    //public IEnumerator WaitAFrameForLocalisation()
-    void Awake()
-    {
-        //yield return new WaitForEndOfFrame();
         if (Geekplay.Instance.language == "en")
         {
             upgradesTitleText.text = "UPGRADES";

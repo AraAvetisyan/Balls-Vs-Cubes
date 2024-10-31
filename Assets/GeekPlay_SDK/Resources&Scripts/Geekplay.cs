@@ -77,6 +77,8 @@ public class Geekplay : MonoBehaviour
     public event Action LeaderboardValuesReady;
     public event Action ShowedAdInEditor;
     public bool GameIsReady;
+
+    public bool GameStoped;
     public void RunCoroutine(IEnumerator enumerator)
     {
         StartCoroutine(enumerator);
@@ -869,6 +871,11 @@ public class Geekplay : MonoBehaviour
         {
             Time.timeScale = 0;
             AudioListener.volume = 0;
+        }
+
+        if (GameStoped)
+        {
+            Time.timeScale = 0;
         }
         //////////
     }

@@ -34,13 +34,16 @@ public class LevelsUIController : MonoBehaviour
             levelText.text = "NIVEAU " + LevelChooser.Instance.CurrentLevelCount;
         else if (Geekplay.Instance.language == "ar")
             levelText.text = LevelChooser.Instance.CurrentLevelCount + " المستوى ";
-        StartCoroutine(WaitFrameBeforeStart());
+        //LevelsUIStart();
         progress.interactable = false;
 
     }
-    public IEnumerator WaitFrameBeforeStart()
+    public void LevelsUIStart()
     {
-        yield return new WaitForEndOfFrame();
+        for(int i = 0; i < cubes.Length; i++)
+        {
+            cubes[i].StartForCubes();
+        }
         for (int i = 0; i < cubes.Length; i++)
         {
             maxValue += cubes[i].Health;
@@ -74,6 +77,8 @@ public class LevelsUIController : MonoBehaviour
         BallSpawner.Instance.SpawnCount = BallSpawner.Instance.MaximumBallCount;            
         Geekplay.Instance.PlayerData.Level += 1;   
         LevelChooser.Instance.SpawnNewLevel();
+        Geekplay.Instance.Save();
+       
         StopCorutine();
     }
     public void StopCorutine()
