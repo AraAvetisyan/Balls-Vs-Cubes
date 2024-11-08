@@ -129,6 +129,10 @@ public class BallSpawner : MonoBehaviour
 
     void Update()
     {
+        if (Geekplay.Instance.GameStoped)
+        {
+            cursorImage.SetActive(false);
+        }
         if (!Geekplay.Instance.GameStoped)
         {
             if (Input.GetMouseButtonDown(0))
@@ -214,10 +218,7 @@ public class BallSpawner : MonoBehaviour
                 tutorImage.SetActive(false);
                 Geekplay.Instance.PlayerData.UnshowTutor = true;
             }
-            AudioSource ballSpawnAudio = Instantiate(ballSpawnEffect.GetComponent<AudioSource>());
-            ballSpawnAudio.volume = Geekplay.Instance.PlayerData.SoundEffectsVolume;
-            ballSpawnAudio.Play();
-            Destroy(ballSpawnAudio.gameObject, 1f);
+           
 
             speedSlider.value += speedSliderValue;
             if (SpawnCount > 0)
@@ -242,6 +243,11 @@ public class BallSpawner : MonoBehaviour
         cursorImage.transform.position = worldPosition;
 
         cursorImage.SetActive(true);
+
+        AudioSource ballSpawnAudio = Instantiate(ballSpawnEffect.GetComponent<AudioSource>());
+        ballSpawnAudio.volume = Geekplay.Instance.PlayerData.SoundEffectsVolume;
+        ballSpawnAudio.Play();
+        Destroy(ballSpawnAudio.gameObject, 1f);
 
         StartMouseCorutine();
     }

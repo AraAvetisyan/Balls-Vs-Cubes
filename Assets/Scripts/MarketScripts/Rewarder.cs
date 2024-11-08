@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System;
@@ -46,6 +46,11 @@ public class Rewarder : MonoBehaviour
     [SerializeField] private GameObject foreverIncomeBoostObject;
     [SerializeField] private GameObject foreverAutoClickObject;
 
+
+    [SerializeField] private TextMeshProUGUI foreverBallBoostObjectText;
+    [SerializeField] private TextMeshProUGUI foreverIncomeBoostObjectText;
+    [SerializeField] private TextMeshProUGUI foreverAutoClickObjectText;
+
     [SerializeField] private BoosterUIScript _boosterUIScript;
 
 
@@ -90,7 +95,7 @@ public class Rewarder : MonoBehaviour
         }
         catch
         {
-            Debug.Log("�������� ��� ��� PURCHASE");
+            Debug.Log("НЕВЕРНОЕ ИМЯ ДЛЯ PURCHASE");
             return -1;
         }
     }    
@@ -120,7 +125,33 @@ public class Rewarder : MonoBehaviour
     {
         Geekplay.Instance.PlayerData.ForeverBallsBoost = true;
         Geekplay.Instance.Save();
-        foreverBallBoostObject.SetActive(false);
+       // foreverBallBoostObject.SetActive(false);
+        foreverBallBoostObject.GetComponent<Button>().interactable = false;
+        foreverBallBoostObjectText.gameObject.SetActive(true);
+        if (Geekplay.Instance.language == "en")
+        {
+            foreverBallBoostObjectText.text = "BOUGHT";
+        }
+        else if (Geekplay.Instance.language == "ru")
+        {
+            foreverBallBoostObjectText.text = "КУПЛЕНО";
+        }
+        else if (Geekplay.Instance.language == "tr")
+        {
+            foreverBallBoostObjectText.text = "SATIN AL";
+        }
+        else if (Geekplay.Instance.language == "es")
+        {
+            foreverBallBoostObjectText.text = "COMPRADO";
+        }
+        else if (Geekplay.Instance.language == "de")
+        {
+            foreverBallBoostObjectText.text = "GEKAUFT";
+        }
+        else if (Geekplay.Instance.language == "ar")
+        {
+            foreverBallBoostObjectText.text = "تم الشراء";
+        }
         _boosterUIScript.doubleBallButton.interactable = false;
         _boosterUIScript.StartForeverBallsBoostCorutine();
     }
@@ -129,7 +160,33 @@ public class Rewarder : MonoBehaviour
     {
         Geekplay.Instance.PlayerData.ForeverIncomeBoost = true;
         Geekplay.Instance.Save();
-        foreverIncomeBoostObject.SetActive(false);
+        //foreverIncomeBoostObject.SetActive(false);
+        foreverIncomeBoostObject.GetComponent<Button>().interactable = false;
+        foreverIncomeBoostObjectText.gameObject.SetActive(true);
+        if (Geekplay.Instance.language == "en")
+        {
+            foreverIncomeBoostObjectText.text = "BOUGHT";
+        }
+        else if (Geekplay.Instance.language == "ru")
+        {
+            foreverIncomeBoostObjectText.text = "КУПЛЕНО";
+        }
+        else if (Geekplay.Instance.language == "tr")
+        {
+            foreverIncomeBoostObjectText.text = "SATIN AL";
+        }
+        else if (Geekplay.Instance.language == "es")
+        {
+            foreverIncomeBoostObjectText.text = "COMPRADO";
+        }
+        else if (Geekplay.Instance.language == "de")
+        {
+            foreverIncomeBoostObjectText.text = "GEKAUFT";
+        }
+        else if (Geekplay.Instance.language == "ar")
+        {
+            foreverIncomeBoostObjectText.text = "تم الشراء";
+        }
         _boosterUIScript.incomeButton.interactable = false;
         _boosterUIScript.StartForeverIncomeBoostCorutine();
     }
@@ -138,7 +195,33 @@ public class Rewarder : MonoBehaviour
     {
         Geekplay.Instance.PlayerData.ForeverAutoClickBoost = true;
         Geekplay.Instance.Save();
-        foreverAutoClickObject.SetActive(false);
+        //foreverAutoClickObject.SetActive(false);
+        foreverAutoClickObject.GetComponent<Button>().interactable = false;
+        foreverAutoClickObjectText.gameObject.SetActive(true);
+        if(Geekplay.Instance.language == "en")
+        {
+            foreverAutoClickObjectText.text = "BOUGHT";
+        }
+        else if (Geekplay.Instance.language == "ru")
+        {
+            foreverAutoClickObjectText.text = "КУПЛЕНО";
+        }
+        else if (Geekplay.Instance.language == "tr")
+        {
+            foreverAutoClickObjectText.text = "SATIN AL";
+        }
+        else if (Geekplay.Instance.language == "es")
+        {
+            foreverAutoClickObjectText.text = "COMPRADO";
+        }
+        else if (Geekplay.Instance.language == "de")
+        {
+            foreverAutoClickObjectText.text = "GEKAUFT";
+        }
+        else if (Geekplay.Instance.language == "ar")
+        {
+            foreverAutoClickObjectText.text = "تم الشراء";
+        }
         _boosterUIScript.autoClickButton.interactable = false;
         _boosterUIScript.StartForeverAutoClickBoostCorutine();
     }

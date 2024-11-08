@@ -10,20 +10,44 @@ public class LeaderBoardScript : MonoBehaviour
     [SerializeField] private TextMeshProUGUI[] maxLevelInGame;
     [SerializeField] private TextMeshProUGUI remainingTimeView;
     private Coroutine timer;
+    
+    
     void Start()
     {
-        Geekplay.Instance.remainingTimeUntilUpdateLeaderboard = 60;
+        LiderBoardStart();
+        StartCoroutine(IETimer());
+        //Запустить корутину, которая каждые 60 секунд будет заново запрашивать данные лидерборда ++
+        //и заполнять их в твои тексты через Geekplay.Instance.lS и Geekplay.Instance.lN ++
+    }
+    public void LiderBoardStart()
+    {
+        Geekplay.Instance.leaderNumber = 0;
+        Geekplay.Instance.leaderNumberN = 0;
         Utils.GetLeaderboard("score", 0, "Levels");
         Utils.GetLeaderboard("name", 0, "Levels");
-        StartTimerCoroutine();
-        for(int i = 0; i < namesInGame.Length; i++)
+        for (int i = 0; i < namesInGame.Length; i++)
         {
             namesInGame[i].text = Geekplay.Instance.lN[i];
             maxLevelInGame[i].text = Geekplay.Instance.lS[i];
         }
-        //Запустить корутину, которая каждые 60 секунд будет заново запрашивать данные лидерборда ++
-        //и заполнять их в твои тексты через Geekplay.Instance.lS и Geekplay.Instance.lN ++
     }
+    IEnumerator IETimer()
+    {
+       
+        yield return new WaitForSeconds(2);
+        Geekplay.Instance.remainingTimeUntilUpdateLeaderboard = 60;
+        Geekplay.Instance.leaderNumber = 0;
+        Geekplay.Instance.leaderNumberN = 0;
+        Utils.GetLeaderboard("score", 0, "Levels");
+        Utils.GetLeaderboard("name", 0, "Levels");
+        StartTimerCoroutine();
+        for (int i = 0; i < namesInGame.Length; i++)
+        {
+            namesInGame[i].text = Geekplay.Instance.lN[i];
+            maxLevelInGame[i].text = Geekplay.Instance.lS[i];
+        }
+    }
+
     public void StartTimerCoroutine()
     {
         if(timer == null)
@@ -43,6 +67,8 @@ public class LeaderBoardScript : MonoBehaviour
     public IEnumerator RemainingTimer()
     {
         yield return new WaitForSeconds(60);
+        Geekplay.Instance.leaderNumber = 0;
+        Geekplay.Instance.leaderNumberN = 0;
         Utils.GetLeaderboard("score", 0, "Levels");
         Utils.GetLeaderboard("name", 0, "Levels");
         for (int i = 0; i < namesInGame.Length; i++)

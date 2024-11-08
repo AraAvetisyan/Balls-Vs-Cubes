@@ -6,6 +6,7 @@ using UnityEngine.UIElements;
 
 public class LocalisationScript : MonoBehaviour
 {
+    [SerializeField] private TextMeshProUGUI newBoostText;
     [Header("Upgrades")]
     [SerializeField] private TextMeshProUGUI upgradesTitleText;
 
@@ -75,16 +76,13 @@ public class LocalisationScript : MonoBehaviour
             upgradesIncomeText.text = "INCOME";
             upgradesBallsText.text = "BALLS";
 
-            boostsTitleText.text = "BOOSTS";
+            boostsTitleText.text = "BOOSTS (AD)";
+            newBoostText.text = "BOOSTS (FOREVER)";
             ballsBoostText.text = "BALLS";
             incomeBoostText.text = "INCOME";
             autoBoostText.text = "AUTO";
             clickBoostText.text = "CLICK";
             fireBallText.text = "FIREBALL";
-
-            ballForeverText.text = "FOREVER";
-            incomeForeverText.text = "FOREVER";
-            autoClickForeverText.text = "FOREVER";
 
             settingsHeaderText.text = "SETTINGS";
             marketHeaderText.text = "MARKET";
@@ -125,15 +123,12 @@ public class LocalisationScript : MonoBehaviour
             upgradesBallsText.text = "البالونات";
 
             boostsTitleText.text = "التعزيزات";
+            newBoostText.text = "يعزز (للأبد)";
             ballsBoostText.text = "البالونات";
             incomeBoostText.text = "الدخل";
             autoBoostText.text = "التلقائي";
             clickBoostText.text = "النقر";
             fireBallText.text = "كرة النار";
-
-            ballForeverText.text = "إى الأبد";
-            incomeForeverText.text = "إى الأبد";
-            autoClickForeverText.text = "إى الأبد";
 
             settingsHeaderText.text = "الإعدادات";
             marketHeaderText.text = "السوق";
@@ -173,16 +168,13 @@ public class LocalisationScript : MonoBehaviour
             upgradesIncomeText.text = "INGRESOS";
             upgradesBallsText.text = "BOLAS";
 
-            boostsTitleText.text = "AUMENTA";
+            boostsTitleText.text = "AUMENTA (AD)";
+            newBoostText.text = "IMPULSORES (PARA SIEMPRE)";
             ballsBoostText.text = "BOLAS";
             incomeBoostText.text = "INGRESOS";
             autoBoostText.text = "AUTO";
             clickBoostText.text = "CLICK";
             fireBallText.text = "BOLA DE FUEGO";
-
-            ballForeverText.text = "PARA SIEMPRE";
-            incomeForeverText.text = "PARA SIEMPRE";
-            autoClickForeverText.text = "PARA SIEMPRE";
 
             settingsHeaderText.text = "AJUSTES";
             marketHeaderText.text = "MERCADO";
@@ -222,16 +214,13 @@ public class LocalisationScript : MonoBehaviour
             upgradesIncomeText.text = "ДОХОД";
             upgradesBallsText.text = "ШАРИКИ";
 
-            boostsTitleText.text = "УСИЛЕНИЯ";
+            boostsTitleText.text = "УСИЛЕНИЯ (AD)";
+            newBoostText.text = "УСИЛЕНИЯ (НАВСЕГДА)";
             ballsBoostText.text = "ШАРИКИ";
             incomeBoostText.text = "ДОХОД";
             autoBoostText.text = "АВТО";
             clickBoostText.text = "КЛИК";
             fireBallText.text = "ОГНЕННЫЙ ШАР";
-
-            ballForeverText.text = "НАВСЕГДА";
-            incomeForeverText.text = "НАВСЕГДА";
-            autoClickForeverText.text = "НАВСЕГДА";
 
             settingsHeaderText.text = "НАСТРОЙКИ";
             marketHeaderText.text = "МАГАЗИН";
@@ -271,16 +260,13 @@ public class LocalisationScript : MonoBehaviour
             upgradesIncomeText.text = "GELİR";
             upgradesBallsText.text = "TOPLAR";
 
-            boostsTitleText.text = "BOOSTLAR";
+            boostsTitleText.text = "BOOSTLAR (AD)";
+            newBoostText.text = "ARTIRMALAR (SONSUZA KADAR)";
             ballsBoostText.text = "TOPLAR";
             incomeBoostText.text = "GELİR";
             autoBoostText.text = "OTOMATİK";
             clickBoostText.text = "TIKLAMA";
             fireBallText.text = "ATEŞ TOPU";
-
-            ballForeverText.text = "SONSUZA KADAR";
-            incomeForeverText.text = "SONSUZA KADAR";
-            autoClickForeverText.text = "SONSUZA KADAR";
 
             settingsHeaderText.text = "AYARLAR";
             marketHeaderText.text = "PAZAR";
@@ -321,16 +307,13 @@ public class LocalisationScript : MonoBehaviour
             upgradesIncomeText.text = "EINKOMMEN";
             upgradesBallsText.text = "KUGELN";
 
-            boostsTitleText.text = "BOOSTEN";
+            boostsTitleText.text = "BOOSTEN (AD)";
+            newBoostText.text = "STEIGERT (FUR IMMER)";
             ballsBoostText.text = "KUGELN";
             incomeBoostText.text = "EINKOMMEN";
             autoBoostText.text = "AUTO";
             clickBoostText.text = "CLICK";
             fireBallText.text = "FEUERKUGELN";
-
-            ballForeverText.text = "FÜR IMMER";
-            incomeForeverText.text = "FÜR IMMER";
-            autoClickForeverText.text = "FÜR IMMER";
 
             settingsHeaderText.text = "EINSTELLUNGEN";
             marketHeaderText.text = "MÄRKTE";

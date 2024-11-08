@@ -109,7 +109,7 @@ public class MarketScript : MonoBehaviour
     {
         ballsMarker.SetActive(false);
         ballsPanel.SetActive(false);
-        dollarsMarker.SetActive(true);
+        dollarsMarker.SetActive(true); 
         dollarsPanel.SetActive(true);
         dollarsButton.interactable = false;
         ballsButton.interactable = true;

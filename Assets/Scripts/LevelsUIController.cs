@@ -10,6 +10,17 @@ public class LevelsUIController : MonoBehaviour
     [SerializeField] private Slider progress;
     [SerializeField] private int maxValue;
     [SerializeField] private TextMeshProUGUI levelText;
+
+    [SerializeField] private TextMeshProUGUI percent;
+    [SerializeField] private float percentValue;
+
+
+
+
+    // maxValue - 100
+    // percentValue - x
+    //percentValue * 100 / maxValue
+
     private int progressValue;
 
     private Coroutine enumerator;
@@ -55,7 +66,9 @@ public class LevelsUIController : MonoBehaviour
         progressValue+= value;
         MoneyScript.Instance.AddMoney();
         progress.value = progressValue;
-        if(progressValue >= maxValue) 
+        percentValue = ((progressValue * 100) / maxValue);
+        percent.text = ((int)percentValue).ToString() + " %";
+        if (progressValue >= maxValue) 
         {
             StartCorutine();
         }

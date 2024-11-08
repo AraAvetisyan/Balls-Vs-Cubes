@@ -111,6 +111,7 @@ public class BallScript : MonoBehaviour
             else if (wallCounter >= 5)
             {
                 direction = new Vector2(Random.Range(-1f, 1f), Random.Range(-1f, 1f)).normalized;
+        
             }
         }
     }

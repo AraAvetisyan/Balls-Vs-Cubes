@@ -80,7 +80,7 @@ public class InterstitialAdLogic : MonoBehaviour
         if (Geekplay.Instance.language == "en")
             timerText.text = "AD AFTER: 5";
         if (Geekplay.Instance.language == "ru")
-            timerText.text = "РЕКЛАМА ПОСЛЕ: 5";
+            timerText.text = "РЕКЛАМА ЧЕРЕЗ: 5";
         if (Geekplay.Instance.language == "de")
             timerText.text = "WERBUNG NACH: 5";
         if (Geekplay.Instance.language == "es")
@@ -93,7 +93,7 @@ public class InterstitialAdLogic : MonoBehaviour
         if (Geekplay.Instance.language == "en")
             timerText.text = "AD AFTER: 4";
         if (Geekplay.Instance.language == "ru")
-            timerText.text = "РЕКЛАМА ПОСЛЕ: 4";
+            timerText.text = "РЕКЛАМА ЧЕРЕЗ: 4";
         if (Geekplay.Instance.language == "de")
             timerText.text = "WERBUNG NACH: 4";
         if (Geekplay.Instance.language == "es")
@@ -106,7 +106,7 @@ public class InterstitialAdLogic : MonoBehaviour
         if (Geekplay.Instance.language == "en")
             timerText.text = "AD AFTER: 3";
         if (Geekplay.Instance.language == "ru")
-            timerText.text = "РЕКЛАМА ПОСЛЕ: 3";
+            timerText.text = "РЕКЛАМА ЧЕРЕЗ: 3";
         if (Geekplay.Instance.language == "de")
             timerText.text = "WERBUNG NACH: 3";
         if (Geekplay.Instance.language == "es")
@@ -119,7 +119,7 @@ public class InterstitialAdLogic : MonoBehaviour
         if (Geekplay.Instance.language == "en")
             timerText.text = "AD AFTER: 2";
         if (Geekplay.Instance.language == "ru")
-            timerText.text = "РЕКЛАМА ПОСЛЕ: 2";
+            timerText.text = "РЕКЛАМА ЧЕРЕЗ: 2";
         if (Geekplay.Instance.language == "de")
             timerText.text = "WERBUNG NACH: 2";
         if (Geekplay.Instance.language == "es")
@@ -132,7 +132,7 @@ public class InterstitialAdLogic : MonoBehaviour
         if (Geekplay.Instance.language == "en")
             timerText.text = "AD AFTER: 1";
         if (Geekplay.Instance.language == "ru")
-            timerText.text = "РЕКЛАМА ПОСЛЕ: 1";
+            timerText.text = "РЕКЛАМА ЧЕРЕЗ: 1";
         if (Geekplay.Instance.language == "de")
             timerText.text = "WERBUNG NACH: 1";
         if (Geekplay.Instance.language == "es")

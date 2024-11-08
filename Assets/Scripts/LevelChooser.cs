@@ -56,7 +56,6 @@ public class LevelChooser : MonoBehaviour
         {
             int randLevel = Random.Range(0, higherLevels.Count);
             CurrentLevel = Instantiate(higherLevels[randLevel], levelsPosition);
-            Debug.Log(CurrentLevelCount);
         }
 
         _levelsUIController = CurrentLevel.GetComponent<LevelsUIController>();
@@ -66,8 +65,14 @@ public class LevelChooser : MonoBehaviour
         BallSpawner.Instance.LevelStarts = true;
         if(Geekplay.Instance.PlayerData.MaxLevel < Geekplay.Instance.PlayerData.Level)
         {
+            // <SetLeaderBord>
             Geekplay.Instance.PlayerData.MaxLevel = Geekplay.Instance.PlayerData.Level;            
             Geekplay.Instance.Leaderboard("Levels", Geekplay.Instance.PlayerData.MaxLevel);
+            // </SetLeaderBord>
+
+
+
+
             if (Geekplay.Instance.PlayerData.Level == 3 && Geekplay.Instance.PlayerData.MaxLevel == 3)
             {
                 Geekplay.Instance.RateGameFunc();
