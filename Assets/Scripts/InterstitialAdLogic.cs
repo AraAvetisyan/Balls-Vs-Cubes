@@ -6,13 +6,18 @@ using UnityEngine.UI;
 using JetBrains.Annotations;
 public class InterstitialAdLogic : MonoBehaviour
 {
+    [SerializeField] private BoosterUIScript _boosterUIScript;
     [SerializeField] private TextMeshProUGUI timerText;
     [SerializeField] private GameObject textBG;
     private Coroutine minuteTimer;
     private Coroutine secondTimer;
     [SerializeField] private Button[] allButtons;
     [SerializeField] private AudioSource music;
-  
+
+    [SerializeField] private Button foreverDoubleButton, foreverIncomeButton, foreveerAutoButton;
+    [SerializeField] private Button doubleButton, incomeButton, autoButton;
+
+
     void Start()
     {
         StartMinutesCoroutine();
@@ -77,45 +82,7 @@ public class InterstitialAdLogic : MonoBehaviour
         music.volume = 0;
         music.Pause();
 
-        if (Geekplay.Instance.language == "en")
-            timerText.text = "AD AFTER: 5";
-        if (Geekplay.Instance.language == "ru")
-            timerText.text = "РЕКЛАМА ЧЕРЕЗ: 5";
-        if (Geekplay.Instance.language == "de")
-            timerText.text = "WERBUNG NACH: 5";
-        if (Geekplay.Instance.language == "es")
-            timerText.text = "ANUNCIO DESPUÉS: 5";
-        if (Geekplay.Instance.language == "tr")
-            timerText.text = "REKLAMDAN SONRA: 5";
-        if (Geekplay.Instance.language == "ar")
-            timerText.text = "الإعلان بعد: 5";
-        yield return new WaitForSecondsRealtime(1);
-        if (Geekplay.Instance.language == "en")
-            timerText.text = "AD AFTER: 4";
-        if (Geekplay.Instance.language == "ru")
-            timerText.text = "РЕКЛАМА ЧЕРЕЗ: 4";
-        if (Geekplay.Instance.language == "de")
-            timerText.text = "WERBUNG NACH: 4";
-        if (Geekplay.Instance.language == "es")
-            timerText.text = "ANUNCIO DESPUÉS: 4";
-        if (Geekplay.Instance.language == "tr")
-            timerText.text = "REKLAMDAN SONRA: 4";
-        if (Geekplay.Instance.language == "ar")
-            timerText.text = "الإعلان بعد: 4";
-        yield return new WaitForSecondsRealtime(1);
-        if (Geekplay.Instance.language == "en")
-            timerText.text = "AD AFTER: 3";
-        if (Geekplay.Instance.language == "ru")
-            timerText.text = "РЕКЛАМА ЧЕРЕЗ: 3";
-        if (Geekplay.Instance.language == "de")
-            timerText.text = "WERBUNG NACH: 3";
-        if (Geekplay.Instance.language == "es")
-            timerText.text = "ANUNCIO DESPUÉS: 3";
-        if (Geekplay.Instance.language == "tr")
-            timerText.text = "REKLAMDAN SONRA: 3";
-        if (Geekplay.Instance.language == "ar")
-            timerText.text = "الإعلان بعد: 3";
-        yield return new WaitForSecondsRealtime(1);
+      
         if (Geekplay.Instance.language == "en")
             timerText.text = "AD AFTER: 2";
         if (Geekplay.Instance.language == "ru")
@@ -157,6 +124,60 @@ public class InterstitialAdLogic : MonoBehaviour
         for (int i = 0; i < allButtons.Length; i++)
         {
             allButtons[i].interactable = true;
+        }
+
+        if (_boosterUIScript.ForeverDoubleBttonInteractible)
+        {
+            foreverDoubleButton.interactable = true;
+        }
+        else
+        {
+            foreverDoubleButton.interactable = false;
+        }
+
+        if (_boosterUIScript.ForeverIncomeButtonInteractible)
+        {
+            foreverIncomeButton.interactable = true;
+        }
+        else
+        {
+            foreverIncomeButton.interactable = false;
+        }
+
+        if (_boosterUIScript.ForeverAutoclickButtonInteractible)
+        {
+            foreveerAutoButton.interactable = true;
+        }
+        else
+        {
+            foreveerAutoButton.interactable = false;
+        }
+
+        if (_boosterUIScript.DoubleBttonInteractible)
+        {
+            doubleButton.interactable = true;
+        }
+        else
+        {
+            doubleButton.interactable = false;
+        }
+
+        if (_boosterUIScript.IncomeButtonInteractible)
+        {
+            incomeButton.interactable = true;
+        }
+        else
+        {
+            incomeButton.interactable = false;
+        }
+
+        if (_boosterUIScript.AutoclickButtonInteractible)
+        {
+            autoButton.interactable = true;
+        }
+        else
+        {
+            autoButton.interactable = false;
         }
 
         textBG.SetActive(false);

@@ -246,6 +246,14 @@ var plugin = {
           });
       });
     },
+    GetValueCode: function()
+    {
+      if (gameShop[0].priceCurrencyCode != "YAN" && gameShop[0].priceCurrencyCode != 'YAN')
+      {
+        myGameInstance.SendMessage('Init', 'ChangeYanType');
+        console.log("TYPEEE " + gameShop[0].priceCurrencyCode);
+      }
+    },
   /////YANDEX//////
 };
 

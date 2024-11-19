@@ -29,15 +29,18 @@ public class AppShopCell : MonoBehaviour
             if ((!Geekplay.Instance.PlayerData.BallsBought[index]))
             {
                 BuyDollarButton.onClick.AddListener(delegate { InAppOperation(); });
+                
             }
             else
             {
                 BuyDollarButton.onClick.AddListener(() => _marketScript.PressedBall9(index));
+           
             }
         }
         else
         {
             BuyDollarButton.onClick.AddListener(delegate { InAppOperation(); });
+           
         }
     }
    

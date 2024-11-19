@@ -39,6 +39,8 @@ public enum Platform
 
 public class Geekplay : MonoBehaviour
 {
+
+    public string YanValueType;
     public string language; //язык
     public bool mobile; //Устройство игрока мобильное?
     public bool SoundOn = true; //Звук включен?
@@ -111,6 +113,8 @@ public class Geekplay : MonoBehaviour
         //GameReady();
 
         //ShowInterstitialAd();
+        CheckBuysOnStart(PlayerData.lastBuy);
+        Utils.GetValueCode();
     }
     public void OnRewarded() //ВОЗНАГРАЖДЕНИЕ ПОСЛЕ ПРОСМОТРА РЕКЛАМЫ
     {
@@ -525,7 +529,6 @@ public class Geekplay : MonoBehaviour
             case Platform.Yandex:
                 language = Utils.GetLang();
                 Localization();
-                CheckBuysOnStart(PlayerData.lastBuy);
                 break;
             /*case Platform.VK:
                 language = "ru";
@@ -845,7 +848,7 @@ public class Geekplay : MonoBehaviour
         Time.timeScale = 1;
         if (GameIsReady)
         {
-            GameReady();
+            GameStart();
         }
 
         ////////////////
@@ -900,5 +903,24 @@ public class Geekplay : MonoBehaviour
         GameIsReady = false;
         if (Platform == Platform.Yandex)
             Utils.GameStop();
+    }
+
+
+    public void ChangeYanType()
+    {
+        YanValueType = "TST";
+        LocalisationScript.Instance.ChangeYan();
+        //if (SceneManager.GetActiveScene().name != "MainMenu")
+        //{
+        //    LocalizationGameplay.lG.Localization();
+        //}
+        //if (LocalizationMenu.instance != null)
+        //{
+        //    LocalizationMenu.instance.YanLocalization();
+        //}
+        //if (GameplayLocalization.instance != null)
+        //{
+        //    GameplayLocalization.instance.YanLocalization();
+        //}
     }
 }

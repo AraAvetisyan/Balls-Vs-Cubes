@@ -40,9 +40,12 @@ public class BoosterUIScript : MonoBehaviour
     private Coroutine incomeBoost;
     private Coroutine autoClickBoost;
 
-    [SerializeField] private GameObject ballBoostAdsIcon, incomeBoostAdsIcon, autoClickBoostAdsIcon;
+    public GameObject ballBoostAdsIcon, incomeBoostAdsIcon, autoClickBoostAdsIcon;
 
     [SerializeField] private TextMeshProUGUI foreverBallBoostObjectText, foreverIncomeBoostObjectText, foreverAutoClickObjectText;
+
+    public bool DoubleBttonInteractible, IncomeButtonInteractible, AutoclickButtonInteractible;
+    public bool ForeverDoubleBttonInteractible, ForeverIncomeButtonInteractible, ForeverAutoclickButtonInteractible;
 
     private void Start()
     {
@@ -53,8 +56,13 @@ public class BoosterUIScript : MonoBehaviour
         if (Geekplay.Instance.PlayerData.ForeverAutoClickBoost)
         {
             autoClickButton.interactable = false;
+            autoClickBoostAdsIcon.SetActive(false);
             ForeverAutoClickBoostBought();
             foreverAutoClickObject.GetComponent<Button>().interactable = false;
+
+            ForeverAutoclickButtonInteractible = false;
+            AutoclickButtonInteractible = false;
+
             //   foreverAutoClickObject.SetActive(false);
             foreverAutoClickObjectText.gameObject.SetActive(true);
             if (Geekplay.Instance.language == "en")
@@ -85,8 +93,13 @@ public class BoosterUIScript : MonoBehaviour
         if (Geekplay.Instance.PlayerData.ForeverBallsBoost)
         {
             doubleBallButton.interactable = false;
+            ballBoostAdsIcon.SetActive(false);
             ForeverBallsBoostBought();
             foreverBallBoostObject.GetComponent<Button>().interactable = false;
+
+            ForeverDoubleBttonInteractible = false;
+            DoubleBttonInteractible = false;
+
             // foreverBallBoostObject.SetActive(false);
             foreverBallBoostObjectText.gameObject.SetActive(true);
             if (Geekplay.Instance.language == "en")
@@ -117,8 +130,15 @@ public class BoosterUIScript : MonoBehaviour
         if (Geekplay.Instance.PlayerData.ForeverIncomeBoost)
         {
             incomeButton.interactable = false;
+
+            incomeBoostAdsIcon.SetActive(false);
+
             ForeveerIncomeBoostBought();
             foreverIncomeBoostObject.GetComponent<Button>().interactable = false;
+
+            ForeverIncomeButtonInteractible = false;
+            IncomeButtonInteractible = false;
+
             // foreverIncomeBoostObject.SetActive(false);
             foreverIncomeBoostObjectText.gameObject.SetActive(true);
             if (Geekplay.Instance.language == "en")
@@ -145,6 +165,22 @@ public class BoosterUIScript : MonoBehaviour
             {
                 foreverIncomeBoostObjectText.text = "تم الشراء";
             }
+        }
+
+        if (!Geekplay.Instance.PlayerData.ForeverBallsBoost)
+        {
+            ForeverDoubleBttonInteractible = true;
+            DoubleBttonInteractible = true;
+        }
+        if (!Geekplay.Instance.PlayerData.ForeverIncomeBoost)
+        {
+            ForeverIncomeButtonInteractible = true;
+            IncomeButtonInteractible = true;
+        }
+        if (!Geekplay.Instance.PlayerData.ForeverAutoClickBoost)
+        {
+            ForeverAutoclickButtonInteractible = true;
+            AutoclickButtonInteractible = true;
         }
     }
   
@@ -416,6 +452,9 @@ public class BoosterUIScript : MonoBehaviour
         BallSpawner.Instance.SpawnCount += BallSpawner.Instance.MaximumBallCount;
         BallSpawner.Instance.MaximumBallCount = Geekplay.Instance.PlayerData.MaxSpawnCount * BallSpawner.Instance.BallMaxCountBooster;
         doubleBallButton.interactable = false;
+
+        DoubleBttonInteractible = false;
+
         StartDoubleBallBoost();
     }
     public void StartDoubleBallBoost()
@@ -432,7 +471,14 @@ public class BoosterUIScript : MonoBehaviour
         doubleBallImage.fillAmount = 0f;
         doubleBallText.text = "0";
         doubleBallText.gameObject.SetActive(false);
-        doubleBallButton.interactable = true;
+        
+
+        if (!Geekplay.Instance.PlayerData.ForeverBallsBoost)
+        {
+            doubleBallButton.interactable = true;
+            DoubleBttonInteractible = true;
+        }
+
         if (doubleBallBoost != null)
         {
             StopCoroutine(doubleBallBoost);
@@ -447,6 +493,9 @@ public class BoosterUIScript : MonoBehaviour
     {
         BallSpawner.Instance.IncomeBoost = 5;
         incomeButton.interactable = false;
+
+        IncomeButtonInteractible = false;
+
         StartIncomeBoost();
     }
     public void StartIncomeBoost()
@@ -462,7 +511,14 @@ public class BoosterUIScript : MonoBehaviour
         incomeImage.fillAmount = 0f;
         incomeBallText.text = "0";
         incomeBallText.gameObject.SetActive(false);
-        incomeButton.interactable = true;
+        
+
+        if (!Geekplay.Instance.PlayerData.ForeverIncomeBoost)
+        {
+            incomeButton.interactable = true;
+            IncomeButtonInteractible = true;
+        }
+
         if (incomeBoost != null)
         {
             StopCoroutine(incomeBoost);
@@ -477,6 +533,9 @@ public class BoosterUIScript : MonoBehaviour
     {
         StartAutoClickBoost();
         autoClickButton.interactable = false;
+
+        AutoclickButtonInteractible = false;
+
     }
     public void StartAutoClickBoost()
     {
@@ -490,7 +549,14 @@ public class BoosterUIScript : MonoBehaviour
         autoClickImage.fillAmount = 0f;
         autoClickBallText.text = "0";
         autoClickBallText.gameObject.SetActive(false);
-        autoClickButton.interactable = true;
+        
+
+        if (!Geekplay.Instance.PlayerData.ForeverAutoClickBoost)
+        {
+            autoClickButton.interactable = true;
+            AutoclickButtonInteractible = true;
+        }
+
         if ( autoClickBoost != null)
         {
             StopCoroutine (autoClickBoost);

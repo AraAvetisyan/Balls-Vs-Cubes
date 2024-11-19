@@ -4,6 +4,7 @@ using UnityEngine;
 using System;
 using TMPro;
 using UnityEngine.UI;
+using UnityEngine.UIElements;
 public class Rewarder : MonoBehaviour
 {
     public static Rewarder Instance;
@@ -18,7 +19,7 @@ public class Rewarder : MonoBehaviour
     [SerializeField] private GameObject yenText1, yenText2;
     [SerializeField] private MarketScript _marketScript;
 
-    [SerializeField] private Button buyBall8, buyBall9;
+    [SerializeField] private UnityEngine.UI.Button buyBall8, buyBall9;
 
     [Header("Dollars")]
 
@@ -54,6 +55,8 @@ public class Rewarder : MonoBehaviour
     [SerializeField] private BoosterUIScript _boosterUIScript;
 
 
+    [SerializeField] private int bougtCounter;
+
 
     Dictionary<string, int> OperationNameAndReward = new();
     private void Awake()
@@ -74,9 +77,9 @@ public class Rewarder : MonoBehaviour
     }
     void Start()
     {
-        Geekplay.Instance.SubscribeOnPurchase(AppForDollar1, GetDollarPur1);
-        Geekplay.Instance.SubscribeOnPurchase(AppForDollar2, GetDollarPur2);
-        Geekplay.Instance.SubscribeOnPurchase(AppForDollar3, GetDollarPur3);
+      //  Geekplay.Instance.SubscribeOnPurchase(AppForDollar1, GetDollarPur1);
+       // Geekplay.Instance.SubscribeOnPurchase(AppForDollar2, GetDollarPur2);
+       // Geekplay.Instance.SubscribeOnPurchase(AppForDollar3, GetDollarPur3);
 
         Geekplay.Instance.SubscribeOnPurchase(AppForForeverBallsBoost, GetForeverBallBoost);
         Geekplay.Instance.SubscribeOnPurchase(AppForForeverIncomeBoost, GetForeverIncomeBoost);
@@ -102,22 +105,39 @@ public class Rewarder : MonoBehaviour
 
     public void GetDollarPur1()
     {
-        Geekplay.Instance.PlayerData.MoneyToAdd += (ulong)PurchaseForDollar_Dollar1;
-        moneyText.text = FormatMoney(Geekplay.Instance.PlayerData.MoneyToAdd);
-        Geekplay.Instance.Save();
-
+     //   if (bougtCounter == 0)
+      //  {
+            bougtCounter++;
+            Debug.Log("1");
+            Geekplay.Instance.PlayerData.MoneyToAdd += (ulong)PurchaseForDollar_Dollar1;
+            moneyText.text = FormatMoney(Geekplay.Instance.PlayerData.MoneyToAdd);
+            Geekplay.Instance.Save();
+          //  StartCoroutine(ClearCounter());
+      //  }
     }
     public void GetDollarPur2()
     {
-        Geekplay.Instance.PlayerData.MoneyToAdd += (ulong)PurchaseForDollar_Dollar2;
-        moneyText.text = FormatMoney(Geekplay.Instance.PlayerData.MoneyToAdd);
-        Geekplay.Instance.Save();
+      //  if (bougtCounter == 0)
+      //  {
+            bougtCounter++;
+            Debug.Log("2");
+            Geekplay.Instance.PlayerData.MoneyToAdd += (ulong)PurchaseForDollar_Dollar2;
+            moneyText.text = FormatMoney(Geekplay.Instance.PlayerData.MoneyToAdd);
+            Geekplay.Instance.Save();
+         //   StartCoroutine(ClearCounter());
+      //  }
     }
     public void GetDollarPur3()
     {
-        Geekplay.Instance.PlayerData.MoneyToAdd += (ulong)PurchaseForDollar_Dollar3;
-        moneyText.text = FormatMoney(Geekplay.Instance.PlayerData.MoneyToAdd);
-        Geekplay.Instance.Save();
+      //  if (bougtCounter == 0)
+    //    {
+            bougtCounter++;
+            Debug.Log("3");
+            Geekplay.Instance.PlayerData.MoneyToAdd += (ulong)PurchaseForDollar_Dollar3;
+            moneyText.text = FormatMoney(Geekplay.Instance.PlayerData.MoneyToAdd);
+            Geekplay.Instance.Save();
+        //    StartCoroutine(ClearCounter());
+      //  }
     }
 
 
@@ -126,7 +146,7 @@ public class Rewarder : MonoBehaviour
         Geekplay.Instance.PlayerData.ForeverBallsBoost = true;
         Geekplay.Instance.Save();
        // foreverBallBoostObject.SetActive(false);
-        foreverBallBoostObject.GetComponent<Button>().interactable = false;
+        foreverBallBoostObject.GetComponent<UnityEngine.UI.Button>().interactable = false;
         foreverBallBoostObjectText.gameObject.SetActive(true);
         if (Geekplay.Instance.language == "en")
         {
@@ -153,6 +173,10 @@ public class Rewarder : MonoBehaviour
             foreverBallBoostObjectText.text = "تم الشراء";
         }
         _boosterUIScript.doubleBallButton.interactable = false;
+
+        _boosterUIScript.ForeverDoubleBttonInteractible = false;
+        _boosterUIScript.DoubleBttonInteractible = false;
+        _boosterUIScript.ballBoostAdsIcon.SetActive(false);
         _boosterUIScript.StartForeverBallsBoostCorutine();
     }
 
@@ -161,7 +185,7 @@ public class Rewarder : MonoBehaviour
         Geekplay.Instance.PlayerData.ForeverIncomeBoost = true;
         Geekplay.Instance.Save();
         //foreverIncomeBoostObject.SetActive(false);
-        foreverIncomeBoostObject.GetComponent<Button>().interactable = false;
+        foreverIncomeBoostObject.GetComponent<UnityEngine.UI.Button>().interactable = false;
         foreverIncomeBoostObjectText.gameObject.SetActive(true);
         if (Geekplay.Instance.language == "en")
         {
@@ -188,6 +212,12 @@ public class Rewarder : MonoBehaviour
             foreverIncomeBoostObjectText.text = "تم الشراء";
         }
         _boosterUIScript.incomeButton.interactable = false;
+
+        _boosterUIScript.ForeverIncomeButtonInteractible = false;
+        _boosterUIScript.IncomeButtonInteractible = false;
+
+        _boosterUIScript.incomeBoostAdsIcon.SetActive(false);
+
         _boosterUIScript.StartForeverIncomeBoostCorutine();
     }
 
@@ -196,7 +226,7 @@ public class Rewarder : MonoBehaviour
         Geekplay.Instance.PlayerData.ForeverAutoClickBoost = true;
         Geekplay.Instance.Save();
         //foreverAutoClickObject.SetActive(false);
-        foreverAutoClickObject.GetComponent<Button>().interactable = false;
+        foreverAutoClickObject.GetComponent<UnityEngine.UI.Button>().interactable = false;
         foreverAutoClickObjectText.gameObject.SetActive(true);
         if(Geekplay.Instance.language == "en")
         {
@@ -223,6 +253,12 @@ public class Rewarder : MonoBehaviour
             foreverAutoClickObjectText.text = "تم الشراء";
         }
         _boosterUIScript.autoClickButton.interactable = false;
+
+        _boosterUIScript.ForeverAutoclickButtonInteractible = false;
+        _boosterUIScript.AutoclickButtonInteractible = false;
+
+        _boosterUIScript.autoClickBoostAdsIcon.SetActive(false);
+
         _boosterUIScript.StartForeverAutoClickBoostCorutine();
     }
 
@@ -259,6 +295,11 @@ public class Rewarder : MonoBehaviour
         }
     }
 
+    //private IEnumerator ClearCounter()
+    //{
+    //    yield return new WaitForSeconds(0.1f);
+    //    bougtCounter = 0;
+    //}
     string FormatMoney(double value)
     {
         string[] suffixes = { "", "k", "m", "b", "t", "aa", "ab", "ac", "ad", "ae", "af", "ag", "ah", "ai", "aj", "ak", "al", "am", "an", "ao", "ap", "aq", "ar", "as", "at", "au", "av", "aw", "ax", "ay", "az" };

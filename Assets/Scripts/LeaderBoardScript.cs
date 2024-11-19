@@ -14,33 +14,21 @@ public class LeaderBoardScript : MonoBehaviour
     
     void Start()
     {
-        LiderBoardStart();
         StartCoroutine(IETimer());
         //Запустить корутину, которая каждые 60 секунд будет заново запрашивать данные лидерборда ++
         //и заполнять их в твои тексты через Geekplay.Instance.lS и Geekplay.Instance.lN ++
     }
-    public void LiderBoardStart()
-    {
-        Geekplay.Instance.leaderNumber = 0;
-        Geekplay.Instance.leaderNumberN = 0;
-        Utils.GetLeaderboard("score", 0, "Levels");
-        Utils.GetLeaderboard("name", 0, "Levels");
-        for (int i = 0; i < namesInGame.Length; i++)
-        {
-            namesInGame[i].text = Geekplay.Instance.lN[i];
-            maxLevelInGame[i].text = Geekplay.Instance.lS[i];
-        }
-    }
     IEnumerator IETimer()
     {
        
-        yield return new WaitForSeconds(2);
+        yield return new WaitForSeconds(5);
         Geekplay.Instance.remainingTimeUntilUpdateLeaderboard = 60;
         Geekplay.Instance.leaderNumber = 0;
         Geekplay.Instance.leaderNumberN = 0;
         Utils.GetLeaderboard("score", 0, "Levels");
         Utils.GetLeaderboard("name", 0, "Levels");
         StartTimerCoroutine();
+        yield return new WaitForSeconds(1);
         for (int i = 0; i < namesInGame.Length; i++)
         {
             namesInGame[i].text = Geekplay.Instance.lN[i];
@@ -71,6 +59,7 @@ public class LeaderBoardScript : MonoBehaviour
         Geekplay.Instance.leaderNumberN = 0;
         Utils.GetLeaderboard("score", 0, "Levels");
         Utils.GetLeaderboard("name", 0, "Levels");
+        yield return new WaitForSeconds(1);
         for (int i = 0; i < namesInGame.Length; i++)
         {
             namesInGame[i].text = Geekplay.Instance.lN[i];

@@ -6,6 +6,8 @@ using UnityEngine.UIElements;
 
 public class LocalisationScript : MonoBehaviour
 {
+    public static LocalisationScript Instance;
+
     [SerializeField] private TextMeshProUGUI newBoostText;
     [Header("Upgrades")]
     [SerializeField] private TextMeshProUGUI upgradesTitleText;
@@ -66,6 +68,14 @@ public class LocalisationScript : MonoBehaviour
     [Header("LeaderBoard")]
     [SerializeField] private TextMeshProUGUI leadersText;
 
+    [Header("Yan")]
+    [SerializeField] private TextMeshProUGUI[] yans;
+    [SerializeField] private int[] prices;
+
+    private void Awake()
+    {
+        Instance = this;
+    }
     void Start()
     {
         if (Geekplay.Instance.language == "en")
@@ -346,5 +356,13 @@ public class LocalisationScript : MonoBehaviour
             leadersText.text = "FÜHRER";
         }
 
+    }
+
+    public void ChangeYan()
+    {
+        for(int i = 0; i < yans.Length; i++)
+        {
+            yans[i].text = prices[i].ToString() + " " + Geekplay.Instance.YanValueType;
+        }
     }
 }

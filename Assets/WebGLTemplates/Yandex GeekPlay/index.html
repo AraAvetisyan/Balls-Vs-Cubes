@@ -28,6 +28,7 @@
       var player;
       var ysdk;
       var payments;
+      var gameShop = [];
       var lb;
 
       function consumePurchase(purchase) {
@@ -174,6 +175,12 @@
                       loadingBar.style.display = "none";
                       //getLang();
                          
+
+                      
+                      payments.getCatalog().then(products => {
+                          gameShop = products;
+                      });
+
                       payments.getPurchases().then(purchases => purchases.forEach(consumePurchase));
                       }).catch((message) => {
                     alert(message);
